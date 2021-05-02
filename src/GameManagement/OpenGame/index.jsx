@@ -10,7 +10,7 @@ import "../../App.css";
 import { listTrickList, listTricks } from "../../utils/api";
 
 function OpenGame(){
-
+    return null
 }
 
 export default OpenGame
