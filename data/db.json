@@ -1,0 +1,9 @@
+{
+    "trickLists": [
+        {
+            "name": "BATB 2019",
+            "tricks": ["around the world", "spike"],
+            "id": 1
+        }
+    ]
+}
