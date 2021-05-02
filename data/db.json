@@ -4,6 +4,11 @@
             "name": "BATB 2019",
             "tricks": ["around the world", "spike"],
             "id": 1
+        },
+        {
+            "name": "BATB 2020",
+            "tricks": ["around europe", "swing spike"],
+            "id": 2
         }
     ]
 }

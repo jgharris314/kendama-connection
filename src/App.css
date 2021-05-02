@@ -48,6 +48,8 @@
 } */
 
 .trick-gen-link {
-  margin-top: 5%;
-  margin-bottom: 5%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  color: blanchedalmond;
+  background-color: blueviolet;
 }

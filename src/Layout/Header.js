@@ -18,10 +18,10 @@ function Header() {
           <Link className="Link" to={'/'}>
             Home
           </Link>
-          <Link className="Link" to={'trick-generators'}>
+          <Link className="Link" to={'/trick-generators'}>
             Trick Generators
           </Link>
-          <Link className="Link" to={'meetup'}>
+          <Link className="Link" to={'/meetup'}>
             Jams and Meets
           </Link>
       </nav>
