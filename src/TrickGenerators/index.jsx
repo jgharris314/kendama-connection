@@ -1,15 +1,20 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, Route, Switch, useParams } from "react-router-dom";
+import {
+  Link,
+  Route,
+  Switch,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 import "../App.css";
 import { listTrickList, listTricks } from "../utils/api";
 
 function TrickGenerators() {
   const [trickListsArr, setTrickListsArr] = useState([]);
-  const [trickList, setTrickList] = useState({
-    id: 0,
-    tricks: [],
-    name: "Pick or create a tricklist.",
-  });
+  const [trickList, setTrickList] = useState({id: 0, tricks: [], name: "",});
+  const [formTricks, setFormTricks] = useState([]);
+
+  const { url } = useRouteMatch();
 
   useEffect(() => {
     const aborter = new AbortController();
@@ -28,12 +33,40 @@ function TrickGenerators() {
       }
     };
     loadOpenTrickLists();
-  }, []);
+    setTrickList({
+      id: 0,
+      tricks: [],
+      name: "",
+    });
+  }, [url]);
 
-  const loadTrickList = async (id) => {
-    setTrickList(trickListsArr.find((t) => t.id === id));
+  const loadTrickList = (id) => {
+    if (id === 0) {
+      setTrickList({ id: 0, tricks: [], name: "" });
+    } else {
+      setTrickList(trickListsArr.find((t) => t.id === id));
+    }
   };
 
+  const prepData = (data) => {
+    const tricks = data.split(",")
+    return {"id":Infinity, "tricks":tricks,"name":"custom"}
+  }
+
+  const handleChange = (event) => {
+    setFormTricks(event.target.value)
+    
+ }
+  const submitHandler = (event) => {
+    event.preventDefault();
+      console.log("pog")
+      const newData = prepData(formTricks)
+      console.log(newData)
+      setTrickList(newData)
+      setFormTricks([])
+  }
+
+ 
   return (
     <Fragment>
       <div className="container">
@@ -61,7 +94,9 @@ function TrickGenerators() {
                     {t.name}
                   </li>
                 ))}
-                <li>WACK I wanna make my own</li>
+                <li key={0} onClick={() => loadTrickList(0)}>
+                  Back to Creation Form
+                </li>
               </route>
               <route path="/trick-generators/ken">
                 <h6>Ken or Dama?</h6>
@@ -75,11 +110,27 @@ function TrickGenerators() {
           <div className="col col-6">
             <Switch>
               <route path="/trick-generators/open">
-                <h6>{trickList.name}</h6>
-                {trickList.tricks.map((t) => (
-                  <li>{t}</li>
-                ))}
-                {trickList.tricks.length ? <button>GOGOGOGO</button> : null}
+                {trickList.name.length ? (
+                  <Fragment>
+                    <h6>{trickList.name}</h6>
+                    {trickList.tricks.map((t) => (
+                      <li>{t}</li>
+                    ))}
+                    {trickList.tricks.length ? <button>gOgOgO</button> : null}
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <p>
+                      <strong>This is the creation form to use your own trick list!<br/> </strong>Don't worry if you don't have a trick list prepared! 
+                      Choose a preset from the list to the left!
+                    </p>
+                    <form onSubmit={submitHandler}>
+                      <textarea onChange={handleChange}></textarea>
+                      <button type="submit">GoGoGo</button>
+                    </form>
+                    
+                  </Fragment>
+                )}
               </route>
               <route path="/trick-generators/ken">
                 <h6>Garbo prolly gonna do state again</h6>

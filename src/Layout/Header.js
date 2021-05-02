@@ -19,7 +19,7 @@ function Header() {
             Home
           </Link>
           <Link className="Link" to={'/trick-generators'}>
-            Trick Generators
+            Game Management
           </Link>
           <Link className="Link" to={'/meetup'}>
             Jams and Meets
