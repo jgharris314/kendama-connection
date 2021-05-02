@@ -8,8 +8,9 @@ import {
 } from "react-router-dom";
 import "../App.css";
 import { listTrickList, listTricks } from "../utils/api";
+import OpenGame from "./OpenGame"
 
-function TrickGenerators() {
+function GameManagement() {
   const [trickListsArr, setTrickListsArr] = useState([]);
   const [trickList, setTrickList] = useState({id: 0, tricks: [], name: "",});
   const [formTricks, setFormTricks] = useState([]);
@@ -61,7 +62,6 @@ function TrickGenerators() {
     event.preventDefault();
       console.log("pog")
       const newData = prepData(formTricks)
-      console.log(newData)
       setTrickList(newData)
       setFormTricks([])
   }
@@ -72,14 +72,14 @@ function TrickGenerators() {
       <div className="container">
         <div className="row">
           <div className="col col-3">
-            <Link to="/trick-generators/open" className="trick-gen-link row">
+            <Link to="/game-management/open" className="trick-gen-link row">
               Open
             </Link>
-            <Link to="/trick-generators/ken" className="trick-gen-link row">
+            <Link to="/game-management/ken" className="trick-gen-link row">
               K.E.N
             </Link>
             <Link
-              to="/trick-generators/freestyle"
+              to="/game-management/freestyle"
               className="trick-gen-link row"
             >
               Freestyle
@@ -87,7 +87,7 @@ function TrickGenerators() {
           </div>
           <div className="col col-3">
             <Switch>
-              <route path="/trick-generators/open">
+              <route path="/game-management/open">
                 <h6>Presets</h6>
                 {trickListsArr.map((t) => (
                   <li key={t.id} onClick={() => loadTrickList(t.id)}>
@@ -98,10 +98,10 @@ function TrickGenerators() {
                   Back to Creation Form
                 </li>
               </route>
-              <route path="/trick-generators/ken">
+              <route path="/game-management/ken">
                 <h6>Ken or Dama?</h6>
               </route>
-              <route path="/trick-generators/freestyle">
+              <route path="/game-management/freestyle">
                 <h6>Choose durations</h6>
               </route>
             </Switch>
@@ -109,7 +109,7 @@ function TrickGenerators() {
 
           <div className="col col-6">
             <Switch>
-              <route path="/trick-generators/open">
+              <route path="/game-management/open">
                 {trickList.name.length ? (
                   <Fragment>
                     <h6>{trickList.name}</h6>
@@ -132,10 +132,10 @@ function TrickGenerators() {
                   </Fragment>
                 )}
               </route>
-              <route path="/trick-generators/ken">
+              <route path="/game-management/ken">
                 <h6>Garbo prolly gonna do state again</h6>
               </route>
-              <route path="/trick-generators/freestyle">
+              <route path="/game-management/freestyle">
                 <h6>Rekt more state</h6>
               </route>
             </Switch>
@@ -146,4 +146,4 @@ function TrickGenerators() {
   );
 }
 
-export default TrickGenerators;
+export default GameManagement;

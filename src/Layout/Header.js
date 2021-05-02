@@ -18,7 +18,7 @@ function Header() {
           <Link className="Link" to={'/'}>
             Home
           </Link>
-          <Link className="Link" to={'/trick-generators'}>
+          <Link className="Link" to={'/game-management'}>
             Game Management
           </Link>
           <Link className="Link" to={'/meetup'}>
