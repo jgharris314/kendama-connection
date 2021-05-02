@@ -14,6 +14,7 @@ function GameManagement() {
   const [trickListsArr, setTrickListsArr] = useState([]);
   const [trickList, setTrickList] = useState({id: 0, tricks: [], name: "",});
   const [formTricks, setFormTricks] = useState([]);
+  const [startGame, setStartGame] = useState(false);
 
   const { url } = useRouteMatch();
 
@@ -39,6 +40,7 @@ function GameManagement() {
       tricks: [],
       name: "",
     });
+    setStartGame(false)
   }, [url]);
 
   const loadTrickList = (id) => {
@@ -61,9 +63,12 @@ function GameManagement() {
   const submitHandler = (event) => {
     event.preventDefault();
       console.log("pog")
-      const newData = prepData(formTricks)
-      setTrickList(newData)
+      if(formTricks.length){
+       const newData = prepData(formTricks) 
+       setTrickList(newData)
       setFormTricks([])
+      }
+      
   }
 
  
@@ -72,7 +77,7 @@ function GameManagement() {
       <div className="container">
         <div className="row">
           <div className="col col-3">
-            <Link to="/game-management/open" className="trick-gen-link row">
+            <Link to="/game-management/open" className="trick-gen-link row" onClick={() => setStartGame(false)}>
               Open
             </Link>
             <Link to="/game-management/ken" className="trick-gen-link row">
@@ -85,9 +90,11 @@ function GameManagement() {
               Freestyle
             </Link>
           </div>
+          {!startGame ?(
+            <Fragment>
           <div className="col col-3">
             <Switch>
-              <route path="/game-management/open">
+              <route path="/game-management/open" exact>
                 <h6>Presets</h6>
                 {trickListsArr.map((t) => (
                   <li key={t.id} onClick={() => loadTrickList(t.id)}>
@@ -109,14 +116,14 @@ function GameManagement() {
 
           <div className="col col-6">
             <Switch>
-              <route path="/game-management/open">
+              <route path="/game-management/open" exact>
                 {trickList.name.length ? (
                   <Fragment>
                     <h6>{trickList.name}</h6>
                     {trickList.tricks.map((t) => (
                       <li>{t}</li>
                     ))}
-                    {trickList.tricks.length ? <button>gOgOgO</button> : null}
+                    {trickList.tricks.length ? <Link to={'/game-management/open/play'} onClick={() => setStartGame(true)}>gOgOgO</Link> : null}
                   </Fragment>
                 ) : (
                   <Fragment>
@@ -125,7 +132,7 @@ function GameManagement() {
                       Choose a preset from the list to the left!
                     </p>
                     <form onSubmit={submitHandler}>
-                      <textarea onChange={handleChange}></textarea>
+                      <textarea onChange={handleChange} defaultValue="enter,tricks,separated,by,a,comma"></textarea>
                       <button type="submit">GoGoGo</button>
                     </form>
                     
@@ -140,6 +147,8 @@ function GameManagement() {
               </route>
             </Switch>
           </div>
+          </Fragment>)
+          : null}
         </div>
       </div>
     </Fragment>
