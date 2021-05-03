@@ -41,7 +41,7 @@ function GameManagement() {
       name: "",
     });
     setStartGame(false)
-  }, [url]);
+  }, []);
 
   const loadTrickList = (id) => {
     if (id === 0) {
@@ -148,7 +148,7 @@ function GameManagement() {
             </Switch>
           </div>
           </Fragment>)
-          : null}
+          : <OpenGame trickList={trickList}/>}
         </div>
       </div>
     </Fragment>
