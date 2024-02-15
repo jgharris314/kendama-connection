@@ -1,0 +1,27 @@
+[
+  {
+    "username": "owner",
+    "password": "superSecure.tm",
+    "membership_type": "owner"
+  },
+  {
+    "username": "basic",
+    "password": "superSecure.tm",
+    "membership_type": "basic"
+  },
+  {
+    "username": "local_host",
+    "password": "superSecure.tm",
+    "membership_type": "local_host"
+  },
+  {
+    "username": "major_host",
+    "password": "superSecure.tm",
+    "membership_type": "major_host"
+  },
+  {
+    "username": "company",
+    "password": "superSecure.tm",
+    "membership_type": "company"
+  }
+]
