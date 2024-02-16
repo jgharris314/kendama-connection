@@ -1,25 +1,30 @@
 [
   {
-    "username": "owner",
+    "email": "used@test.com",
+    "username": "used",
     "password": "superSecure.tm",
     "membership_type": "owner"
   },
   {
+    "email": "used2@test.com",
     "username": "basic",
     "password": "superSecure.tm",
     "membership_type": "basic"
   },
   {
+    "email": "used3@test.com",
     "username": "local_host",
     "password": "superSecure.tm",
     "membership_type": "local_host"
   },
   {
+    "email": "used4@test.com",
     "username": "major_host",
     "password": "superSecure.tm",
     "membership_type": "major_host"
   },
   {
+    "email": "used5@test.com",
     "username": "company",
     "password": "superSecure.tm",
     "membership_type": "company"
