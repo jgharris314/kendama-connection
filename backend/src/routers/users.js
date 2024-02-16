@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const methodNotAllowed = require("../errors/methodNotAllowed")
-const controller = require("./users.controller")
+const controller = require("../controllers/users.controller")
 
 router.route("/new").post(controller.post).all(methodNotAllowed)
 
