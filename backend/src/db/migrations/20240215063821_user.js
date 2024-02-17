@@ -1,7 +1,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable("user", (table) => {
     table.increments("user_id").primary()
-    table.string("username").notNullable()
+    table.string("email").notNullable().unique()
+    table.string("username").notNullable().unique()
     table.string("password").notNullable()
     table.string("membership_type").defaultTo("basic")
     table.timestamps(true, true)
