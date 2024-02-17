@@ -13,7 +13,7 @@ async function getUserByUsername(req, res, next) {
 }
 
 async function post(req, res, next) {
-  const { data } = req.body
+  const data = req.body
   const modifiedData = {
     ...data,
     password: await bcrypt.hash(data.password, 10),

@@ -1,7 +1,7 @@
 const service = require("../services/users")
 
 async function validateUserData(req, res, next) {
-  const data = req.body.data
+  const data = req.body
 
   const keysToCheck = ["username", "password", "password_confirmation", "email"]
 
