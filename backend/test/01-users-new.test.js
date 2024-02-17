@@ -31,7 +31,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
         expect(response.body.error).toContain("username")
@@ -46,7 +46,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
         expect(response.body.error).toContain("username")
@@ -61,7 +61,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
         expect(response.body.error).toContain("email")
@@ -76,7 +76,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
         expect(response.body.error).toContain("email")
@@ -91,7 +91,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
         expect(response.body.error).toContain("password")
@@ -106,7 +106,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
         expect(response.body.error).toContain("password_confirmation")
@@ -121,7 +121,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
       })
@@ -135,7 +135,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
       })
@@ -150,7 +150,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
       })
@@ -165,7 +165,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
       })
@@ -179,7 +179,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(400)
         expect(response.body.error).toContain("do not match")
@@ -195,7 +195,7 @@ describe("User tests", () => {
         const response = await request(app)
           .post("/users/new")
           .set("Accept", "application/json")
-          .send({ data })
+          .send(data)
 
         expect(response.status).toBe(201)
       })
