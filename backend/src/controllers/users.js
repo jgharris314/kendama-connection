@@ -1,6 +1,7 @@
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary")
 const service = require("../services/users")
 const validation = require("../validation/users")
+const bcrypt = require("bcrypt")
 
 async function listUsers(req, res, next) {
   const users = await service.listUsers()
@@ -12,10 +13,14 @@ async function getUserByUsername(req, res, next) {
 }
 
 async function post(req, res, next) {
-  const data = { ...req.body.data }
-  delete data.password_confirmation
+  const { data } = req.body
+  const modifiedData = {
+    ...data,
+    password: await bcrypt.hash(data.password, 10),
+  }
+  delete modifiedData.password_confirmation
   res.status(201).json({
-    data: await service.post(data),
+    data: await service.post(modifiedData),
   })
 }
 
