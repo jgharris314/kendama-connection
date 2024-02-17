@@ -1,12 +1,14 @@
 const knex = require("../db/connection")
 
+const userSafeFields = ["email", "user_id", "username", "membership_type"]
+
 async function listUsers() {
-  return knex("user").select("*")
+  return knex("user").select(userSafeFields)
 }
 
 function getUserByEmail(email) {
   return knex("user")
-    .select("*")
+    .select(userSafeFields)
     .where({ email })
     .then((e) => e[0])
 }
