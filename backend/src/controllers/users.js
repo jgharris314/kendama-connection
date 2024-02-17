@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 
 async function listUsers(req, res, next) {
   const users = await service.listUsers()
-  res.json({ data: users })
+  res.json(users)
 }
 
 async function getUserByUsername(req, res, next) {
