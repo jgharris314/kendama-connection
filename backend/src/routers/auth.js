@@ -47,15 +47,17 @@ router.get("/current", async (req, res) => {
   if (req.session && req.session.user) {
     const username = req.session.user.username
     try {
-      const user = await userAccountsServices.read(username)
+      const user = await userServices.getUserByUsername(username)
 
       if (!user) {
         return res.status(404).send("User not found")
       }
 
       // Respond with combined data
+      const modified = { ...user }
+      delete modified.password
       res.status(200).json({
-        user: user,
+        user: modified,
       })
     } catch (error) {
       console.error("Error fetching data:", error)
