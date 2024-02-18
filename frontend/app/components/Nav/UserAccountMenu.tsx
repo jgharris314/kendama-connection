@@ -29,6 +29,9 @@ export default function UserAccountMenu() {
       Logout
     </button>
   ) : (
-    <NavItem href="/auth/login" title="login" />
+    <>
+      <NavItem href="/auth/signup" title="Create Account" /> or
+      <NavItem href="/auth/login" title="login" />
+    </>
   )
 }
