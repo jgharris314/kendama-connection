@@ -24,6 +24,7 @@ export default function LoginPage() {
       }
     } catch (error) {
       console.error(error)
+      // @ts-ignore
       setErrors(error.toString())
     }
   }
