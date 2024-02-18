@@ -15,12 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <main>
+      <body>
         <GlobalContextProvider isLoggedIn={false} user={{ username: "" }}>
           <Nav />
-          <body className={"pt-20"}>{children}</body>
+          <div className={"pt-20"}>{children}</div>
         </GlobalContextProvider>
-      </main>
+      </body>
     </html>
   )
 }
