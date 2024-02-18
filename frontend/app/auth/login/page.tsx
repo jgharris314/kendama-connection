@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import Input from "@/app/components/elements/Input"
 import fetcher from "@/app/api/fetcher"
@@ -13,6 +14,7 @@ export default function LoginPage() {
   const router = useRouter()
   const methods = useForm<FormData>({ mode: "onSubmit" })
   const { setLoggedInStatus } = useGlobalContext()
+  const [errors, setErrors] = useState<string>("")
 
   async function onSubmit(data: FormData) {
     try {
@@ -24,6 +26,7 @@ export default function LoginPage() {
       }
     } catch (error) {
       console.error(error)
+      setErrors(error.toString())
     }
   }
 
@@ -32,6 +35,9 @@ export default function LoginPage() {
   const labelClasses = "text-m0othGrey- whitespace-nowrap p-1"
   return (
     <div className="flex flex-col w-full items-center">
+      <div className="h-8">
+        {errors && <span className="text-red-500">{errors}</span>}
+      </div>
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
@@ -55,6 +61,7 @@ export default function LoginPage() {
             label="Password"
             labelClasses={labelClasses}
             validation={{ required: "Password is required" }}
+            type="password"
           />
           <button className="h-10" type="submit">
             Log In
