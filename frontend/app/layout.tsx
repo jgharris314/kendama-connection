@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import Nav from "@/app/components/Nav"
+import GlobalContextProvider from "@/app/context/Global"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,8 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Nav />
-      <body className={"pt-20"}>{children}</body>
+      <main>
+        <GlobalContextProvider isLoggedIn={false} user={{ username: "" }}>
+          <Nav />
+          <body className={"pt-20"}>{children}</body>
+        </GlobalContextProvider>
+      </main>
     </html>
   )
 }

@@ -3,6 +3,7 @@ import { FormProvider, useForm } from "react-hook-form"
 import Input from "@/app/components/elements/Input"
 import fetcher from "@/app/api/fetcher"
 import { useRouter } from "next/navigation"
+import { useGlobalContext } from "@/app/context/Global"
 interface FormData {
   username: string
   password: string
@@ -11,13 +12,14 @@ interface FormData {
 export default function LoginPage() {
   const router = useRouter()
   const methods = useForm<FormData>({ mode: "onSubmit" })
+  const { setLoggedInStatus } = useGlobalContext()
 
   async function onSubmit(data: FormData) {
     try {
       const res = await fetcher("/auth/login", data)
-      console.log(res)
+
       if (res.message === "Logged in successfully") {
-        console.log("tacos")
+        setLoggedInStatus(true)
         router.push("/")
       }
     } catch (error) {

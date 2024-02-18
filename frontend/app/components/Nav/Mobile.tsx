@@ -7,6 +7,7 @@ import SectionContainer from "../SectionContainer"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { navOptions } from "./constants"
+import UserAccountMenu from "@/app/components/Nav/UserAccountMenu"
 
 export default function MobileNav() {
   const router = useRouter()
@@ -17,9 +18,6 @@ export default function MobileNav() {
     router.push(hash)
     setIsOpen(false)
   }
-
-  const greenHex = "#1cb048"
-  const blueHex = "#00b4e0"
 
   return (
     <>
@@ -72,6 +70,7 @@ export default function MobileNav() {
                   </button>
                 )
               })}
+              <UserAccountMenu />
             </ul>
           }
         </div>
