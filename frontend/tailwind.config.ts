@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config: Config = {
   content: [
@@ -8,6 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        "kenConnect-black": "#050a23",
+        "kenConnect-blue": "#0c3fa7",
+        "kenConnect-red": "#d60000",
+        "kenConnect-yellow": "#ffe01f",
+        "kenConnect-white": "#f3f6f4",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -16,5 +23,5 @@ const config: Config = {
     },
   },
   plugins: [],
-};
-export default config;
+}
+export default config
