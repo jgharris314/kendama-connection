@@ -1,5 +1,6 @@
 import { Calendar, momentLocalizer } from "react-big-calendar"
 import moment from "moment"
+import SectionContainer from "components/SectionContainer"
 
 export default function EventsPage() {
   const localizer = momentLocalizer(moment)
@@ -28,8 +29,7 @@ export default function EventsPage() {
     },
   ]
 
-  function eventStyleGetterfunction(event, start, end, isSelected) {
-    console.log(event)
+  function eventStyleGetterfunction(event: CalendarEvent) {
     const backgroundColor = event.eventType === "weekly" ? "#444" : "#aaa"
     const style = {
       backgroundColor: backgroundColor,
@@ -44,8 +44,8 @@ export default function EventsPage() {
     }
   }
 
-  const MyCalendar = (props: any) => (
-    <div className="flex flex-col items-center justify-center md:w-[700px] xl:w-[1200px] bg-red-500">
+  const MyCalendar = () => (
+    <div className="flex flex-col items-center justify-center md:w-[700px] xl:w-[1200px] bg-slate-400">
       <Calendar
         localizer={localizer}
         events={calendarEventList}
@@ -59,8 +59,11 @@ export default function EventsPage() {
     </div>
   )
   return (
-    <div className="flex w-full justify-center">
+    <SectionContainer
+      bgClasses="bg-green-500"
+      additionalContentClasses="flex w-full items-center justify-center "
+    >
       <MyCalendar />
-    </div>
+    </SectionContainer>
   )
 }

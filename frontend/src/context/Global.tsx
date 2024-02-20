@@ -2,14 +2,14 @@ import React, { createContext, useContext, useMemo, useState } from "react"
 
 type GlobalContextProviderProps = {
   isLoggedIn: boolean
-  user: any
+  user: unknown
   children: React.ReactNode
 }
 
 type GlobalContextData = {
   loggedInStatus: boolean
   setLoggedInStatus: React.Dispatch<React.SetStateAction<boolean>>
-  user: any
+  user: unknown
 }
 
 const GlobalContext = createContext<GlobalContextData>({} as GlobalContextData)
@@ -34,6 +34,7 @@ export default function GlobalContextProvider({
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useGlobalContext() {
   return useContext(GlobalContext)
 }
