@@ -23,5 +23,9 @@ export function onSubmit(
   if (new Date(formData.start) > new Date(formData.end)) {
     return setErrors("Start date must be before the end date")
   }
+
+  if (!formData.title.length) {
+    return setErrors("Title is required")
+  }
   console.log(formData)
 }

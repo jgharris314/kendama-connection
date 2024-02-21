@@ -5,6 +5,8 @@ import DatePick from "./DatePick"
 import { CreateEventFormData } from "./types"
 import { handleDateChange, onSubmit } from "./functions"
 import SectionContainer from "components/SectionContainer"
+import { parentClasses, labelClasses, inputClasses } from "./styles"
+import ErrorSection from "./ErrorSection"
 
 export default function CreateEventForm() {
   const methods = useForm<CreateEventFormData>({ mode: "onSubmit" })
@@ -12,22 +14,22 @@ export default function CreateEventForm() {
   const [startDate, setStartDate] = useState<Date>(new Date())
   const [endDate, setEndDate] = useState<Date>(new Date())
 
-  const parentClasses = "text-white items-center flex flex-col"
-  const inputClasses = "h-10 rounded  text-black max-w-[200px]"
-  const labelClasses = "text-black whitespace-nowrap p-1"
-
   const [errors, setErrors] = useState("")
 
   return (
     <SectionContainer
-      bgClasses="bg-kenConnect-white"
-      additionalContentClasses="flex w-full justify-center items-center"
+      bgClasses="bg-red-500"
+      additionalContentClasses="flex flex-col w-full justify-center items-center"
     >
-      {errors && <span>{errors}</span>}
+      <ErrorSection errors={errors} />
+      <h1 className="text-[72px] mb-8 text-kenConnect-white underline decoration-kenConnect-yellow underline-offset-[1rem] font-semibold">
+        List an event!
+      </h1>
+
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit((data) => onSubmit(data, setErrors))}
-          className="bg-white w-[600px] h-[300px]"
+          className="bg-kenConnect-white w-full flex flex-col justify-center items-center md:w-[600px] p-4 rounded shadow-md shadow-kenConnect-white"
         >
           <Input
             name="title"
@@ -36,10 +38,10 @@ export default function CreateEventForm() {
             inputClasses={inputClasses}
             label="title"
             labelClasses={labelClasses}
-          ></Input>
+          />
 
-          <div className="flex flex-col">
-            <label>Start Date</label>
+          <div className={parentClasses}>
+            <label className={labelClasses}>Start Date</label>
             <DatePick
               name="start"
               date={startDate}
@@ -49,8 +51,8 @@ export default function CreateEventForm() {
               control={control}
             />
           </div>
-          <div className="flex flex-col">
-            <label>End Date</label>
+          <div className={parentClasses}>
+            <label className={labelClasses}>End Date</label>
             <DatePick
               name="end"
               date={endDate}
@@ -60,7 +62,12 @@ export default function CreateEventForm() {
               control={control}
             />
           </div>
-          <button type="submit">Submit</button>
+          <button
+            className="my-4 w-32 h-16 bg-kenConnect-blue text-kenConnect-white rounded shadow-md shadow-kenConnect-blue border border-kenConnect-black font-bold"
+            type="submit"
+          >
+            Submit
+          </button>
         </form>
       </FormProvider>
     </SectionContainer>

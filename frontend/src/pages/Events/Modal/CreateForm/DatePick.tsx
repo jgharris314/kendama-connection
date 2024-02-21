@@ -1,6 +1,7 @@
 import { Control, Controller } from "react-hook-form"
 import DatePicker from "react-datepicker"
 import { CreateEventFormData } from "./types"
+import { inputClasses } from "./styles"
 
 export default function DatePick({
   control,
@@ -25,6 +26,7 @@ export default function DatePick({
           onChange={handleChange}
           timeFormat="HH:mm"
           dateFormat="MM, dd, yyyy HH:mm"
+          className={inputClasses}
         />
       )}
     />
