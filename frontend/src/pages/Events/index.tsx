@@ -14,17 +14,20 @@ export default function EventsPage() {
 
   return (
     <SectionContainer
-      bgClasses="bg-green-500 w-full"
+      bgClasses=" w-full"
       additionalContentClasses="flex flex-col w-full items-center justify-center "
     >
+      <div className="flex w-full justify-end my-4">
+        <button
+          type="button"
+          className="w-32 h-16 bg-kenConnect-yellow"
+          onClick={() => setIsOpen()}
+        >
+          Create
+        </button>
+      </div>
       <EventCalendar />
-      <button
-        type="button"
-        className="w-32 h-16 bg-kenConnect-yellow"
-        onClick={() => setIsOpen()}
-      >
-        Create
-      </button>
+
       <Modal isCreateMode setIsOpen={setIsOpen} />
     </SectionContainer>
   )
