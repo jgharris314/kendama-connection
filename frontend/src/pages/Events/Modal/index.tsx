@@ -19,7 +19,7 @@ export default function Modal({
       />
       <div
         id="modal"
-        className="absolute w-full lg:w-[66vw] h-full bg-green-900 right-0 top-0 translate-y-full lg:translate-x-full lg:translate-y-0 duration-500 ease-out transition-all"
+        className="absolute w-full lg:w-[66vw] xl:w-[50vw] h-full bg-green-900 right-0 top-0 translate-y-full lg:translate-x-full lg:translate-y-0 duration-500 ease-out transition-all"
       >
         <button
           className="w-12 h-12 bg-red-700 text-red font-black text-kenConnect-white"
