@@ -1,6 +1,7 @@
 import React from "react"
 import type { CreateEventFormData } from "./types"
 import { UseFormSetValue } from "react-hook-form"
+import fetcher from "api/fetcher"
 
 export function handleDateChange(
   dateChange: Date,
@@ -20,12 +21,22 @@ export function onSubmit(
 ) {
   //ensure start date is before end date
   setErrors("")
-  if (new Date(formData.start) > new Date(formData.end)) {
+  const startDate = new Date(formData.start)
+  const endDate = new Date(formData.end)
+  if (startDate > endDate) {
     return setErrors("Start date must be before the end date")
   }
 
   if (!formData.title.length) {
     return setErrors("Title is required")
   }
-  console.log(formData)
+
+  const modifiedData = {
+    title: formData.title,
+    start_date: startDate.toISOString(),
+    end_date: endDate.toISOString(),
+  }
+
+  fetcher("/calendarEvents/new", modifiedData)
+  console.log(startDate.toISOString())
 }
