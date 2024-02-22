@@ -3,6 +3,22 @@ const request = require("supertest")
 const app = require("../src/app")
 const knex = require("../src/db/connection")
 
+//description
+
+// end_date
+
+// interval
+
+// location_city
+
+// location_name
+
+// location_state
+
+// start_date
+
+// title
+
 const validEventData = {
   title: "mothDama",
   start_date: "Wed Feb 21 2024 17:05:06 GMT-0700 (Mountain Standard Time)",
