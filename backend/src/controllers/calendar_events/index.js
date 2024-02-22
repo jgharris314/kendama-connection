@@ -1,5 +1,6 @@
 const asyncErrorBoundary = require("../../errors/asyncErrorBoundary")
 const service = require("../../services/calendar_events")
+const { validateCalendarEventData } = require("../../validation/calendarEvent")
 const { getIntervalEvents } = require("./functions")
 
 async function listEvents(req, res, next) {
@@ -22,5 +23,5 @@ async function post(req, res, next) {
 
 module.exports = {
   listEvents: asyncErrorBoundary(listEvents),
-  post: [asyncErrorBoundary(post)],
+  post: [validateCalendarEventData, asyncErrorBoundary(post)],
 }
