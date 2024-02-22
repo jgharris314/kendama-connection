@@ -3,5 +3,11 @@
     "title": "The bonanza4",
     "start_date": "Wed Feb 21 2024 17:05:06 GMT-0700 (Mountain Standard Time)",
     "end_date": "Wed Feb 21 2024 18:00:00 GMT-0700 (Mountain Standard Time)"
+  },
+  {
+    "title": "mothDama",
+    "start_date": "Wed Feb 21 2024 17:05:06 GMT-0700 (Mountain Standard Time)",
+    "end_date": "Wed Feb 21 2024 18:00:00 GMT-0700 (Mountain Standard Time)",
+    "interval": "monthly"
   }
 ]

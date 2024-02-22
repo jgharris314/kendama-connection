@@ -4,6 +4,7 @@ exports.up = function (knex) {
     table.string("title").notNullable()
     table.string("start_date").notNullable()
     table.string("end_date").notNullable()
+    table.string("interval").defaultTo("weekly")
     table.timestamps(true, true)
   })
 }
