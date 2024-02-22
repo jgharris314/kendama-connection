@@ -25,8 +25,8 @@ export default function Form({
     useState<CreateEventInterval>("one-off")
 
   useEffect(() => {
-    methods.setValue("interval", selectedInterval)
-  }, [selectedInterval, methods])
+    setValue("interval", selectedInterval)
+  }, [selectedInterval, setValue])
 
   return (
     <FormProvider {...methods}>
