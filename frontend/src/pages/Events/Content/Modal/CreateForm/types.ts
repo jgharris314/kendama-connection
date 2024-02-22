@@ -1,4 +1,4 @@
-export type CreateEventInterval = "weekly" | "monthly" | "yearly"
+export type CreateEventInterval = "weekly" | "monthly" | "one-off"
 
 export interface CreateEventFormData {
   start: string

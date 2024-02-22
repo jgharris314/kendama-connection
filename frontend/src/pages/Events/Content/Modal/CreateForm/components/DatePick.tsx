@@ -1,7 +1,7 @@
 import { Control, Controller } from "react-hook-form"
 import DatePicker from "react-datepicker"
-import { CreateEventFormData } from "./types"
-import { inputClasses } from "./styles"
+import { CreateEventFormData } from "../types"
+import { inputClasses } from "../styles"
 
 export default function DatePick({
   control,

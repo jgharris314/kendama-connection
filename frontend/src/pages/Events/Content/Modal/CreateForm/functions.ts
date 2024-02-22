@@ -15,11 +15,10 @@ export function handleDateChange(
   dateSetter(dateChange)
 }
 
-export function onSubmit(
+function onSubmit(
   formData: CreateEventFormData,
   setErrors: React.Dispatch<React.SetStateAction<string>>
 ) {
-  //ensure start date is before end date
   setErrors("")
   const startDate = new Date(formData.start)
   const endDate = new Date(formData.end)
@@ -35,8 +34,26 @@ export function onSubmit(
     title: formData.title,
     start_date: startDate.toString(),
     end_date: endDate.toString(),
+    interval: formData.interval,
   }
 
-  fetcher("/calendarEvents/new", modifiedData)
-  console.log(modifiedData)
+  try {
+    fetcher("/calendarEvents/new", modifiedData)
+  } catch (error) {
+    setErrors(error.message)
+  }
+}
+
+export function submiterino(
+  data: CreateEventFormData,
+  setErrors: React.Dispatch<React.SetStateAction<string>>,
+  setIsOpen: () => void
+) {
+  try {
+    onSubmit(data, setErrors)
+    setIsOpen()
+  } catch (error: any) {
+    return setErrors(error.message)
+  }
+  return
 }
