@@ -1,15 +1,42 @@
 import moment from "moment"
 import type { CalendarEvent } from "./types"
+import { CreateEventInterval } from "pages/Events/Content/Modal/CreateForm/types"
+
+function getBackgroundColor(interval: CreateEventInterval) {
+  switch (interval) {
+    case "monthly":
+      return "#ffe01f"
+    case "one-off":
+      return "#d60000"
+    case "weekly":
+    default:
+      return "#0c3fa7"
+  }
+}
+
+function getTextColor(interval: CreateEventInterval) {
+  switch (interval) {
+    case "monthly":
+      return "#050a23"
+    case "one-off":
+      return "black"
+    case "weekly":
+    default:
+      return "#f3f6f4"
+  }
+}
 
 export function eventStyleGetterfunction(event: CalendarEvent) {
-  const backgroundColor = event.eventType === "weekly" ? "#0c3fa7" : "#ffe01f"
   const style = {
-    backgroundColor: backgroundColor,
-    borderRadius: "0px",
+    backgroundColor: getBackgroundColor(event.interval),
+    borderRadius: ".5rem",
     opacity: 0.8,
-    color: "black",
+    color: getTextColor(event.interval),
     border: "0px",
     display: "block",
+    padding: ".4rem",
+    fontWeight: 600,
+    textTransform: "capitalize",
   }
   return {
     style: style,
