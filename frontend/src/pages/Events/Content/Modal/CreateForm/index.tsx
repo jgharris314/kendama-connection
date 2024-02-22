@@ -7,10 +7,7 @@ export default function CreateEventForm() {
   const [errors, setErrors] = useState("")
 
   return (
-    <SectionContainer
-      bgClasses="bg-red-500"
-      additionalContentClasses="flex flex-col w-full justify-center items-center"
-    >
+    <SectionContainer additionalContentClasses="flex flex-col w-full justify-center items-center">
       <ErrorSection errors={errors} />
       <h1 className="text-[72px] mb-8 text-kenConnect-white underline decoration-kenConnect-yellow underline-offset-[1rem] font-semibold">
         List an event!

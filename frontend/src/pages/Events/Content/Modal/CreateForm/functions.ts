@@ -15,13 +15,12 @@ export function handleDateChange(
   dateSetter(dateChange)
 }
 
-function onSubmit(
+function validateFormData(
   formData: CreateEventFormData,
   setErrors: React.Dispatch<React.SetStateAction<string>>
 ) {
-  setErrors("")
-  const startDate = new Date(formData.start)
-  const endDate = new Date(formData.end)
+  const startDate = new Date(formData.start_date)
+  const endDate = new Date(formData.end_date)
   if (startDate > endDate) {
     return setErrors("Start date must be before the end date")
   }
@@ -29,31 +28,27 @@ function onSubmit(
   if (!formData.title.length) {
     return setErrors("Title is required")
   }
-
-  const modifiedData = {
-    title: formData.title,
-    start_date: startDate.toString(),
-    end_date: endDate.toString(),
-    interval: formData.interval,
-  }
-
-  try {
-    fetcher("/calendarEvents/new", modifiedData)
-  } catch (error) {
-    setErrors(error.message)
-  }
 }
 
 export function submiterino(
-  data: CreateEventFormData,
+  formData: CreateEventFormData,
   setErrors: React.Dispatch<React.SetStateAction<string>>,
   setIsOpen: () => void
 ) {
-  try {
-    onSubmit(data, setErrors)
-    setIsOpen()
-  } catch (error: any) {
-    return setErrors(error.message)
+  setErrors("")
+  validateFormData(formData, setErrors)
+
+  const modifiedData = {
+    ...formData,
+    start_date: new Date(formData.start_date).toString(),
+    end_date: new Date(formData.end_date).toString(),
   }
-  return
+
+  try {
+    // fetcher("/calendarEvents/new", modifiedData)
+    console.log(modifiedData)
+  } catch (error) {
+    setErrors(error.message)
+  }
+  return setIsOpen()
 }
