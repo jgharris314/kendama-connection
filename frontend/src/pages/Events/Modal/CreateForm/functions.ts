@@ -33,10 +33,10 @@ export function onSubmit(
 
   const modifiedData = {
     title: formData.title,
-    start_date: startDate.toISOString(),
-    end_date: endDate.toISOString(),
+    start_date: startDate.toString(),
+    end_date: endDate.toString(),
   }
 
   fetcher("/calendarEvents/new", modifiedData)
-  console.log(startDate.toISOString())
+  console.log(modifiedData)
 }

@@ -1,4 +1,4 @@
-import EventCalendar from "./Calendar"
+import EventCalendar from "./Calendar/Calendar"
 import SectionContainer from "components/SectionContainer"
 import Modal from "./Modal"
 import "react-datepicker/dist/react-datepicker.css"
@@ -20,7 +20,7 @@ export default function EventsPage() {
       <div className="flex w-full justify-end my-4">
         <button
           type="button"
-          className="w-32 h-16 bg-kenConnect-yellow"
+          className="w-32 h-16 bg-kenConnect-yellow shadow-md shadow-kenConnect-blue rounded"
           onClick={() => setIsOpen()}
         >
           Create

@@ -24,7 +24,7 @@ export default function DatePick({
           showTimeSelect
           selected={date}
           onChange={handleChange}
-          timeFormat="HH:mm"
+          timeFormat="HHHH:mm"
           dateFormat="MM, dd, yyyy HH:mm"
           className={inputClasses}
         />

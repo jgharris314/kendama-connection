@@ -2,31 +2,8 @@ import { useEffect, useState } from "react"
 import { Calendar, momentLocalizer } from "react-big-calendar"
 import moment from "moment"
 import fetcher from "api/fetcher"
-
-interface CalendarEvent {
-  title: string
-  start_date: Date
-  end_date: Date
-  allDay?: boolean
-  resource?: any
-  eventType: string
-  description: string
-}
-
-function eventStyleGetterfunction(event: CalendarEvent) {
-  const backgroundColor = event.eventType === "weekly" ? "#0c3fa7" : "#ffe01f"
-  const style = {
-    backgroundColor: backgroundColor,
-    borderRadius: "0px",
-    opacity: 0.8,
-    color: "black",
-    border: "0px",
-    display: "block",
-  }
-  return {
-    style: style,
-  }
-}
+import { eventStyleGetterfunction } from "./functions"
+import type { CalendarEvent } from "./types"
 
 export default function EventCalendar() {
   const [calendarEventList, setCalendarEventList] = useState<CalendarEvent[]>(
@@ -36,11 +13,19 @@ export default function EventCalendar() {
   useEffect(() => {
     async function getData() {
       const res = await fetcher("/calendarEvents")
-      setCalendarEventList(res)
+      const modifiedRes = res.map((calendarEvent: CalendarEvent) => {
+        return {
+          ...calendarEvent,
+          start_date: new Date(calendarEvent.start_date),
+          end_date: new Date(calendarEvent.end_date),
+        }
+      })
+      setCalendarEventList(modifiedRes)
     }
 
     getData()
   }, [])
+
   const localizer = momentLocalizer(moment)
 
   return (
