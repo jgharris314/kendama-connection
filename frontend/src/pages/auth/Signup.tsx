@@ -3,17 +3,19 @@ import { FormProvider, useForm } from "react-hook-form"
 import Input from "components/elements/Input"
 import fetcher from "api/fetcher"
 import { useNavigate } from "react-router-dom"
-interface FormData {
+interface SignupFormData {
   username: string
+  email: string
   password: string
+  password_confirmation: string
 }
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const methods = useForm<FormData>({ mode: "onSubmit" })
+  const methods = useForm<SignupFormData>({ mode: "onSubmit" })
   const [errors, setErrors] = useState<string>("")
 
-  async function onSubmit(data: FormData) {
+  async function onSubmit(data: SignupFormData) {
     try {
       const res = await fetcher("/users/new", data)
       if (res.data) {
