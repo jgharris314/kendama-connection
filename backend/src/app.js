@@ -13,6 +13,7 @@ const errorHandler = require("./errors/errorHandler")
 const notFound = require("./errors/notFound")
 const usersRouter = require("./routers/users")
 const authRouter = require("./routers/auth")
+const calendarEventsRouter = require("./routers/calendar_events")
 
 const store = new KnexSessionStore({
   knex,
@@ -42,6 +43,7 @@ app.use(passport.session())
 
 app.use("/users", usersRouter)
 app.use("/auth", authRouter)
+app.use("/calendarEvents", calendarEventsRouter)
 
 app.use(notFound)
 app.use(errorHandler)

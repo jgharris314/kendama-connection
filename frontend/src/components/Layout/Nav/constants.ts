@@ -1,1 +1,1 @@
-export const navOptions = ["home"]
+export const navOptions = ["home", "events"]
