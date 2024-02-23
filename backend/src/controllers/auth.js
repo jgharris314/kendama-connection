@@ -63,7 +63,7 @@ async function current(req, res, next) {
       return next({ status: 500, message: "Internal server error" })
     }
   } else {
-    return next({ status: 401, message: "User not authenticated" })
+    return next({ status: 401, message: "Not authenticated" })
   }
 }
 
