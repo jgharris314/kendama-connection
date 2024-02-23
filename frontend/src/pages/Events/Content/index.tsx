@@ -1,5 +1,5 @@
 import Modal from "./Modal"
-import EventCalendar from "./Calendar/Calendar"
+import EventCalendar from "./Calendar"
 import { useCalendarEvents } from "pages/Events/Context"
 
 export default function Content() {

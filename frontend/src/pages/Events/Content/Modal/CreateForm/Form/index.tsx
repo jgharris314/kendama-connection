@@ -6,25 +6,53 @@ import DateOccurenceInputs from "pages/Events/Content/Modal/CreateForm/Form/Date
 import LocationForm from "pages/Events/Content/Modal/CreateForm/Form/Location"
 import { parentClasses, labelClasses, inputClasses } from "../styles"
 import { CreateEventFormData } from "../types"
-import { submiterino } from "../functions"
+import { validateFormData } from "./functions"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import post from "api/post"
 
 export default function Form({
   setErrors,
 }: {
   setErrors: React.Dispatch<React.SetStateAction<string>>
 }) {
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation({
+    mutationFn: (data: CreateEventFormData) =>
+      post<CreateEventFormData>("/calendarEvents/new", data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["calendarEvents"] })
+    },
+  })
   const { setIsOpen } = useCalendarEvents()
   const methods = useForm<CreateEventFormData>({
     mode: "onSubmit",
   })
   const { handleSubmit } = methods
 
+  function submitHandler(formData: CreateEventFormData) {
+    setErrors("")
+    const errors = validateFormData(formData)
+
+    if (errors.length) {
+      return setErrors(errors)
+    }
+
+    const modifiedData = {
+      ...formData,
+      start_date: new Date(formData.start_date).toString(),
+      end_date: new Date(formData.end_date).toString(),
+    }
+
+    mutation.mutate(modifiedData)
+
+    return setIsOpen()
+  }
+
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={handleSubmit((data) =>
-          submiterino(data, setErrors, setIsOpen)
-        )}
+        onSubmit={handleSubmit(submitHandler)}
         className="bg-kenConnect-white w-full flex flex-col justify-center items-center md:w-[600px] p-4 rounded shadow-md shadow-kenConnect-white"
       >
         <div className="flex flex-col md:flex-row w-full">
@@ -39,7 +67,7 @@ export default function Form({
             />
             <DateOccurenceInputs />
           </div>
-          <div className="flex flex-col w-full md:w-1/2 gap-2">
+          {/* <div className="flex flex-col w-full md:w-1/2 gap-2">
             <LocationForm />
             <Input
               name="description"
@@ -50,7 +78,7 @@ export default function Form({
               labelClasses={labelClasses}
               rows={5}
             />
-          </div>
+          </div> */}
         </div>
 
         <button

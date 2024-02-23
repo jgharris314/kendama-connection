@@ -4,7 +4,6 @@ const app = require("../src/app")
 const knex = require("../src/db/connection")
 
 //description
-
 // end_date
 
 // interval

@@ -6,7 +6,7 @@ import {
 } from "pages/Events/Content/Modal/CreateForm/types"
 import DatePick from "../components/DatePick"
 import { parentClasses, labelClasses } from "../styles"
-import { handleDateChange } from "../functions"
+import { handleDateChange } from "./functions"
 import { useFormContext } from "react-hook-form"
 
 export default function DateOccurenceInputs() {
@@ -28,7 +28,7 @@ export default function DateOccurenceInputs() {
           name="start_date"
           date={startDate}
           handleChange={(date) =>
-            handleDateChange(date, "start", setValue, setStartDate)
+            handleDateChange(date, "start_date", setValue, setStartDate)
           }
           control={control}
         />
@@ -39,7 +39,7 @@ export default function DateOccurenceInputs() {
           name="end_date"
           date={endDate}
           handleChange={(date) =>
-            handleDateChange(date, "end", setValue, setEndDate)
+            handleDateChange(date, "end_date", setValue, setEndDate)
           }
           control={control}
         />
