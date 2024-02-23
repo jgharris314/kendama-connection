@@ -2,6 +2,7 @@ import NavItem from "./Desktop/NavItem"
 import { useUser } from "pages/auth/hooks/useUser"
 import { useSignOut } from "pages/auth/hooks/useSignOut"
 import { getLoggedInStatus } from "utils/UserAuth/functions"
+import { navItemParentStyles, navItemChildStyles } from "./constants"
 
 export default function UserAccountMenu() {
   const logout = useSignOut()
@@ -13,15 +14,38 @@ export default function UserAccountMenu() {
   return loggedInStatus ? (
     <button
       type="button"
-      className="bg-black bg-gradient-to-t from-black/90 to-black/50 h-16 w-40 text-white"
+      className={navItemParentStyles}
       onClick={() => logout()}
     >
-      Logout
+      <span className={navItemChildStyles}>Logout</span>
     </button>
   ) : (
     <>
-      <NavItem href="/auth/signup" title="Create Account" /> or
-      <NavItem href="/auth/login" title="login" />
+      <div className="hidden md:flex">
+        <NavItem href="/auth/signup" title="sign up" />
+        <NavItem href="/auth/login" title="login" />
+      </div>
+
+      <div className="flex flex-col w-full md:hidden">
+        <a
+          type="button"
+          href="/auth/signup"
+          className={
+            "capitalize w-full mb-4 pb-4 text-[20px] font-semibold border-white border-b-2 text-center"
+          }
+        >
+          Sign Up
+        </a>
+        <a
+          type="button"
+          href="/auth/login"
+          className={
+            "capitalize w-full  pb-4 text-[20px] font-semibold border-white border-b-2 text-center"
+          }
+        >
+          login
+        </a>
+      </div>
     </>
   )
 }

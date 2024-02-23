@@ -1,4 +1,6 @@
 @import "react-big-calendar/lib/css/react-big-calendar.css";
+@import "./styles/button.css";
+@import "./styles/header.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -9,7 +9,7 @@ export default function Content() {
       <div className="flex w-full justify-end my-4">
         <button
           type="button"
-          className="w-32 h-16 bg-kenConnect-yellow shadow-md shadow-kenConnect-yellow rounded"
+          className="button button-yellow"
           onClick={() => setIsOpen()}
         >
           Create

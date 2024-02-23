@@ -53,7 +53,7 @@ export default function Form({
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(submitHandler)}
-        className="bg-kenConnect-white w-full flex flex-col justify-center items-center md:w-[600px] p-4 rounded shadow-md shadow-kenConnect-white"
+        className="border border-kenConnect-white w-full flex flex-col justify-center items-center md:w-[600px] p-4 rounded"
       >
         <div className="flex flex-col md:flex-row w-full">
           <div className="flex flex-col w-full md:w-1/2 gap-2 ">
@@ -81,10 +81,7 @@ export default function Form({
           </div> */}
         </div>
 
-        <button
-          className="mt-12 mb-4 w-32 h-16 bg-kenConnect-blue text-kenConnect-white rounded shadow-md shadow-kenConnect-blue border border-kenConnect-black font-bold"
-          type="submit"
-        >
+        <button className="mt-12 mb-4 button button-yellow" type="submit">
           Submit
         </button>
       </form>

@@ -18,7 +18,7 @@ export default function EventCalendar() {
   const localizer = momentLocalizer(moment)
 
   return (
-    <div className="flex flex-col items-center justify-center md:w-[700px] xl:w-[1200px] bg-kenConnect-white">
+    <div className="flex flex-col items-center justify-center md:w-full  bg-kenConnect-white border-4 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white">
       <div>{isFetching ? "Updating..." : ""}</div>
       <Calendar
         localizer={localizer}

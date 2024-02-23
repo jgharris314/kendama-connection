@@ -1,3 +1,5 @@
+import { navItemChildStyles, navItemParentStyles } from "../constants"
+
 export default function NavItem({
   href,
   title,
@@ -6,11 +8,8 @@ export default function NavItem({
   title: string
 }) {
   return (
-    <li className="border-r-2 border-white last:border-none w-full text-center pr-4">
-      <a
-        className="capitalize text-[20px] font-semibold hover:border-b-4 hover:border-black pb-2 text-white whitespace-nowrap"
-        href={href === "/home" ? "/" : href}
-      >
+    <li className={navItemParentStyles}>
+      <a className={navItemChildStyles} href={href === "/home" ? "/" : href}>
         {title}
       </a>
     </li>
