@@ -26,7 +26,8 @@
       "components/*": ["src/components/*"],
       "assets/*": ["src/assets/*"],
       "constants/*": ["src/constants/*"],
-      "context/*": ["src/context/*"]
+      "context/*": ["src/context/*"],
+      "utils/*": ["src/utils/*"]
     }
   },
   "include": ["src"],

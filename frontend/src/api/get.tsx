@@ -1,7 +1,13 @@
-import axios from "axios"
+export default async function get(endpoint: string) {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_ENDPOINT}${endpoint}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
 
-export default function axiosGet(endpoint: string) {
-  return axios
-    .get(`${import.meta.env.VITE_API_ENDPOINT}${endpoint}`)
-    .then((res) => res.data)
+  return await response.json()
 }

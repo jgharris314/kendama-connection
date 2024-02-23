@@ -11,6 +11,7 @@ export const alias: Record<string, any> = {
   assets: path.join(dirname, "src", "assets"),
   constants: path.join(dirname, "src", "constants"),
   context: path.join(dirname, "src", "context"),
+  utils: path.join(dirname, "src", "utils"),
 }
 
 // https://vitejs.dev/config/

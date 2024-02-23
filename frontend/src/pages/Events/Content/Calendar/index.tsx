@@ -3,12 +3,12 @@ import { Calendar, momentLocalizer } from "react-big-calendar"
 import moment from "moment"
 import { eventStyleGetterfunction } from "./functions"
 import { CalendarEvent } from "./types"
-import axiosGet from "api/get"
+import get from "api/get"
 
 export default function EventCalendar() {
   const { isPending, error, data, isFetching } = useQuery<CalendarEvent[]>({
     queryKey: ["calendarEvents"],
-    queryFn: () => axiosGet("/calendarEvents"),
+    queryFn: () => get("/calendarEvents"),
   })
 
   if (isPending) return "Loading..."

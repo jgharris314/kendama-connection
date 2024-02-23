@@ -1,7 +1,14 @@
-import axios from "axios"
+export default async function post<T>(endpoint: string, data: T) {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_ENDPOINT}${endpoint}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  )
 
-export default function axiosPost<T>(endpoint: string, data: T) {
-  return axios
-    .post(`${import.meta.env.VITE_API_ENDPOINT}${endpoint}`, data)
-    .then((res) => res.data)
+  return response
 }

@@ -1,9 +1,11 @@
-import { useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import Input from "components/elements/Input"
-import fetcher from "api/fetcher"
+import { useSignUp } from "./hooks/useSignUp"
+import { useUser } from "./hooks/useUser"
+import { useEffect } from "react"
+import { getLoggedInStatus } from "utils/UserAuth/functions"
 import { useNavigate } from "react-router-dom"
-interface SignupFormData {
+export interface SignupFormData {
   username: string
   email: string
   password: string
@@ -13,33 +15,35 @@ interface SignupFormData {
 export default function LoginPage() {
   const navigate = useNavigate()
   const methods = useForm<SignupFormData>({ mode: "onSubmit" })
-  const [errors, setErrors] = useState<string>("")
 
-  async function onSubmit(data: SignupFormData) {
-    try {
-      const res = await fetcher("/users/new", data)
-      if (res.data) {
-        if (window.confirm("User Created Successfully")) {
-          navigate("/auth/login")
-        }
-      }
-    } catch (error) {
-      console.error(error)
-      setErrors(error.toString())
+  const signUp = useSignUp()
+  const user = useUser()
+
+  const onSignUp = (form: SignupFormData) => {
+    const username = form.username
+    const password = form.password
+    const email = form.email
+    const passwordConfirmation = form.password_confirmation
+
+    if (username && password && passwordConfirmation && email) {
+      signUp(form)
     }
   }
+
+  useEffect(() => {
+    if (getLoggedInStatus(user)) {
+      navigate("/")
+    }
+  })
 
   const parentClasses = "text-white items-center flex flex-col"
   const inputClasses = "h-10 rounded  text-black max-w-[200px]"
   const labelClasses = "text-m0othGrey- whitespace-nowrap p-1"
   return (
     <div className="flex flex-col w-full items-center">
-      <div className="h-8">
-        {errors && <span className="text-red-500">{errors}</span>}
-      </div>
       <FormProvider {...methods}>
         <form
-          onSubmit={methods.handleSubmit(onSubmit)}
+          onSubmit={methods.handleSubmit(onSignUp)}
           className="flex flex-col max-w-[700px]"
         >
           <Input

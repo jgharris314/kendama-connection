@@ -8,7 +8,7 @@ import { parentClasses, labelClasses, inputClasses } from "../styles"
 import { CreateEventFormData } from "../types"
 import { validateFormData } from "./functions"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import axiosPost from "api/post"
+import post from "api/post"
 
 export default function Form({
   setErrors,
@@ -19,7 +19,7 @@ export default function Form({
 
   const mutation = useMutation({
     mutationFn: (data: CreateEventFormData) =>
-      axiosPost<CreateEventFormData>("/calendarEvents/new", data),
+      post<CreateEventFormData>("/calendarEvents/new", data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["calendarEvents"] })
     },
