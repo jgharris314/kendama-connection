@@ -3,26 +3,14 @@ const request = require("supertest")
 const app = require("../src/app")
 const knex = require("../src/db/connection")
 
-//description
-// end_date
-
-// interval
-
-// location_city
-
-// location_name
-
-// location_state
-
-// start_date
-
-// title
-
 const validEventData = {
   title: "mothDama",
   start_date: "Wed Feb 21 2024 17:05:06 GMT-0700 (Mountain Standard Time)",
   end_date: "Wed Feb 21 2024 18:00:00 GMT-0700 (Mountain Standard Time)",
   interval: "monthly",
+  location_name: "Cheeseman Park",
+  location_city_state: "Denver, CO",
+  description: "monthly mothdama meetup",
 }
 
 describe("General Error handling tests", () => {
@@ -74,6 +62,26 @@ describe("General Error handling tests", () => {
 
         expect(response.status).toBe(400)
         expect(response.body.error).toContain("end_date")
+      })
+      test("returns 400 if location name is missing", async () => {
+        const data = { ...validEventData, location_name: "" }
+        const response = await request(app)
+          .post("/calendarEvents/new")
+          .set("Accept", "application/json")
+          .send(data)
+
+        expect(response.status).toBe(400)
+        expect(response.body.error).toContain("location_name")
+      })
+      test("returns 400 if location_city_state is missing", async () => {
+        const data = { ...validEventData, location_city_state: "" }
+        const response = await request(app)
+          .post("/calendarEvents/new")
+          .set("Accept", "application/json")
+          .send(data)
+
+        expect(response.status).toBe(400)
+        expect(response.body.error).toContain("location_city_state")
       })
 
       test("returns 400 if start date is after end date", async () => {

@@ -41,51 +41,54 @@ export default function LoginPage() {
   const labelClasses = "text-m0othGrey- whitespace-nowrap p-1"
   return (
     <div className="flex flex-col w-full items-center">
+      <h1 className="standard-header">Create an account!</h1>
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSignUp)}
-          className="flex flex-col max-w-[700px]"
+          className="flex flex-col w-full lg:w-3/4 items-center rounded border border-kenConnect-white py-4"
         >
-          <Input
-            name="username"
-            id="username"
-            parentClasses={parentClasses}
-            inputClasses={inputClasses}
-            label="Username"
-            labelClasses={labelClasses}
-            validation={{ required: "Username is required" }}
-          />
-          <Input
-            name="email"
-            id="email"
-            parentClasses={parentClasses}
-            inputClasses={inputClasses}
-            label="Email"
-            labelClasses={labelClasses}
-            validation={{ required: "Email is required" }}
-          />
-          <Input
-            name="password"
-            id="password"
-            parentClasses={parentClasses}
-            inputClasses={inputClasses}
-            label="Password"
-            labelClasses={labelClasses}
-            validation={{ required: "Password is required" }}
-            type="password"
-          />
-          <Input
-            name="password_confirmation"
-            id="password_confirmation"
-            parentClasses={parentClasses}
-            inputClasses={inputClasses}
-            label="Confirm Password"
-            labelClasses={labelClasses}
-            validation={{ required: "Password confirmation is required" }}
-            type="password"
-          />
-          <button className="h-10" type="submit">
-            Log In
+          <div className="max-w-[700px]">
+            <Input
+              name="username"
+              id="username"
+              parentClasses={parentClasses}
+              inputClasses={inputClasses}
+              label="Username"
+              labelClasses={labelClasses}
+              validation={{ required: "Username is required" }}
+            />
+            <Input
+              name="email"
+              id="email"
+              parentClasses={parentClasses}
+              inputClasses={inputClasses}
+              label="Email"
+              labelClasses={labelClasses}
+              validation={{ required: "Email is required" }}
+            />
+            <Input
+              name="password"
+              id="password"
+              parentClasses={parentClasses}
+              inputClasses={inputClasses}
+              label="Password"
+              labelClasses={labelClasses}
+              validation={{ required: "Password is required" }}
+              type="password"
+            />
+            <Input
+              name="password_confirmation"
+              id="password_confirmation"
+              parentClasses={parentClasses}
+              inputClasses={inputClasses}
+              label="Confirm Password"
+              labelClasses={labelClasses}
+              validation={{ required: "Password confirmation is required" }}
+              type="password"
+            />
+          </div>
+          <button className="button button-yellow my-4" type="submit">
+            Sign up!
           </button>
         </form>
       </FormProvider>

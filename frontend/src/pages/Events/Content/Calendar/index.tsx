@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
 import { Calendar, momentLocalizer } from "react-big-calendar"
+import get from "api/get"
 import moment from "moment"
 import { eventStyleGetterfunction } from "./functions"
 import { CalendarEvent } from "./types"
-import get from "api/get"
 
 export default function EventCalendar() {
   const { isPending, error, data, isFetching } = useQuery<CalendarEvent[]>({
@@ -17,12 +17,20 @@ export default function EventCalendar() {
 
   const localizer = momentLocalizer(moment)
 
+  const modifiedData = data.map((datum) => {
+    return {
+      ...datum,
+      start_date: moment(datum.start_date).toDate(),
+      end_date: moment(datum.end_date).toDate(),
+    }
+  })
+
   return (
-    <div className="flex flex-col items-center justify-center md:w-[700px] xl:w-[1200px] bg-kenConnect-white">
+    <div className="flex flex-col items-center justify-center md:w-full  bg-kenConnect-white border-4 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white">
       <div>{isFetching ? "Updating..." : ""}</div>
       <Calendar
         localizer={localizer}
-        events={data}
+        events={modifiedData}
         startAccessor="start_date"
         endAccessor="end_date"
         style={{ height: 500 }}

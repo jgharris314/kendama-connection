@@ -5,6 +5,9 @@ exports.up = function (knex) {
     table.string("start_date").notNullable()
     table.string("end_date").notNullable()
     table.string("interval").defaultTo("one-off")
+    table.string("location_name").notNullable()
+    table.string("location_city_state").notNullable()
+    table.string("description")
     table.timestamps(true, true)
   })
 }

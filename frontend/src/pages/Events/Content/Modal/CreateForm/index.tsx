@@ -9,9 +9,7 @@ export default function CreateEventForm() {
   return (
     <SectionContainer additionalContentClasses="flex flex-col w-full justify-center items-center">
       <ErrorSection errors={errors} />
-      <h1 className="text-[72px] mb-8 text-kenConnect-white underline decoration-kenConnect-yellow underline-offset-[1rem] font-semibold">
-        List an event!
-      </h1>
+      <h1 className="standard-header">List an event!</h1>
       <Form setErrors={setErrors} />
     </SectionContainer>
   )

@@ -1,0 +1,11 @@
+.button {
+  @apply w-32 h-16 rounded shadow-md font-bold;
+}
+
+.button-blue {
+  @apply !bg-kenConnect-blue text-kenConnect-white shadow-kenConnect-blue border border-kenConnect-black;
+}
+
+.button-yellow {
+  @apply !bg-kenConnect-yellow text-kenConnect-black shadow-kenConnect-yellow border border-kenConnect-yellow;
+}

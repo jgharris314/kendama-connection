@@ -1,7 +1,13 @@
 function validateCalendarEventData(req, res, next) {
   const data = req.body
 
-  const keysToCheck = ["title", "start_date", "end_date"]
+  const keysToCheck = [
+    "title",
+    "start_date",
+    "end_date",
+    "location_name",
+    "location_city_state",
+  ]
 
   for (key of keysToCheck) {
     if (!data[key]) {
