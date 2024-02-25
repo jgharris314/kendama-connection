@@ -25,8 +25,9 @@ export function validateFormData(formData: CreateEventFormData) {
     "title",
     "start_date",
     "end_date",
-    // "location_name",
-    // "location_city",
+    "location_name",
+    "location_city",
+    "location_state",
   ]
 
   for (const key of keysToCheck) {
@@ -35,9 +36,9 @@ export function validateFormData(formData: CreateEventFormData) {
     }
   }
 
-  // if (formData.location_state.toLowerCase() === "select state") {
-  //   return "state is required"
-  // }
+  if (formData.location_state.toLowerCase() === "select state") {
+    return "state is required"
+  }
 
   return ""
 }

@@ -4,19 +4,19 @@ import { MdClose } from "react-icons/md"
 import SectionContainer from "../../../SectionContainer"
 import { useNavigate } from "react-router-dom"
 import { navOptions } from "../constants"
-import UserAccountMenu from "../UserAccountMenu"
+import MobileNavItem from "./NavItem"
 
 export default function MobileNav() {
   const navigate = useNavigate()
-  // const [isOpen, setIsOpen] = useState(false)
 
   function setIsOpen() {
     document.getElementById("menu-container")?.classList.toggle("invisible")
     document.getElementById("me-bg")?.classList.toggle("opacity-0")
     document.getElementById("open-btn")?.classList.toggle("hidden")
     document.getElementById("close-btn")?.classList.toggle("hidden")
+
     document.getElementById("menu")?.classList.toggle("-translate-y-full")
-    console.log("tacos")
+    document.getElementById("menu")?.classList.toggle("opacity-0")
   }
 
   function onClickHandler(option: string) {
@@ -62,20 +62,26 @@ export default function MobileNav() {
         />
         <ul
           id="menu"
-          className="absolute flex flex-col gap-4 w-full items-start justify-start text-kenConnect-white pb-4 md:px-1 right-0 top-0 -translate-y-full duration-500 ease-in-out transition-all"
+          className="absolute flex flex-col gap-4 w-full items-start justify-start text-kenConnect-white pb-4 md:px-1 right-0 top-0 -translate-y-full duration-500 ease-in-out transition-all opacity-0"
         >
           {navOptions.map((option) => {
             return (
-              <button
+              // <button
+              //   key={uuidv4()}
+              //   type="button"
+              //   onClick={() => onClickHandler(option)}
+              //   className={
+              //     "first:border-t-2 first:pt-4 capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+              //   }
+              // >
+              //   {option}
+              // </button>
+              <MobileNavItem
                 key={uuidv4()}
-                type="button"
-                onClick={() => onClickHandler(option)}
-                className={
-                  "first:border-t-2 first:pt-4 capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
-                }
-              >
-                {option}
-              </button>
+                onClickOption={option}
+                onClickHandler={onClickHandler}
+                title={option}
+              />
             )
           })}
           <button

@@ -1,13 +1,20 @@
 [
   {
-    "title": "The bonanza4",
+    "title": "The Bonanza",
     "start_date": "Wed Feb 21 2024 17:05:06 GMT-0700 (Mountain Standard Time)",
-    "end_date": "Wed Feb 21 2024 18:00:00 GMT-0700 (Mountain Standard Time)"
+    "end_date": "Wed Feb 21 2024 18:00:00 GMT-0700 (Mountain Standard Time)",
+    "interval": "weekly",
+    "location_name": "Cheeseman Park",
+    "location_city_state": "Denver, CO",
+    "description": "monthly mothdama meetup"
   },
   {
     "title": "mothDama",
     "start_date": "Wed Feb 21 2024 17:05:06 GMT-0700 (Mountain Standard Time)",
     "end_date": "Wed Feb 21 2024 18:00:00 GMT-0700 (Mountain Standard Time)",
-    "interval": "monthly"
+    "interval": "monthly",
+    "location_name": "Cheeseman Park",
+    "location_city_state": "Denver, CO",
+    "description": "monthly mothdama meetup"
   }
 ]

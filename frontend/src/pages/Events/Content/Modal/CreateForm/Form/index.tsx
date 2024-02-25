@@ -1,5 +1,7 @@
 import React from "react"
 import { FormProvider, useForm } from "react-hook-form"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import moment from "moment"
 import Input from "components/elements/Input"
 import { useCalendarEvents } from "pages/Events/Context"
 import DateOccurenceInputs from "pages/Events/Content/Modal/CreateForm/Form/DateOccurenceInputs"
@@ -7,7 +9,7 @@ import LocationForm from "pages/Events/Content/Modal/CreateForm/Form/Location"
 import { parentClasses, labelClasses, inputClasses } from "../styles"
 import { CreateEventFormData } from "../types"
 import { validateFormData } from "./functions"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+
 import post from "api/post"
 
 export default function Form({
@@ -35,16 +37,22 @@ export default function Form({
     const errors = validateFormData(formData)
 
     if (errors.length) {
-      return setErrors(errors)
+      return setErrors(errors.charAt(0).toUpperCase() + errors.slice(1))
     }
 
     const modifiedData = {
       ...formData,
-      start_date: new Date(formData.start_date).toString(),
-      end_date: new Date(formData.end_date).toString(),
+      start_date: String(moment(formData.start_date).toDate()),
+      end_date: String(moment(formData.end_date).toDate()),
+      location_city_state: `${formData.location_city}, ${formData.location_state}`,
     }
-
-    mutation.mutate(modifiedData)
+    delete modifiedData.location_city
+    delete modifiedData.location_state
+    try {
+      mutation.mutate(modifiedData)
+    } catch (error) {
+      return
+    }
 
     return setIsOpen()
   }
@@ -67,7 +75,7 @@ export default function Form({
             />
             <DateOccurenceInputs />
           </div>
-          {/* <div className="flex flex-col w-full md:w-1/2 gap-2">
+          <div className="flex flex-col w-full md:w-1/2 gap-2">
             <LocationForm />
             <Input
               name="description"
@@ -78,7 +86,7 @@ export default function Form({
               labelClasses={labelClasses}
               rows={5}
             />
-          </div> */}
+          </div>
         </div>
 
         <button className="mt-12 mb-4 button button-yellow" type="submit">

@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid"
 import SectionContainer from "../../../SectionContainer"
 import {
-  navItemChildStyles,
-  navItemParentStyles,
+  desktopNavItemChildStyles,
+  desktopNavItemParentStyles,
   navOptions,
 } from "../constants"
 import { useNavigate } from "react-router-dom"
@@ -26,9 +26,9 @@ export default function DesktopNav() {
                 key={uuidv4()}
                 type="button"
                 onClick={() => onClickHandler(option)}
-                className={navItemParentStyles}
+                className={desktopNavItemParentStyles}
               >
-                <span className={navItemChildStyles}>{option}</span>
+                <span className={desktopNavItemChildStyles}>{option}</span>
               </button>
             )
           })}
@@ -36,17 +36,17 @@ export default function DesktopNav() {
             key={uuidv4()}
             type="button"
             onClick={() => onClickHandler("auth/signup")}
-            className={navItemParentStyles}
+            className={desktopNavItemParentStyles}
           >
-            <span className={navItemChildStyles}>Sign Up</span>
+            <span className={desktopNavItemChildStyles}>Sign Up</span>
           </button>
           <button
             key={uuidv4()}
             type="button"
             onClick={() => onClickHandler("auth/login")}
-            className={navItemParentStyles}
+            className={desktopNavItemParentStyles}
           >
-            <span className={navItemChildStyles}>login</span>
+            <span className={desktopNavItemChildStyles}>login</span>
           </button>
         </ul>
       </div>

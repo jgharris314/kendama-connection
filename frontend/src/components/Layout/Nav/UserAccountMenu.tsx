@@ -2,7 +2,10 @@ import NavItem from "./Desktop/NavItem"
 import { useUser } from "pages/auth/hooks/useUser"
 import { useSignOut } from "pages/auth/hooks/useSignOut"
 import { getLoggedInStatus } from "utils/UserAuth/functions"
-import { navItemParentStyles, navItemChildStyles } from "./constants"
+import {
+  desktopNavItemParentStyles,
+  desktopNavItemChildStyles,
+} from "./constants"
 
 export default function UserAccountMenu() {
   const logout = useSignOut()
@@ -14,10 +17,10 @@ export default function UserAccountMenu() {
   return loggedInStatus ? (
     <button
       type="button"
-      className={navItemParentStyles}
+      className={desktopNavItemParentStyles}
       onClick={() => logout()}
     >
-      <span className={navItemChildStyles}>Logout</span>
+      <span className={desktopNavItemChildStyles}>Logout</span>
     </button>
   ) : (
     <>

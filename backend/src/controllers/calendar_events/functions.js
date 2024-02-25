@@ -1,16 +1,20 @@
+const moment = require("moment")
 const { addXMonths, addXWeeks } = require("../../lib/date")
 
 function getIntervalEvents(calendarEvent) {
+  const limit = 12
   const addedEvents = []
+
+  const modifiedEvent = {
+    ...calendarEvent,
+    start_date: moment(calendarEvent.start_date).toDate(),
+    end_date: moment(calendarEvent.end_date).toDate(),
+  }
+
+  const startDate = modifiedEvent.start_date
+  const endDate = modifiedEvent.end_date
+
   if (calendarEvent.interval === "weekly") {
-    const modifiedEvent = {
-      ...calendarEvent,
-      start_date: new Date(calendarEvent.start_date),
-      end_date: new Date(calendarEvent.end_date),
-    }
-    const limit = 12
-    const startDate = new Date(calendarEvent.start_date)
-    const endDate = new Date(calendarEvent.end_date)
     for (let i = 0; i < limit; i++) {
       addedEvents.push({
         ...modifiedEvent,
@@ -19,14 +23,6 @@ function getIntervalEvents(calendarEvent) {
       })
     }
   } else if (calendarEvent.interval === "monthly") {
-    const modifiedEvent = {
-      ...calendarEvent,
-      start_date: new Date(calendarEvent.start_date),
-      end_date: new Date(calendarEvent.end_date),
-    }
-    const limit = 12
-    const startDate = new Date(calendarEvent.start_date)
-    const endDate = new Date(calendarEvent.end_date)
     for (let i = 0; i < limit; i++) {
       addedEvents.push({
         ...modifiedEvent,
@@ -35,9 +31,8 @@ function getIntervalEvents(calendarEvent) {
       })
     }
   } else {
-    addedEvents.push(calendarEvent)
+    addedEvents.push(modifiedEvent)
   }
-
   return addedEvents
 }
 
