@@ -14,7 +14,6 @@ export default function MobileNav() {
     document.getElementById("me-bg")?.classList.toggle("opacity-0")
     document.getElementById("open-btn")?.classList.toggle("hidden")
     document.getElementById("close-btn")?.classList.toggle("hidden")
-
     document.getElementById("menu")?.classList.toggle("-translate-y-full")
     document.getElementById("menu")?.classList.toggle("opacity-0")
   }
@@ -66,16 +65,6 @@ export default function MobileNav() {
         >
           {navOptions.map((option) => {
             return (
-              // <button
-              //   key={uuidv4()}
-              //   type="button"
-              //   onClick={() => onClickHandler(option)}
-              //   className={
-              //     "first:border-t-2 first:pt-4 capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
-              //   }
-              // >
-              //   {option}
-              // </button>
               <MobileNavItem
                 key={uuidv4()}
                 onClickOption={option}
