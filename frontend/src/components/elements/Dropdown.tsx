@@ -37,7 +37,7 @@ export default function Dropdown<T>({
           dropDownOpen ? "visible" : "invisible"
         }`}
       >
-        {values.map((value) => (
+        {values?.map((value) => (
           <div
             className="text-[1.1rem] p-1 border-r-1 cursor-pointer hover:bg-kenConnect-blue/20 px-2"
             onClick={() => selectValue(value)}

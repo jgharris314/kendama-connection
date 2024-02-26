@@ -5,10 +5,10 @@ router
   .route("/locations")
   .get(controller.getEventLocations)
   .all(methodNotAllowed)
+router.route("/new").post(controller.post).all(methodNotAllowed)
 router
   .route("/:location_city_state")
   .get(controller.listEvents)
   .all(methodNotAllowed)
-router.route("/new").post(controller.post).all(methodNotAllowed)
 
 module.exports = router

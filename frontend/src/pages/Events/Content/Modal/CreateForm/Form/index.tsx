@@ -24,6 +24,7 @@ export default function Form({
       post<CreateEventFormData>("/calendarEvents/new", data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["calendarEvents"] })
+      queryClient.invalidateQueries({ queryKey: ["calendarEventLocations"] })
     },
   })
   const { setIsOpen } = useCalendarEvents()
