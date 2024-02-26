@@ -5,7 +5,7 @@
     "end_date": "Wed Feb 21 2024 18:00:00 GMT-0700 (Mountain Standard Time)",
     "interval": "weekly",
     "location_name": "Cheeseman Park",
-    "location_city_state": "Denver, CO",
+    "location_city_state": "denver_co",
     "description": "monthly mothdama meetup"
   },
   {
@@ -14,7 +14,7 @@
     "end_date": "Wed Feb 21 2024 18:00:00 GMT-0700 (Mountain Standard Time)",
     "interval": "monthly",
     "location_name": "Cheeseman Park",
-    "location_city_state": "Denver, CO",
+    "location_city_state": "denver_co",
     "description": "monthly mothdama meetup"
   }
 ]

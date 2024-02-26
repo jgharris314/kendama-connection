@@ -29,8 +29,8 @@ describe("General Error handling tests", () => {
     return await knex.migrate.rollback(null, true).then(() => knex.destroy())
   })
 
-  describe("/calendarEvents", () => {
-    describe("POST /users/new", () => {
+  describe("/calendarEvents/new", () => {
+    describe("POST", () => {
       test("returns 400 if title is missing", async () => {
         const data = { ...validEventData, title: "" }
         const response = await request(app)

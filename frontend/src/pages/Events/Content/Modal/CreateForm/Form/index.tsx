@@ -44,7 +44,7 @@ export default function Form({
       ...formData,
       start_date: String(moment(formData.start_date).toDate()),
       end_date: String(moment(formData.end_date).toDate()),
-      location_city_state: `${formData.location_city}, ${formData.location_state}`,
+      location_city_state: `${formData.location_city.toLocaleLowerCase()}_${formData.location_state.toLocaleLowerCase()}`,
     }
     delete modifiedData.location_city
     delete modifiedData.location_state
