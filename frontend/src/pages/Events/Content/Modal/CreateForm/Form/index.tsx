@@ -6,7 +6,12 @@ import Input from "components/elements/Input"
 import { useCalendarEvents } from "pages/Events/Context"
 import DateOccurenceInputs from "pages/Events/Content/Modal/CreateForm/Form/DateOccurenceInputs"
 import LocationForm from "pages/Events/Content/Modal/CreateForm/Form/Location"
-import { parentClasses, labelClasses, inputClasses } from "../styles"
+import {
+  parentClasses,
+  labelClasses,
+  inputClasses,
+  contentContainer,
+} from "../styles"
 import { CreateEventFormData } from "../types"
 import { validateFormData } from "./functions"
 
@@ -63,10 +68,7 @@ export default function Form({
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(submitHandler)}
-        className="border border-kenConnect-white w-full flex flex-col justify-center items-center md:w-[600px] p-4 rounded"
-      >
+      <form onSubmit={handleSubmit(submitHandler)} className={contentContainer}>
         <div className="flex flex-col md:flex-row w-full">
           <div className="flex flex-col w-full md:w-1/2 gap-2 ">
             <Input
