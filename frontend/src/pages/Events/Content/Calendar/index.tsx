@@ -35,15 +35,18 @@ export default function EventCalendar({
   })
 
   return (
-    <div className="flex flex-col items-center justify-center md:w-full  bg-kenConnect-white border-4 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white">
+    <div className="flex flex-col items-start justify-center md:w-full  bg-kenConnect-white border-2 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white p-2">
       <div>{isFetching ? "Updating..." : ""}</div>
-      <Dropdown
-        selectedValue={selectedLocation}
-        setSelectedValue={setSelectedLocation}
-        values={["all", ...locations]}
-        parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
-        isLocationDropdown
-      />
+      <div className="flex items-center gap-4 mb-2">
+        <span className="font-bold">Location</span>
+        <Dropdown<string>
+          selectedValue={selectedLocation}
+          setSelectedValue={setSelectedLocation}
+          values={["all", ...locations]}
+          parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
+          isLocationDropdown
+        />
+      </div>
       <Calendar
         localizer={localizer}
         events={modifiedData}

@@ -37,10 +37,14 @@ export default function Dropdown<T>({
       aria-hidden
       onClick={dropDownHandleClick}
     >
-      <span className="mr-2 text-black text-[1.1rem]">{selectedValue}</span>
-      <div className="h-4 w-4 bg-no-repeat -mb-2" />
+      <span className="text-black text-[1.1rem] w-32 text-center">
+        {isLocationDropdown
+          ? formatLocationString(selectedValue)
+          : selectedValue}
+      </span>
+      {/* <div className="h-4 w-4 bg-no-repeat -mb-2" /> */}
       <div
-        className={`rounded absolute z-10 bg-white top-[50px] left-0 max-h-64 w-40 overflow-hidden overflow-y-scroll border-r border-[#dddddd] shadow-lg shadow-kenConnect-black ${
+        className={`rounded absolute z-10 bg-white top-[40px] left-0 max-h-64 w-40 overflow-hidden overflow-y-scroll border-r border-[#dddddd] shadow-lg shadow-kenConnect-black ${
           dropDownOpen ? "visible" : "invisible"
         }`}
       >
