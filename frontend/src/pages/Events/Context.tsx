@@ -1,11 +1,23 @@
-import React, { createContext, useContext, useMemo } from "react"
+import React, { createContext, useContext, useMemo, useState } from "react"
 
 type CalendarEventsProviderProps = {
   children: React.ReactNode
 }
 
-const CalendarEvents = createContext<{ setIsOpen: () => void }>({
+const CalendarEvents = createContext<{
+  isCreateMode: boolean
+  setIsCreateMode: React.Dispatch<React.SetStateAction<boolean>>
+  setIsOpen: () => void
+  eventDetails: Record<string, any>
+  setCalendarEventDetails: React.Dispatch<
+    React.SetStateAction<Record<string, any>>
+  >
+}>({
+  isCreateMode: true,
+  setIsCreateMode: () => null,
   setIsOpen: () => null,
+  eventDetails: {},
+  setCalendarEventDetails: () => null,
 })
 
 export default function CalendarEventsProvider({
@@ -18,11 +30,18 @@ export default function CalendarEventsProvider({
     document.getElementById("modal")?.classList.toggle("lg:translate-x-full")
     document.getElementById("modal")?.classList.toggle("translate-y-full")
   }
+  const [eventDetails, setCalendarEventDetails] = useState({})
+  const [isCreateMode, setIsCreateMode] = useState(true)
+
   const value = useMemo(
     () => ({
+      isCreateMode,
+      setIsCreateMode,
       setIsOpen,
+      eventDetails,
+      setCalendarEventDetails,
     }),
-    []
+    [eventDetails, setCalendarEventDetails, isCreateMode, setIsCreateMode]
   )
 
   return (

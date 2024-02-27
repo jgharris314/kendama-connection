@@ -2,9 +2,10 @@ import { IoMdArrowRoundForward } from "react-icons/io"
 
 import CreateEventForm from "./CreateForm"
 import { useCalendarEvents } from "pages/Events/Context"
+import CalendarEventDetails from "pages/Events/Content/Modal/Details"
 
-export default function Modal({ isCreateMode }: { isCreateMode: boolean }) {
-  const { setIsOpen } = useCalendarEvents()
+export default function Modal() {
+  const { setIsOpen, isCreateMode } = useCalendarEvents()
   return (
     <div
       id="modal-container"
@@ -24,7 +25,9 @@ export default function Modal({ isCreateMode }: { isCreateMode: boolean }) {
         >
           <IoMdArrowRoundForward size={45} />
         </button>
-        <div className="mt-4">{isCreateMode && <CreateEventForm />}</div>
+        <div className="mt-4">
+          {isCreateMode ? <CreateEventForm /> : <CalendarEventDetails />}
+        </div>
       </div>
     </div>
   )
