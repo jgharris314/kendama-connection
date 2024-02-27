@@ -42,6 +42,7 @@ export default function EventCalendar({
         setSelectedValue={setSelectedLocation}
         values={["all", ...locations]}
         parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
+        isLocationDropdown
       />
       <Calendar
         localizer={localizer}

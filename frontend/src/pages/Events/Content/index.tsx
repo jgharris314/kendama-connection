@@ -10,6 +10,7 @@ export default function Content() {
     queryKey: ["calendarEventLocations"],
     queryFn: () => get("/calendarEvents/locations"),
   })
+
   return (
     <>
       <div className="flex w-full justify-end my-4">
