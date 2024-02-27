@@ -1,7 +1,19 @@
 const knex = require("../db/connection")
 
-async function listEvents() {
+function listAllEvents() {
   return knex("calendar_event").select("*")
+}
+
+function getEventByLocation(location_city_state) {
+  return knex("calendar_event").select("*").where({ location_city_state })
+}
+
+function getEventsByInterval(interval) {
+  return knex("calendar_event").select("*").where({ interval })
+}
+
+function getEventLocations() {
+  return knex("calendar_event").select("location_city_state")
 }
 
 function post(calendar_event) {
@@ -10,7 +22,15 @@ function post(calendar_event) {
     .then((e) => e[0])
 }
 
+function destroy(calendar_event_id) {
+  return knex("calendar_event").delete("*").where({ calendar_event_id })
+}
+
 module.exports = {
-  listEvents,
+  listAllEvents,
+  getEventByLocation,
   post,
+  getEventLocations,
+  getEventsByInterval,
+  destroy,
 }

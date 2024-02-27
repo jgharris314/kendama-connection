@@ -5,10 +5,12 @@ function getIntervalEvents(calendarEvent) {
   const limit = 12
   const addedEvents = []
 
+  const tempStart = new Date(calendarEvent.start_date)
+  const tempEnd = new Date(calendarEvent.end_date)
   const modifiedEvent = {
     ...calendarEvent,
-    start_date: moment(calendarEvent.start_date).toDate(),
-    end_date: moment(calendarEvent.end_date).toDate(),
+    start_date: moment(tempStart).toDate(),
+    end_date: moment(tempEnd).toDate(),
   }
 
   const startDate = modifiedEvent.start_date

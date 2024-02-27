@@ -1,9 +1,15 @@
+import { useQuery } from "@tanstack/react-query"
+import get from "api/get"
+import { useCalendarEvents } from "pages/Events/Context"
 import Modal from "./Modal"
 import EventCalendar from "./Calendar"
-import { useCalendarEvents } from "pages/Events/Context"
 
 export default function Content() {
   const { setIsOpen } = useCalendarEvents()
+  const { data: locations } = useQuery<any>({
+    queryKey: ["calendarEventLocations"],
+    queryFn: () => get("/calendarEvents/locations"),
+  })
   return (
     <>
       <div className="flex w-full justify-end my-4">
@@ -15,7 +21,7 @@ export default function Content() {
           Create
         </button>
       </div>
-      <EventCalendar />
+      <EventCalendar locations={locations} />
 
       <Modal isCreateMode />
     </>

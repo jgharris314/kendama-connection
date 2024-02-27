@@ -2,13 +2,22 @@ import { useQuery } from "@tanstack/react-query"
 import { Calendar, momentLocalizer } from "react-big-calendar"
 import get from "api/get"
 import moment from "moment"
+import Dropdown from "components/elements/Dropdown"
+import { parentClasses } from "pages/Events/Content/Modal/CreateForm/styles"
 import { eventStyleGetterfunction } from "./functions"
 import { CalendarEvent } from "./types"
+import { useState } from "react"
 
-export default function EventCalendar() {
+export default function EventCalendar({
+  locations = [],
+}: {
+  locations: any[]
+}) {
+  const [selectedLocation, setSelectedLocation] = useState("all")
+
   const { isPending, error, data, isFetching } = useQuery<CalendarEvent[]>({
-    queryKey: ["calendarEvents"],
-    queryFn: () => get("/calendarEvents"),
+    queryKey: ["calendarEvents", selectedLocation],
+    queryFn: () => get(`/calendarEvents/${selectedLocation}`),
   })
 
   if (isPending) return "Loading..."
@@ -28,6 +37,12 @@ export default function EventCalendar() {
   return (
     <div className="flex flex-col items-center justify-center md:w-full  bg-kenConnect-white border-4 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white">
       <div>{isFetching ? "Updating..." : ""}</div>
+      <Dropdown
+        selectedValue={selectedLocation}
+        setSelectedValue={setSelectedLocation}
+        values={["all", ...locations]}
+        parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
+      />
       <Calendar
         localizer={localizer}
         events={modifiedData}

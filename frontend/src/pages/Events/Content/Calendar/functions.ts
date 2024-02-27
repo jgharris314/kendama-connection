@@ -1,4 +1,3 @@
-import moment from "moment"
 import type { CalendarEvent } from "./types"
 import { CreateEventInterval } from "pages/Events/Content/Modal/CreateForm/types"
 
@@ -41,10 +40,4 @@ export function eventStyleGetterfunction(event: CalendarEvent) {
   return {
     style: style,
   }
-}
-
-export function mergeStringDateTime(date = "", time = "") {
-  if (!date) return time ? moment(time).toDate() : undefined
-  const [, trueTime] = time.split("T")
-  return moment(`${date}T${trueTime}`).toDate()
 }
