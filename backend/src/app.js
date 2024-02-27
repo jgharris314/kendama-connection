@@ -1,7 +1,8 @@
 const path = require("path")
-
 require("dotenv").config({ path: path.join(__dirname, "..", ".env") })
 
+const cron = require("node-cron")
+const calendarEventCronJobs = require("./cron/calendar_events")
 const express = require("express")
 const cors = require("cors")
 const session = require("express-session")
@@ -44,8 +45,17 @@ app.use(passport.session())
 app.use("/users", usersRouter)
 app.use("/auth", authRouter)
 app.use("/calendarEvents", calendarEventsRouter)
+app.get("/testCron", async (req, res) => {
+  const ress = await calendarEventCronJobs.removeOutdatedOneOffEvents()
+  res.send("hello")
+})
 
 app.use(notFound)
 app.use(errorHandler)
+
+cron.schedule("0 0 0 * * *", async () => {
+  const job = await calendarEventCronJobs.removeOutdatedOneOffEvents()
+  console.log(job)
+})
 
 module.exports = app

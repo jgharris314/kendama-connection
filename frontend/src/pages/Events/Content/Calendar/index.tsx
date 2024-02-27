@@ -8,12 +8,12 @@ import { eventStyleGetterfunction } from "./functions"
 import { CalendarEvent } from "./types"
 import { useState } from "react"
 
-export default function EventCalendar() {
+export default function EventCalendar({
+  locations = [],
+}: {
+  locations: any[]
+}) {
   const [selectedLocation, setSelectedLocation] = useState("all")
-  const { data: locations } = useQuery<any>({
-    queryKey: ["calendarEventLocations"],
-    queryFn: () => get("/calendarEvents/locations"),
-  })
 
   const { isPending, error, data, isFetching } = useQuery<CalendarEvent[]>({
     queryKey: ["calendarEvents", selectedLocation],

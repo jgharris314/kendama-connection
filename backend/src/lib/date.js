@@ -12,4 +12,10 @@ function addXMonths(date, x) {
   return moment(mutatoPotato).toDate()
 }
 
-module.exports = { addXWeeks, addXMonths }
+function getDifferenceInDays(todayDate, eventStartDate) {
+  return Math.round(
+    (todayDate.getTime() - eventStartDate.getTime()) / (1000 * 3600 * 24)
+  )
+}
+
+module.exports = { addXWeeks, addXMonths, getDifferenceInDays }
