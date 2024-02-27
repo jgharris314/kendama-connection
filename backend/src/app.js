@@ -45,10 +45,6 @@ app.use(passport.session())
 app.use("/users", usersRouter)
 app.use("/auth", authRouter)
 app.use("/calendarEvents", calendarEventsRouter)
-app.get("/testCron", async (req, res) => {
-  const ress = await calendarEventCronJobs.removeOutdatedOneOffEvents()
-  res.send("hello")
-})
 
 app.use(notFound)
 app.use(errorHandler)

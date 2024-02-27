@@ -10,10 +10,9 @@ async function removeOutdatedOneOffEvents() {
     try {
       const eventEndDate = new Date(calendar_event.end_date)
       const differenceInDays = getDifferenceInDays(today, eventEndDate)
-      console.log(differenceInDays)
 
       if (differenceInDays >= maxAgeInDays) {
-        console.log("removing event")
+        console.log("removing event id: ", calendar_event.calendar_event_id)
         await service.destroy(calendar_event.calendar_event_id)
       }
     } catch (error) {
@@ -21,7 +20,7 @@ async function removeOutdatedOneOffEvents() {
     }
   })
 
-  return "One off events older than 90 days removed"
+  return `One off events older than ${maxAgeInDays} days removed`
 }
 
 module.exports = {
