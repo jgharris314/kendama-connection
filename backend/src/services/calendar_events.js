@@ -13,7 +13,8 @@ function getEventsByInterval(interval) {
 }
 
 function getEventLocations() {
-  return knex("calendar_event").select("location_city_state")
+  const locationCol = "location_city_state"
+  return knex("calendar_event").select(locationCol).orderBy(locationCol, "asc")
 }
 
 function post(calendar_event) {
