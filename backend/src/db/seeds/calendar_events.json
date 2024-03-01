@@ -7,7 +7,8 @@
     "location_name": "Cheeseman Park",
     "location_city_state": "denver_co",
     "description": "monthly mothdama meetup",
-    "user_id": "1"
+    "user_id": "1",
+    "hosted_by": "Atticus Atlas"
   },
   {
     "title": "mothDama",
@@ -17,6 +18,7 @@
     "location_name": "Cheeseman Park",
     "location_city_state": "denver_co",
     "description": "monthly mothdama meetup",
-    "user_id": "1"
+    "user_id": "1",
+    "hosted_by": "Atticus Atlas"
   }
 ]
