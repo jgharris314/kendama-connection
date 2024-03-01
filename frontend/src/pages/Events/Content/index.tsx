@@ -24,7 +24,7 @@ export default function Content() {
           className="button button-yellow"
           onClick={() => onClickHandler()}
         >
-          Create
+          List an Event!
         </button>
       </div>
       <EventCalendar locations={locations} />
