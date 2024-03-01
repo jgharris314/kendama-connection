@@ -10,6 +10,7 @@ import { ResponseError } from "utils/Errors/ResponseError"
 import { User } from "./useUser"
 import type { LoginFormData } from "../Login"
 import Post from "api/post"
+import { useGlobalContext } from "context/Global"
 
 async function signIn(formData: LoginFormData): Promise<User> {
   const response = await Post<LoginFormData>("/auth/login", formData)
@@ -24,6 +25,7 @@ async function signIn(formData: LoginFormData): Promise<User> {
 type IUseSignIn = UseMutateFunction<User, unknown, LoginFormData, unknown>
 
 export function useSignIn(): IUseSignIn {
+  const { setUser } = useGlobalContext()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
@@ -36,6 +38,7 @@ export function useSignIn(): IUseSignIn {
   >({
     mutationFn: (data: LoginFormData) => signIn(data),
     onSuccess: (data) => {
+      setUser(data)
       queryClient.setQueryData([QUERY_KEY.user], data)
       navigate("/")
     },

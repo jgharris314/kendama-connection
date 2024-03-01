@@ -1,6 +1,12 @@
 const knex = require("../db/connection")
 
-const userSafeFields = ["email", "user_id", "username", "membership_type"]
+const userSafeFields = [
+  "email",
+  "user_id",
+  "username",
+  "membership_type",
+  "remaining_calendar_event_creations",
+]
 
 async function listUsers() {
   return knex("user").select(userSafeFields)
@@ -20,9 +26,23 @@ function getUserByUsername(username) {
     .then((e) => e[0])
 }
 
+function getUserById(user_id) {
+  return knex("user")
+    .select("*")
+    .where({ user_id })
+    .then((e) => e[0])
+}
+
 function post(user) {
   return knex("user as u")
     .insert(user, "*")
+    .then((e) => e[0])
+}
+
+function update(user_id, updateData) {
+  return knex("user")
+    .update(updateData, "*")
+    .where({ user_id })
     .then((e) => e[0])
 }
 
@@ -31,4 +51,6 @@ module.exports = {
   post,
   getUserByEmail,
   getUserByUsername,
+  getUserById,
+  update,
 }

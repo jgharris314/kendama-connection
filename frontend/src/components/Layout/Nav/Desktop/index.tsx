@@ -6,8 +6,12 @@ import {
   navOptions,
 } from "../constants"
 import { useNavigate } from "react-router-dom"
+import { useGlobalContext } from "context/Global"
+import { useSignOut } from "pages/auth/hooks/useSignOut"
 
 export default function DesktopNav() {
+  const { isLoggedIn } = useGlobalContext()
+  const onSignOut = useSignOut()
   const navigate = useNavigate()
 
   function onClickHandler(option: string) {
@@ -32,22 +36,38 @@ export default function DesktopNav() {
               </button>
             )
           })}
-          <button
-            key={uuidv4()}
-            type="button"
-            onClick={() => onClickHandler("auth/signup")}
-            className={desktopNavItemParentStyles}
-          >
-            <span className={desktopNavItemChildStyles}>Sign Up</span>
-          </button>
-          <button
-            key={uuidv4()}
-            type="button"
-            onClick={() => onClickHandler("auth/login")}
-            className={desktopNavItemParentStyles}
-          >
-            <span className={desktopNavItemChildStyles}>login</span>
-          </button>
+          {isLoggedIn ? (
+            <>
+              {" "}
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onSignOut()}
+                className={desktopNavItemParentStyles}
+              >
+                <span className={desktopNavItemChildStyles}>logout</span>
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onClickHandler("auth/signup")}
+                className={desktopNavItemParentStyles}
+              >
+                <span className={desktopNavItemChildStyles}>Sign Up</span>
+              </button>
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onClickHandler("auth/login")}
+                className={desktopNavItemParentStyles}
+              >
+                <span className={desktopNavItemChildStyles}>login</span>
+              </button>
+            </>
+          )}
         </ul>
       </div>
     </SectionContainer>

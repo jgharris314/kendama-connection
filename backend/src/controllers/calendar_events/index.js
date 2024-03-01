@@ -1,5 +1,6 @@
 const asyncErrorBoundary = require("../../errors/asyncErrorBoundary")
 const service = require("../../services/calendar_events")
+const userService = require("../../services/users")
 const { validateCalendarEventData } = require("../../validation/calendarEvent")
 const { getIntervalEvents } = require("./functions")
 
@@ -21,9 +22,29 @@ async function listEvents(req, res, next) {
 async function post(req, res, next) {
   const data = req.body
 
-  res.status(201).json({
-    data: await service.post(data),
-  })
+  const { user_id } = data
+
+  const userInfo = await userService.getUserById(user_id)
+  if (!userInfo.remaining_calendar_event_creations) {
+    return next({
+      status: 400,
+      message: "User has used all event creations for the month",
+    })
+  }
+
+  const updatedData = {
+    ...userInfo,
+    remaining_calendar_event_creations:
+      userInfo.remaining_calendar_event_creations - 1,
+  }
+
+  const updatedUser = await userService.update(user_id, updatedData)
+
+  if (updatedUser.user_id) {
+    res.status(201).json({
+      data: await service.post(data),
+    })
+  }
 }
 
 async function getEventLocations(req, res, next) {

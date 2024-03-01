@@ -1,28 +1,27 @@
-import React from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import moment from "moment"
+import { useSnackbar } from "notistack"
+import post from "api/post"
 import Input from "components/elements/Input"
 import { useCalendarEvents } from "pages/Events/Context"
-import DateOccurenceInputs from "pages/Events/Content/Modal/CreateForm/Form/DateOccurenceInputs"
-import LocationForm from "pages/Events/Content/Modal/CreateForm/Form/Location"
+import DateOccurenceInputs from "pages/Events/Content/Modal/CreateForm/MemberView/Form/DateOccurenceInputs"
+import LocationForm from "pages/Events/Content/Modal/CreateForm/MemberView/Form/Location"
 import {
   parentClasses,
   labelClasses,
   inputClasses,
   contentContainer,
-} from "../styles"
-import { CreateEventFormData } from "../types"
+} from "../../styles"
+import { CreateEventFormData } from "../../types"
 import { validateFormData } from "./functions"
+import { useGlobalContext } from "context/Global"
+import { saveUser } from "pages/auth/hooks/user.localstore"
 
-import post from "api/post"
-
-export default function Form({
-  setErrors,
-}: {
-  setErrors: React.Dispatch<React.SetStateAction<string>>
-}) {
+export default function Form() {
+  const { user, setUser } = useGlobalContext()
   const queryClient = useQueryClient()
+  const { enqueueSnackbar } = useSnackbar()
 
   const mutation = useMutation({
     mutationFn: (data: CreateEventFormData) =>
@@ -37,13 +36,21 @@ export default function Form({
     mode: "onSubmit",
   })
   const { handleSubmit } = methods
+  console.log(user)
 
   function submitHandler(formData: CreateEventFormData) {
-    setErrors("")
     const errors = validateFormData(formData)
 
     if (errors.length) {
-      return setErrors(errors.charAt(0).toUpperCase() + errors.slice(1))
+      return enqueueSnackbar(errors.charAt(0).toUpperCase() + errors.slice(1), {
+        variant: "error",
+      })
+    }
+
+    if (!user.user.username.length) {
+      return enqueueSnackbar("User is not signed in", {
+        variant: "error",
+      })
     }
 
     const modifiedData = {
@@ -54,6 +61,7 @@ export default function Form({
         .split(" ")
         .join("^")
         .toLocaleLowerCase()}_${formData.location_state.toLocaleLowerCase()}`,
+      user_id: user.user.user_id,
     }
     delete modifiedData.location_city
     delete modifiedData.location_state
@@ -62,6 +70,13 @@ export default function Form({
     } catch (error) {
       return
     }
+
+    const modifiedUserData = {
+      ...user.user,
+      remaining_calendar_event_creations:
+        user.user.remaining_calendar_event_creations - 1,
+    }
+    setUser({ ...user, user: modifiedUserData })
 
     return setIsOpen()
   }
@@ -84,17 +99,24 @@ export default function Form({
           <div className="flex flex-col w-full md:w-1/2 gap-2">
             <LocationForm />
             <Input
-              name="description"
-              id="description"
+              name="hosted_by"
+              id="hosted_by"
               parentClasses={parentClasses}
-              inputClasses={`${inputClasses} w-full`}
-              label="Description"
+              inputClasses={inputClasses}
+              label="Hosted By"
               labelClasses={labelClasses}
-              rows={5}
             />
           </div>
         </div>
-
+        <Input
+          name="description"
+          id="description"
+          parentClasses={`${parentClasses} w-full !max-w-none`}
+          inputClasses={`${inputClasses} !max-w-none w-full h-16`}
+          label="Description"
+          labelClasses={labelClasses}
+          rows={5}
+        />
         <button className="mt-12 mb-4 button button-yellow" type="submit">
           Submit
         </button>

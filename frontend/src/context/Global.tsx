@@ -1,32 +1,39 @@
+import { IUseUser, useUser } from "pages/auth/hooks/useUser"
 import React, { createContext, useContext, useMemo, useState } from "react"
 
 type GlobalContextProviderProps = {
-  isLoggedIn: boolean
-  user: unknown
   children: React.ReactNode
 }
 
 type GlobalContextData = {
-  loggedInStatus: boolean
-  setLoggedInStatus: React.Dispatch<React.SetStateAction<boolean>>
-  user: unknown
+  isLoggedIn: boolean
+  user: IUseUser
+  setUser: React.Dispatch<React.SetStateAction<IUseUser>>
 }
 
 const GlobalContext = createContext<GlobalContextData>({} as GlobalContextData)
 
+function getLoggedInStatus(user: IUseUser) {
+  return user?.message?.toLowerCase()?.includes("successfully") ? true : false
+}
+
 export default function GlobalContextProvider({
-  isLoggedIn,
-  user,
   children,
 }: GlobalContextProviderProps) {
-  const [loggedInStatus, setLoggedInStatus] = useState<boolean>(isLoggedIn)
+  const initalUser = useUser()
+  console.log(initalUser)
+
+  const [user, setUser] = useState(initalUser)
+
+  const isLoggedIn = getLoggedInStatus(user)
+
   const value = useMemo(
     () => ({
-      loggedInStatus,
-      setLoggedInStatus,
+      isLoggedIn,
       user,
+      setUser,
     }),
-    [loggedInStatus, user]
+    [isLoggedIn, user]
   )
 
   return (

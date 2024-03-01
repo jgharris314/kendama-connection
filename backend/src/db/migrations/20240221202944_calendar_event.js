@@ -7,7 +7,14 @@ exports.up = function (knex) {
     table.string("interval").defaultTo("one-off")
     table.string("location_name").notNullable()
     table.string("location_city_state").notNullable()
+    table.string("hosted_by").notNullable()
     table.string("description")
+    table
+      .integer("user_id")
+      .notNullable()
+      .references("user_id")
+      .inTable("user")
+      .onDelete("CASCADE")
     table.timestamps(true, true)
   })
 }
