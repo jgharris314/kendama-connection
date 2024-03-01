@@ -3,6 +3,7 @@ require("dotenv").config({ path: path.join(__dirname, "..", ".env") })
 
 const cron = require("node-cron")
 const calendarEventCronJobs = require("./cron/calendar_events")
+const userCron = require("./cron/user")
 const express = require("express")
 const cors = require("cors")
 const session = require("express-session")
@@ -51,6 +52,11 @@ app.use(errorHandler)
 
 cron.schedule("0 0 0 * * *", async () => {
   const job = await calendarEventCronJobs.removeOutdatedOneOffEvents()
+  console.log(job)
+})
+
+cron.schedule("0 0 1 * *", async () => {
+  const job = await userCron.restoreUserCalendarEventCreations()
   console.log(job)
 })
 
