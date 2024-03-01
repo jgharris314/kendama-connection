@@ -8,6 +8,12 @@ exports.up = function (knex) {
     table.string("location_name").notNullable()
     table.string("location_city_state").notNullable()
     table.string("description")
+    table
+      .string("user_id")
+      .notNullable()
+      .references("user_id")
+      .inTable("user")
+      .onDelete("CASCADE")
     table.timestamps(true, true)
   })
 }

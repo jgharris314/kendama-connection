@@ -6,7 +6,8 @@
     "interval": "weekly",
     "location_name": "Cheeseman Park",
     "location_city_state": "denver_co",
-    "description": "monthly mothdama meetup"
+    "description": "monthly mothdama meetup",
+    "user_id": "1"
   },
   {
     "title": "mothDama",
@@ -15,6 +16,7 @@
     "interval": "monthly",
     "location_name": "Cheeseman Park",
     "location_city_state": "denver_co",
-    "description": "monthly mothdama meetup"
+    "description": "monthly mothdama meetup",
+    "user_id": "1"
   }
 ]
