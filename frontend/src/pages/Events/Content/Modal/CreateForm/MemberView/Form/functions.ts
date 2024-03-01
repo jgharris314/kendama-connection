@@ -1,5 +1,5 @@
 import React from "react"
-import type { CreateEventFormData } from "../types"
+import type { CreateEventFormData } from "../../types"
 import { UseFormSetValue } from "react-hook-form"
 
 export function handleDateChange(

@@ -22,8 +22,10 @@ async function login(req, res, next) {
       message: "Logged in successfully",
       user: {
         username: user.username,
-        userID: user.user_id,
+        user_id: user.user_id,
         email: user.email,
+        remaining_calendar_event_creations:
+          user.remaining_calendar_event_creations,
       },
     })
   } catch (error) {
