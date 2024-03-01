@@ -21,6 +21,7 @@ export default function GlobalContextProvider({
   children,
 }: GlobalContextProviderProps) {
   const initalUser = useUser()
+  console.log(initalUser)
 
   const [user, setUser] = useState(initalUser)
 

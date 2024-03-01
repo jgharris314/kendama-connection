@@ -5,11 +5,10 @@ import * as userLocalStorage from "./user.localstore"
 import get from "api/get"
 
 export interface User {
-  accessToken: string
-  user: {
-    email: string
-    id: number
-  }
+  email: string
+  remaining_calendar_event_creations: number
+  user_id: number
+  username: string
 }
 
 export interface IUseUser {
