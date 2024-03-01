@@ -1,10 +1,12 @@
-import { useGlobalContext } from "context/Global"
 import SectionContainer from "components/SectionContainer"
 import NotAMember from "pages/Events/Content/Modal/CreateForm/NotAMember"
 import MemberView from "pages/Events/Content/Modal/CreateForm/MemberView"
+import { useUser } from "pages/auth/hooks/useUser"
+import { getLoggedInStatus } from "utils/UserAuth/functions"
 
 export default function CreateEventForm() {
-  const { isLoggedIn } = useGlobalContext()
+  const user = useUser()
+  const isLoggedIn = getLoggedInStatus(user)
 
   return (
     <SectionContainer additionalContentClasses="flex flex-col w-full justify-start items-center">

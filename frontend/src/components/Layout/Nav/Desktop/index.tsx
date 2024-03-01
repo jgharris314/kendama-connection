@@ -6,11 +6,13 @@ import {
   navOptions,
 } from "../constants"
 import { useNavigate } from "react-router-dom"
-import { useGlobalContext } from "context/Global"
 import { useSignOut } from "pages/auth/hooks/useSignOut"
+import { useUser } from "pages/auth/hooks/useUser"
+import { getLoggedInStatus } from "utils/UserAuth/functions"
 
 export default function DesktopNav() {
-  const { isLoggedIn } = useGlobalContext()
+  const user = useUser()
+  const isLoggedIn = getLoggedInStatus(user)
   const onSignOut = useSignOut()
   const navigate = useNavigate()
 
