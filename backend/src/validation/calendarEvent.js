@@ -8,7 +8,7 @@ function validateCalendarEventData(req, res, next) {
     "location_name",
     "location_city_state",
     "user_id",
-    "hostec_by",
+    "hosted_by",
   ]
 
   for (key of keysToCheck) {

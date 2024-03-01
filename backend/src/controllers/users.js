@@ -9,7 +9,7 @@ async function listUsers(req, res, next) {
 }
 
 async function getUserByUsername(req, res, next) {
-  res.json({ data: await service.getUserById(req.params.username) })
+  res.json({ data: await service.getUserByUsername(req.params.username) })
 }
 
 async function post(req, res, next) {

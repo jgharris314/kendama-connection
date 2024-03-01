@@ -1,32 +1,37 @@
 [
   {
-    "email": "used@test.com",
+    "email": "used1@test.com",
     "username": "used",
     "password": "superSecure.tm",
-    "membership_type": "owner"
+    "membership_type": "owner",
+    "remaining_calendar_event_creations": 5
   },
   {
     "email": "used2@test.com",
     "username": "basic",
     "password": "superSecure.tm",
-    "membership_type": "basic"
+    "membership_type": "basic",
+    "remaining_calendar_event_creations": 5
   },
   {
     "email": "used3@test.com",
     "username": "local_host",
     "password": "superSecure.tm",
-    "membership_type": "local_host"
+    "membership_type": "local_host",
+    "remaining_calendar_event_creations": 5
   },
   {
     "email": "used4@test.com",
     "username": "major_host",
     "password": "superSecure.tm",
-    "membership_type": "major_host"
+    "membership_type": "major_host",
+    "remaining_calendar_event_creations": 5
   },
   {
     "email": "used5@test.com",
     "username": "company",
     "password": "superSecure.tm",
-    "membership_type": "company"
+    "membership_type": "company",
+    "remaining_calendar_event_creations": 5
   }
 ]

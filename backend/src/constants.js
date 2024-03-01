@@ -1,1 +1,5 @@
-export const BasicMemberhsipCreationLimit = 5
+const BasicMemberhsipCreationLimit = 5
+
+module.exports = {
+  BasicMemberhsipCreationLimit,
+}
