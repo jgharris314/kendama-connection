@@ -1,12 +1,16 @@
 import { v4 as uuidv4 } from "uuid"
 import { RxHamburgerMenu } from "react-icons/rx"
 import { MdClose } from "react-icons/md"
+import { useGlobalContext } from "context/Global"
 import SectionContainer from "../../../SectionContainer"
 import { useNavigate } from "react-router-dom"
 import { navOptions } from "../constants"
 import MobileNavItem from "./NavItem"
+import { useSignOut } from "pages/auth/hooks/useSignOut"
 
 export default function MobileNav() {
+  const { isLoggedIn } = useGlobalContext()
+  const onSignOut = useSignOut()
   const navigate = useNavigate()
 
   function setIsOpen() {
@@ -73,26 +77,41 @@ export default function MobileNav() {
               />
             )
           })}
-          <button
-            key={uuidv4()}
-            type="button"
-            onClick={() => onClickHandler("auth/signup")}
-            className={
-              "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
-            }
-          >
-            Sign Up
-          </button>
-          <button
-            key={uuidv4()}
-            type="button"
-            onClick={() => onClickHandler("auth/login")}
-            className={
-              "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
-            }
-          >
-            Login
-          </button>
+          {isLoggedIn ? (
+            <button
+              key={uuidv4()}
+              type="button"
+              onClick={() => onSignOut()}
+              className={
+                "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+              }
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onClickHandler("auth/signup")}
+                className={
+                  "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+                }
+              >
+                Sign Up
+              </button>
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onClickHandler("auth/login")}
+                className={
+                  "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+                }
+              >
+                Login
+              </button>
+            </>
+          )}
         </ul>
       </div>
     </>

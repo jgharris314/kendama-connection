@@ -8,7 +8,7 @@ const loading = () => <div className="" />
 
 export default function Layout() {
   return (
-    <GlobalContextProvider isLoggedIn={false} user={{}}>
+    <GlobalContextProvider>
       <SectionContainer
         bgClasses="!w-screen"
         additionalContentClasses="items-center justify-center w-full"
