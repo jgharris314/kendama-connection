@@ -1,3 +1,5 @@
+import { BasicMemberhsipCreationLimit } from "../../constants"
+
 exports.up = function (knex) {
   return knex.schema.createTable("user", (table) => {
     table.increments("user_id").primary()
@@ -5,6 +7,12 @@ exports.up = function (knex) {
     table.string("username").notNullable().unique()
     table.string("password").notNullable()
     table.string("membership_type").defaultTo("basic")
+    table
+      .integer("calendar_event_creation_limit")
+      .defaultTo(BasicMemberhsipCreationLimit)
+    table
+      .integer("remaining_calendar_event_creations")
+      .defaultTo(BasicMemberhsipCreationLimit)
     table.timestamps(true, true)
   })
 }

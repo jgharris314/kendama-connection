@@ -10,7 +10,7 @@ exports.up = function (knex) {
     table.string("hosted_by").notNullable()
     table.string("description")
     table
-      .string("user_id")
+      .integer("user_id")
       .notNullable()
       .references("user_id")
       .inTable("user")
