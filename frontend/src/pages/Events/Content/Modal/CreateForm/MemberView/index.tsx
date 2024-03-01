@@ -1,10 +1,10 @@
-import { useGlobalContext } from "context/Global"
 import Form from "pages/Events/Content/Modal/CreateForm/MemberView/Form"
+import { useUser } from "pages/auth/hooks/useUser"
 
 export default function MemberView() {
-  const { user } = useGlobalContext()
+  const user = useUser()
 
-  return user.user.remaining_calendar_event_creations > 0 ? (
+  return user.user && user?.user?.remaining_calendar_event_creations > 0 ? (
     <Form />
   ) : (
     <div className="flex flex-col w-full h-full items-center justify-center text-kenConnect-white gap-8 mt-16">

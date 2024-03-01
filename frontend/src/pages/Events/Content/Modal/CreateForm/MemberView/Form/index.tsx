@@ -15,12 +15,13 @@ import {
 } from "../../styles"
 import { CreateEventFormData } from "../../types"
 import { validateFormData } from "./functions"
-import { useGlobalContext } from "context/Global"
-import { saveUser } from "pages/auth/hooks/user.localstore"
+import { QUERY_KEY } from "constants/queryKeys"
+import { useUser } from "pages/auth/hooks/useUser"
 
 export default function Form() {
-  const { user, setUser } = useGlobalContext()
   const queryClient = useQueryClient()
+  const user = useUser()
+
   const { enqueueSnackbar } = useSnackbar()
 
   const mutation = useMutation({
@@ -36,7 +37,6 @@ export default function Form() {
     mode: "onSubmit",
   })
   const { handleSubmit } = methods
-  console.log(user)
 
   function submitHandler(formData: CreateEventFormData) {
     const errors = validateFormData(formData)
@@ -47,7 +47,7 @@ export default function Form() {
       })
     }
 
-    if (!user.user.username.length) {
+    if (!user?.user?.username.length) {
       return enqueueSnackbar("User is not signed in", {
         variant: "error",
       })
@@ -72,11 +72,14 @@ export default function Form() {
     }
 
     const modifiedUserData = {
-      ...user.user,
-      remaining_calendar_event_creations:
-        user.user.remaining_calendar_event_creations - 1,
+      ...user,
+      user: {
+        ...user.user,
+        remaining_calendar_event_creations:
+          user.user.remaining_calendar_event_creations - 1,
+      },
     }
-    setUser({ ...user, user: modifiedUserData })
+    queryClient.setQueryData([QUERY_KEY.user], modifiedUserData)
 
     return setIsOpen()
   }
