@@ -7,12 +7,15 @@ import { parentClasses } from "pages/Events/Content/Modal/CreateForm/styles"
 import { eventStyleGetterfunction } from "./functions"
 import { CalendarEvent } from "./types"
 import { useState } from "react"
+import { useCalendarEvents } from "pages/Events/Context"
 
 export default function EventCalendar({
   locations = [],
 }: {
   locations: any[]
 }) {
+  const { setIsOpen, setCalendarEventDetails, setIsCreateMode } =
+    useCalendarEvents()
   const [selectedLocation, setSelectedLocation] = useState("all")
 
   const { isPending, error, data, isFetching } = useQuery<CalendarEvent[]>({
@@ -34,16 +37,25 @@ export default function EventCalendar({
     }
   })
 
+  function onSelectEvent(calendar_event: any) {
+    setCalendarEventDetails(calendar_event)
+    setIsCreateMode(false)
+    setIsOpen()
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center md:w-full  bg-kenConnect-white border-4 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white">
+    <div className="flex flex-col items-start justify-center md:w-full  bg-kenConnect-white border-2 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white p-2">
       <div>{isFetching ? "Updating..." : ""}</div>
-      <Dropdown
-        selectedValue={selectedLocation}
-        setSelectedValue={setSelectedLocation}
-        values={["all", ...locations]}
-        parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
-        isLocationDropdown
-      />
+      <div className="flex items-center gap-4 mb-2">
+        <span className="font-bold">Location</span>
+        <Dropdown<string>
+          selectedValue={selectedLocation}
+          setSelectedValue={setSelectedLocation}
+          values={["all", ...locations]}
+          parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
+          isLocationDropdown
+        />
+      </div>
       <Calendar
         localizer={localizer}
         events={modifiedData}
@@ -53,6 +65,7 @@ export default function EventCalendar({
         className="w-full"
         selectable
         eventPropGetter={eventStyleGetterfunction}
+        onSelectEvent={(calendar_event) => onSelectEvent(calendar_event)}
       />
     </div>
   )
