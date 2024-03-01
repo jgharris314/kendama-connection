@@ -12,7 +12,7 @@ export interface User {
   }
 }
 
-interface IUseUser {
+export interface IUseUser {
   message?: string
   error?: string
   user: User | null

@@ -1,6 +1,5 @@
 import { useGlobalContext } from "context/Global"
 import SectionContainer from "components/SectionContainer"
-import Form from "./MemberView/Form"
 import NotAMember from "pages/Events/Content/Modal/CreateForm/NotAMember"
 import MemberView from "pages/Events/Content/Modal/CreateForm/MemberView"
 

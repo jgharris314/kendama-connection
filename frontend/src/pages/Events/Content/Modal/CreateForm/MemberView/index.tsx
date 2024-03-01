@@ -4,9 +4,7 @@ import Form from "pages/Events/Content/Modal/CreateForm/MemberView/Form"
 export default function MemberView() {
   const { user } = useGlobalContext()
 
-  console.log(user)
-
-  return user.remaining_calendar_event_creations > 0 ? (
+  return user.user.remaining_calendar_event_creations > 0 ? (
     <Form />
   ) : (
     <div className="flex flex-col w-full h-full items-center justify-center text-kenConnect-white gap-8 mt-16">
@@ -24,7 +22,7 @@ export default function MemberView() {
         type="button"
         onClick={() => alert("Feature under development <3")}
       >
-        Upgrade this bad boy!
+        Upgrade Membership!
       </button>
     </div>
   )

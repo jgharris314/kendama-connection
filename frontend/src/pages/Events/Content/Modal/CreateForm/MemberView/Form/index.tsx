@@ -16,9 +16,10 @@ import {
 import { CreateEventFormData } from "../../types"
 import { validateFormData } from "./functions"
 import { useGlobalContext } from "context/Global"
+import { saveUser } from "pages/auth/hooks/user.localstore"
 
 export default function Form() {
-  const { user } = useGlobalContext()
+  const { user, setUser } = useGlobalContext()
   const queryClient = useQueryClient()
   const { enqueueSnackbar } = useSnackbar()
 
@@ -60,7 +61,7 @@ export default function Form() {
         .split(" ")
         .join("^")
         .toLocaleLowerCase()}_${formData.location_state.toLocaleLowerCase()}`,
-      user_id: user.user.userID,
+      user_id: user.user.user_id,
     }
     delete modifiedData.location_city
     delete modifiedData.location_state
@@ -69,6 +70,13 @@ export default function Form() {
     } catch (error) {
       return
     }
+
+    const modifiedUserData = {
+      ...user.user,
+      remaining_calendar_event_creations:
+        user.user.remaining_calendar_event_creations - 1,
+    }
+    setUser({ ...user, user: modifiedUserData })
 
     return setIsOpen()
   }

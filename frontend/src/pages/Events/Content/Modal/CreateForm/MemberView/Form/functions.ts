@@ -28,11 +28,13 @@ export function validateFormData(formData: CreateEventFormData) {
     "location_name",
     "location_city",
     "location_state",
+    "hosted_by",
   ]
 
   for (const key of keysToCheck) {
     if (!formData[key]) {
-      return `${key.replace(/_/g, " ")} is required`
+      const convertedKey = key === "title" ? "event name" : key
+      return `${convertedKey.replace(/_/g, " ")} is required`
     }
   }
 
