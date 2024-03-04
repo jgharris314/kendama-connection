@@ -5,14 +5,14 @@ import {
   parentClasses,
   labelClasses,
   inputClasses,
-} from "pages/Events/Content/Modal/CreateForm/styles"
+} from "pages/Events/Content/CreateForm/styles"
 import { US_STATES } from "./constants"
 import { useFormContext } from "react-hook-form"
 
 export default function LocationForm() {
   const { setValue, getValues } = useFormContext()
   const [selectedState, setSelectedState] = useState<string>(
-    getValues("location_state") ?? "Select State"
+    getValues("location_state") || "Select State"
   )
 
   useEffect(() => {

@@ -8,6 +8,9 @@ const CalendarEvents = createContext<{
   isCreateMode: boolean
   setIsCreateMode: React.Dispatch<React.SetStateAction<boolean>>
   setIsOpen: () => void
+  isEditMode: boolean
+  setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>
+
   eventDetails: Record<string, any>
   setCalendarEventDetails: React.Dispatch<
     React.SetStateAction<Record<string, any>>
@@ -15,6 +18,8 @@ const CalendarEvents = createContext<{
 }>({
   isCreateMode: true,
   setIsCreateMode: () => null,
+  isEditMode: false,
+  setIsEditMode: () => null,
   setIsOpen: () => null,
   eventDetails: {},
   setCalendarEventDetails: () => null,

@@ -1,6 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import moment from "moment"
 import { useSnackbar } from "notistack"
 import post from "api/post"
 import Input from "components/elements/Input"
@@ -16,30 +15,11 @@ import {
   contentContainer,
 } from "../styles"
 import { CreateEventFormData } from "../types"
-import { validateFormData } from "./functions"
-import { useEffect, useState } from "react"
-import { defaultFormData } from "./constants"
-
-function getDefaultFormdata(createMode: boolean, eventDetails: any) {
-  if (!createMode) {
-    const modifiedEventDetails = { ...eventDetails }
-
-    const locationCityState =
-      modifiedEventDetails.location_city_state.split("_")
-
-    modifiedEventDetails.location_city = locationCityState[0]
-      .split("^")
-      .join(" ")
-    modifiedEventDetails.location_state = locationCityState[1].toUpperCase()
-    delete modifiedEventDetails.created_at
-    delete modifiedEventDetails.updated_at
-    delete modifiedEventDetails.calendar_event_id
-
-    return modifiedEventDetails
-  }
-
-  return defaultFormData
-}
+import {
+  validateFormData,
+  getDefaultFormdata,
+  reformatFormData,
+} from "./functions"
 
 export default function Form() {
   const queryClient = useQueryClient()
@@ -78,18 +58,7 @@ export default function Form() {
       })
     }
 
-    const modifiedData = {
-      ...formData,
-      start_date: String(moment(new Date(formData.start_date)).toDate()),
-      end_date: String(moment(new Date(formData.end_date)).toDate()),
-      location_city_state: `${formData.location_city
-        .split(" ")
-        .join("^")
-        .toLocaleLowerCase()}_${formData.location_state.toLocaleLowerCase()}`,
-      user_id: user.user.user_id,
-    }
-    delete modifiedData.location_city
-    delete modifiedData.location_state
+    const modifiedData = reformatFormData(formData, user.user.user_id)
     try {
       mutation.mutate(modifiedData)
     } catch (error) {

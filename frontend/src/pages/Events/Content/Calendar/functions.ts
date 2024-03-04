@@ -1,5 +1,5 @@
 import type { CalendarEvent } from "./types"
-import { CreateEventInterval } from "pages/Events/Content/Modal/CreateForm/types"
+import { CreateEventInterval } from "pages/Events/Content/CreateForm/types"
 
 function getBackgroundColor(interval: CreateEventInterval) {
   switch (interval) {

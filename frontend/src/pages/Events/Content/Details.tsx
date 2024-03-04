@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import SectionContainer from "components/SectionContainer"
-import { contentContainer } from "pages/Events/Content/Modal/CreateForm/styles"
+import { contentContainer } from "pages/Events/Content/CreateForm/styles"
 import { useCalendarEvents } from "pages/Events/Context"
 import { useUser } from "pages/auth/hooks/useUser"
 
@@ -18,7 +18,6 @@ function DataRow({ label, content }: { label: string; content: ReactNode }) {
 export default function CalendarEventDetails() {
   const user = useUser()
   const { eventDetails, setIsCreateMode, setIsEditMode } = useCalendarEvents()
-  console.log(eventDetails)
 
   const handleClick = () => {
     setIsCreateMode(false)

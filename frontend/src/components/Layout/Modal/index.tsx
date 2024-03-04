@@ -1,16 +1,13 @@
 import { IoMdArrowRoundForward } from "react-icons/io"
+import type { ReactNode } from "react"
 
-import CreateEventForm from "./CreateForm"
-import { useCalendarEvents } from "pages/Events/Context"
-import { useUser } from "pages/auth/hooks/useUser"
-import { getLoggedInStatus } from "utils/UserAuth/functions"
-import NotAMember from "./NotAMember"
-import CalendarEventDetails from "./Details"
-
-export default function Modal() {
-  const { setIsOpen, isCreateMode, isEditMode } = useCalendarEvents()
-  const user = useUser()
-  const isLoggedIn = getLoggedInStatus(user)
+export default function Modal({
+  onClickHandler,
+  children,
+}: {
+  onClickHandler: () => void
+  children: ReactNode
+}) {
   return (
     <div
       id="modal-container"
@@ -26,17 +23,11 @@ export default function Modal() {
       >
         <button
           className="w-12 h-12 bg-red-700 text-red font-black text-kenConnect-white flex items-center justify-center "
-          onClick={() => setIsOpen()}
+          onClick={() => onClickHandler()}
         >
           <IoMdArrowRoundForward size={45} />
         </button>
-        <div className="mt-4">
-          {isCreateMode && (
-            <>{isLoggedIn ? <CreateEventForm /> : <NotAMember />}</>
-          )}
-          {!isCreateMode && !isEditMode && <CalendarEventDetails />}
-          {isEditMode && <CreateEventForm />}
-        </div>
+        <div className="mt-4">{children}</div>
       </div>
     </div>
   )

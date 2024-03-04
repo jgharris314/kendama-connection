@@ -1,4 +1,4 @@
-import { CreateEventInterval } from "pages/Events/Content/Modal/CreateForm/types"
+import { CreateEventInterval } from "pages/Events/Content/CreateForm/types"
 
 export interface CalendarEvent {
   title: string

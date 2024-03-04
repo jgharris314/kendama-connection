@@ -3,7 +3,7 @@ import Dropdown from "components/elements/Dropdown"
 import {
   CreateEventInterval,
   CreateEventFormData,
-} from "pages/Events/Content/Modal/CreateForm/types"
+} from "pages/Events/Content/CreateForm/types"
 import DatePick from "../components/DatePick"
 import { parentClasses, labelClasses } from "../styles"
 import { handleDateChange } from "./functions"

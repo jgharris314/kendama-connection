@@ -1,5 +1,5 @@
 import SectionContainer from "components/SectionContainer"
-import NoCreationsLeft from "pages/Events/Content/Modal/CreateForm/NoCreationsLeft"
+import NoCreationsLeft from "pages/Events/Content/CreateForm/NoCreationsLeft"
 import { useCalendarEvents } from "pages/Events/Context"
 import { useUser } from "pages/auth/hooks/useUser"
 import { getUserHasRemainingEventCreations } from "utils/UserAuth/functions"
