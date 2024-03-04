@@ -2,6 +2,7 @@ import { FormProvider, useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useSnackbar } from "notistack"
 import post from "api/post"
+import put from "api/put"
 import Input from "components/elements/Input"
 import { useCalendarEvents } from "pages/Events/Context"
 import DateOccurenceInputs from "./DateOccurenceInputs"
@@ -24,18 +25,22 @@ import {
 export default function Form() {
   const queryClient = useQueryClient()
   const user = useUser()
-
+  const { setIsOpen, isCreateMode, eventDetails } = useCalendarEvents()
   const { enqueueSnackbar } = useSnackbar()
 
   const mutation = useMutation({
     mutationFn: (data: CreateEventFormData) =>
-      post<CreateEventFormData>("/calendarEvents/new", data),
+      isCreateMode
+        ? post<CreateEventFormData>("/calendarEvents/new", data)
+        : put<CreateEventFormData>(
+            `/calendarEvents/update/${eventDetails.calendar_event_id}`,
+            data
+          ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["calendarEvents"] })
       queryClient.invalidateQueries({ queryKey: ["calendarEventLocations"] })
     },
   })
-  const { setIsOpen, isCreateMode, eventDetails } = useCalendarEvents()
 
   const methods = useForm<CreateEventFormData>({
     mode: "onSubmit",
