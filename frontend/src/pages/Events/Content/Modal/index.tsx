@@ -2,10 +2,15 @@ import { IoMdArrowRoundForward } from "react-icons/io"
 
 import CreateEventForm from "./CreateForm"
 import { useCalendarEvents } from "pages/Events/Context"
-import CalendarEventDetails from "pages/Events/Content/Modal/Details"
+import { useUser } from "pages/auth/hooks/useUser"
+import { getLoggedInStatus } from "utils/UserAuth/functions"
+import NotAMember from "./NotAMember"
+import CalendarEventDetails from "./Details"
 
 export default function Modal() {
   const { setIsOpen, isCreateMode } = useCalendarEvents()
+  const user = useUser()
+  const isLoggedIn = getLoggedInStatus(user)
   return (
     <div
       id="modal-container"
@@ -26,7 +31,10 @@ export default function Modal() {
           <IoMdArrowRoundForward size={45} />
         </button>
         <div className="mt-4">
-          {isCreateMode ? <CreateEventForm /> : <CalendarEventDetails />}
+          {isCreateMode && (
+            <>{isLoggedIn ? <CreateEventForm /> : <NotAMember />}</>
+          )}
+          {!isCreateMode && <CalendarEventDetails />}
         </div>
       </div>
     </div>

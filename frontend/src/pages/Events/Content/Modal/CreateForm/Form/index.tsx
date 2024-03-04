@@ -5,18 +5,18 @@ import { useSnackbar } from "notistack"
 import post from "api/post"
 import Input from "components/elements/Input"
 import { useCalendarEvents } from "pages/Events/Context"
-import DateOccurenceInputs from "pages/Events/Content/Modal/CreateForm/MemberView/Form/DateOccurenceInputs"
-import LocationForm from "pages/Events/Content/Modal/CreateForm/MemberView/Form/Location"
+import DateOccurenceInputs from "./DateOccurenceInputs"
+import LocationForm from "./Location"
+import { QUERY_KEY } from "constants/queryKeys"
+import { useUser } from "pages/auth/hooks/useUser"
 import {
   parentClasses,
   labelClasses,
   inputClasses,
   contentContainer,
-} from "../../styles"
-import { CreateEventFormData } from "../../types"
+} from "../styles"
+import { CreateEventFormData } from "../types"
 import { validateFormData } from "./functions"
-import { QUERY_KEY } from "constants/queryKeys"
-import { useUser } from "pages/auth/hooks/useUser"
 
 export default function Form() {
   const queryClient = useQueryClient()
