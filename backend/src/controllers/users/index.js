@@ -1,6 +1,6 @@
-const asyncErrorBoundary = require("../errors/asyncErrorBoundary")
-const service = require("../services/users")
-const validation = require("../validation/users")
+const asyncErrorBoundary = require("../../errors/asyncErrorBoundary")
+const service = require("../../services/users")
+const validation = require("../../validation/users")
 const bcrypt = require("bcrypt")
 
 async function listUsers(req, res, next) {

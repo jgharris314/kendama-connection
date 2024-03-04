@@ -2,10 +2,8 @@ const asyncErrorBoundary = require("../../errors/asyncErrorBoundary")
 const service = require("../../services/calendar_events")
 const userService = require("../../services/users")
 const { validateCalendarEventData } = require("../../validation/calendarEvent")
-const {
-  getIntervalEvents,
-  restoreOneUserCalendarEventCreation,
-} = require("./functions")
+const { getIntervalEvents } = require("./functions")
+const { restoreOneUserCalendarEventCreation } = require("../users/functions")
 
 async function listEvents(req, res, next) {
   const { location_city_state } = req.params
