@@ -23,6 +23,13 @@ function post(calendar_event) {
     .then((e) => e[0])
 }
 
+function put(calendar_event) {
+  return knex("calendar_event as ce")
+    .where({ calendar_event_id: calendar_event.calendar_event_id })
+    .update(calendar_event)
+    .then((e) => e[0])
+}
+
 function destroy(calendar_event_id) {
   return knex("calendar_event").delete("*").where({ calendar_event_id })
 }
@@ -34,4 +41,5 @@ module.exports = {
   getEventLocations,
   getEventsByInterval,
   destroy,
+  put,
 }

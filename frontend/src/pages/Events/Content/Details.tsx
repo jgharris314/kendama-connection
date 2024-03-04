@@ -3,6 +3,7 @@ import SectionContainer from "components/SectionContainer"
 import { contentContainer } from "pages/Events/Content/CreateForm/styles"
 import { useCalendarEvents } from "pages/Events/Context"
 import { useUser } from "pages/auth/hooks/useUser"
+import deleteReq from "api/delete"
 
 function DataRow({ label, content }: { label: string; content: ReactNode }) {
   return (
@@ -17,11 +18,21 @@ function DataRow({ label, content }: { label: string; content: ReactNode }) {
 
 export default function CalendarEventDetails() {
   const user = useUser()
-  const { eventDetails, setIsCreateMode, setIsEditMode } = useCalendarEvents()
+  const { eventDetails, setIsCreateMode, setIsEditMode, setIsOpen } =
+    useCalendarEvents()
 
   const handleClick = () => {
     setIsCreateMode(false)
     setIsEditMode(true)
+  }
+
+  async function confirmDelete() {
+    if (window.confirm("Are you sure? This is irreversible!")) {
+      await deleteReq(
+        `/calendarEvents/remove/${eventDetails.calendar_event_id}`
+      )
+      return setIsOpen()
+    }
   }
 
   const isCreator =
@@ -67,7 +78,11 @@ export default function CalendarEventDetails() {
             >
               Edit
             </button>
-            <button type="button" className="button button-red">
+            <button
+              type="button"
+              className="button button-red"
+              onClick={() => confirmDelete()}
+            >
               Delete
             </button>
           </div>

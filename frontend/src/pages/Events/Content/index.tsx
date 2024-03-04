@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import get from "api/get"
 import { useCalendarEvents } from "pages/Events/Context"
-import Modal from "../../../components/Layout/Modal"
+import Modal from "components/Layout/Modal"
 import EventCalendar from "./Calendar"
 import CalendarEventDetails from "./Details"
 import CreateEventForm from "./CreateForm"

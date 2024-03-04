@@ -57,8 +57,23 @@ async function getEventLocations(req, res, next) {
   return res.status(200).json([...new Set(modified)])
 }
 
+async function put(req, res, next) {
+  res.status(201).json({
+    data: await service.put(req.body),
+  })
+}
+
+async function deleteEvent(req, res, next) {
+  const { calendar_event_id } = req.params
+  res.status(204).json({
+    data: await service.destroy(calendar_event_id),
+  })
+}
+
 module.exports = {
   listEvents: asyncErrorBoundary(listEvents),
   post: [validateCalendarEventData, asyncErrorBoundary(post)],
+  put: [validateCalendarEventData, asyncErrorBoundary(put)],
   getEventLocations: asyncErrorBoundary(getEventLocations),
+  delete: asyncErrorBoundary(deleteEvent),
 }

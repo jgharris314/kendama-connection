@@ -7,6 +7,14 @@ router
   .all(methodNotAllowed)
 router.route("/new").post(controller.post).all(methodNotAllowed)
 router
+  .route("/remove/:calendar_event_id")
+  .delete(controller.delete)
+  .all(methodNotAllowed)
+router
+  .route("/update/:calendar_event_id")
+  .put(controller.put)
+  .all(methodNotAllowed)
+router
   .route("/:location_city_state")
   .get(controller.listEvents)
   .all(methodNotAllowed)

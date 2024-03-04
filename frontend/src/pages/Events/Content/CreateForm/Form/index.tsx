@@ -25,7 +25,8 @@ import {
 export default function Form() {
   const queryClient = useQueryClient()
   const user = useUser()
-  const { setIsOpen, isCreateMode, eventDetails } = useCalendarEvents()
+  const { setIsOpen, isCreateMode, eventDetails, setIsEditMode } =
+    useCalendarEvents()
   const { enqueueSnackbar } = useSnackbar()
 
   const mutation = useMutation({
@@ -79,7 +80,7 @@ export default function Form() {
       },
     }
     queryClient.setQueryData([QUERY_KEY.user], modifiedUserData)
-
+    setIsEditMode(false)
     return setIsOpen()
   }
 

@@ -62,7 +62,6 @@ export function getDefaultFormdata(createMode: boolean, eventDetails: any) {
     modifiedEventDetails.location_state = locationCityState[1].toUpperCase()
     delete modifiedEventDetails.created_at
     delete modifiedEventDetails.updated_at
-    delete modifiedEventDetails.calendar_event_id
 
     return modifiedEventDetails
   }
