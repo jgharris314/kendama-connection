@@ -13,9 +13,11 @@ import { useCalendarEvents } from "pages/Events/Context"
 export default function DateOccurenceInputs() {
   const { eventDetails } = useCalendarEvents()
   const [startDate, setStartDate] = useState<Date>(
-    new Date(eventDetails.start_date)
+    new Date(eventDetails.start_date || Date.now())
   )
-  const [endDate, setEndDate] = useState<Date>(new Date(eventDetails.end_date))
+  const [endDate, setEndDate] = useState<Date>(
+    new Date(eventDetails.end_date || Date.now())
+  )
   const [selectedInterval, setSelectedInterval] =
     useState<CreateEventInterval>("one-off")
   const { setValue, control } = useFormContext<CreateEventFormData>()

@@ -1,5 +1,6 @@
 const moment = require("moment")
 const { addXMonths, addXWeeks } = require("../../lib/date")
+const userService = require("../../services/users")
 
 function getIntervalEvents(calendarEvent) {
   const limit = 12
@@ -38,4 +39,16 @@ function getIntervalEvents(calendarEvent) {
   return addedEvents
 }
 
-module.exports = { getIntervalEvents }
+async function restoreOneUserCalendarEventCreation(user_id) {
+  const user = await userService.getUserById(user_id)
+
+  const modifiedData = {
+    ...user,
+    remaining_calendar_event_creations:
+      (user.remaining_calendar_event_creations += 1),
+  }
+
+  await userService.update(user.user_id, modifiedData)
+}
+
+module.exports = { getIntervalEvents, restoreOneUserCalendarEventCreation }

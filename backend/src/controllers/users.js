@@ -24,8 +24,15 @@ async function post(req, res, next) {
   })
 }
 
+async function getUserById(req, res, next) {
+  const { user_id } = req.params
+
+  return res.status(200).json({ data: await service.getUserById(user_id) })
+}
+
 module.exports = {
   getUserByUsername: asyncErrorBoundary(getUserByUsername),
   listUsers: asyncErrorBoundary(listUsers),
+  getUserById: asyncErrorBoundary(getUserById),
   post: [validation.validateUserData, asyncErrorBoundary(post)],
 }

@@ -4,6 +4,7 @@ import { contentContainer } from "pages/Events/Content/CreateForm/styles"
 import { useCalendarEvents } from "pages/Events/Context"
 import { useUser } from "pages/auth/hooks/useUser"
 import deleteReq from "api/delete"
+import { useQueryClient } from "@tanstack/react-query"
 
 function DataRow({ label, content }: { label: string; content: ReactNode }) {
   return (
@@ -21,6 +22,8 @@ export default function CalendarEventDetails() {
   const { eventDetails, setIsCreateMode, setIsEditMode, setIsOpen } =
     useCalendarEvents()
 
+  const queryClient = useQueryClient()
+
   const handleClick = () => {
     setIsCreateMode(false)
     setIsEditMode(true)
@@ -31,6 +34,8 @@ export default function CalendarEventDetails() {
       await deleteReq(
         `/calendarEvents/remove/${eventDetails.calendar_event_id}`
       )
+      queryClient.invalidateQueries({ queryKey: ["calendarEvents"] })
+      queryClient.invalidateQueries({ queryKey: ["calendarEventLocations"] })
       return setIsOpen()
     }
   }
