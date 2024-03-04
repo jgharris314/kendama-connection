@@ -10,8 +10,10 @@ import { US_STATES } from "./constants"
 import { useFormContext } from "react-hook-form"
 
 export default function LocationForm() {
-  const [selectedState, setSelectedState] = useState<string>("Select State")
-  const { setValue } = useFormContext()
+  const { setValue, getValues } = useFormContext()
+  const [selectedState, setSelectedState] = useState<string>(
+    getValues("location_state") ?? "Select State"
+  )
 
   useEffect(() => {
     setValue("location_state", selectedState)

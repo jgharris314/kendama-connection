@@ -1,3 +1,5 @@
+import { CreateEventInterval } from "../types"
+
 export const US_STATES = [
   "AL",
   "AK",
@@ -50,3 +52,13 @@ export const US_STATES = [
   "WI",
   "WY",
 ]
+
+export const defaultFormData = {
+  start_date: "",
+  end_date: "",
+  title: "",
+  interval: "one-off" as CreateEventInterval,
+  location_name: "",
+  location_city: "",
+  location_state: "",
+}

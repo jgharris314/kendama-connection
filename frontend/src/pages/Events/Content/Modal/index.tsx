@@ -8,7 +8,7 @@ import NotAMember from "./NotAMember"
 import CalendarEventDetails from "./Details"
 
 export default function Modal() {
-  const { setIsOpen, isCreateMode } = useCalendarEvents()
+  const { setIsOpen, isCreateMode, isEditMode } = useCalendarEvents()
   const user = useUser()
   const isLoggedIn = getLoggedInStatus(user)
   return (
@@ -34,7 +34,8 @@ export default function Modal() {
           {isCreateMode && (
             <>{isLoggedIn ? <CreateEventForm /> : <NotAMember />}</>
           )}
-          {!isCreateMode && <CalendarEventDetails />}
+          {!isCreateMode && !isEditMode && <CalendarEventDetails />}
+          {isEditMode && <CreateEventForm />}
         </div>
       </div>
     </div>

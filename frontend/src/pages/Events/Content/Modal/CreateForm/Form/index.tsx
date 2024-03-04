@@ -17,6 +17,29 @@ import {
 } from "../styles"
 import { CreateEventFormData } from "../types"
 import { validateFormData } from "./functions"
+import { useEffect, useState } from "react"
+import { defaultFormData } from "./constants"
+
+function getDefaultFormdata(createMode: boolean, eventDetails: any) {
+  if (!createMode) {
+    const modifiedEventDetails = { ...eventDetails }
+
+    const locationCityState =
+      modifiedEventDetails.location_city_state.split("_")
+
+    modifiedEventDetails.location_city = locationCityState[0]
+      .split("^")
+      .join(" ")
+    modifiedEventDetails.location_state = locationCityState[1].toUpperCase()
+    delete modifiedEventDetails.created_at
+    delete modifiedEventDetails.updated_at
+    delete modifiedEventDetails.calendar_event_id
+
+    return modifiedEventDetails
+  }
+
+  return defaultFormData
+}
 
 export default function Form() {
   const queryClient = useQueryClient()
@@ -32,9 +55,11 @@ export default function Form() {
       queryClient.invalidateQueries({ queryKey: ["calendarEventLocations"] })
     },
   })
-  const { setIsOpen } = useCalendarEvents()
+  const { setIsOpen, isCreateMode, eventDetails } = useCalendarEvents()
+
   const methods = useForm<CreateEventFormData>({
     mode: "onSubmit",
+    defaultValues: getDefaultFormdata(isCreateMode, eventDetails),
   })
   const { handleSubmit } = methods
 

@@ -32,6 +32,7 @@ export default function CalendarEventsProvider({
   }
   const [eventDetails, setCalendarEventDetails] = useState({})
   const [isCreateMode, setIsCreateMode] = useState(true)
+  const [isEditMode, setIsEditMode] = useState(false)
 
   const value = useMemo(
     () => ({
@@ -40,8 +41,17 @@ export default function CalendarEventsProvider({
       setIsOpen,
       eventDetails,
       setCalendarEventDetails,
+      isEditMode,
+      setIsEditMode,
     }),
-    [eventDetails, setCalendarEventDetails, isCreateMode, setIsCreateMode]
+    [
+      eventDetails,
+      setCalendarEventDetails,
+      isCreateMode,
+      setIsCreateMode,
+      isEditMode,
+      setIsEditMode,
+    ]
   )
 
   return (

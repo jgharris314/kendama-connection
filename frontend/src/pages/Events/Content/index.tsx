@@ -5,7 +5,7 @@ import Modal from "./Modal"
 import EventCalendar from "./Calendar"
 
 export default function Content() {
-  const { setIsOpen, setIsCreateMode } = useCalendarEvents()
+  const { setIsOpen, setIsCreateMode, setIsEditMode } = useCalendarEvents()
   const { data: locations } = useQuery<any>({
     queryKey: ["calendarEventLocations"],
     queryFn: () => get("/calendarEvents/locations"),
@@ -13,6 +13,7 @@ export default function Content() {
 
   function onClickHandler() {
     setIsCreateMode(true)
+    setIsEditMode(false)
     setIsOpen()
   }
 

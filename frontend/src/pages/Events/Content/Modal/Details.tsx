@@ -17,8 +17,13 @@ function DataRow({ label, content }: { label: string; content: ReactNode }) {
 
 export default function CalendarEventDetails() {
   const user = useUser()
-  const { eventDetails } = useCalendarEvents()
+  const { eventDetails, setIsCreateMode, setIsEditMode } = useCalendarEvents()
   console.log(eventDetails)
+
+  const handleClick = () => {
+    setIsCreateMode(false)
+    setIsEditMode(true)
+  }
 
   const isCreator =
     user && user.user && user.user.user_id === eventDetails.user_id
@@ -55,9 +60,16 @@ export default function CalendarEventDetails() {
           />
         </div>
         {isCreator && (
-          <div className="flex w-full justify-end">
-            <button type="button" className="button button-blue">
+          <div className="flex w-full justify-end gap-4">
+            <button
+              type="button"
+              className="button button-blue"
+              onClick={() => handleClick()}
+            >
               Edit
+            </button>
+            <button type="button" className="button button-red">
+              Delete
             </button>
           </div>
         )}
