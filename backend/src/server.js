@@ -1,6 +1,6 @@
 const { PORT = 5000 } = process.env
 
-const app = require("./index")
+const app = require("./api/index")
 const knex = require("./db/connection")
 
 knex.migrate

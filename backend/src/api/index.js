@@ -2,20 +2,20 @@ const path = require("path")
 require("dotenv").config({ path: path.join(__dirname, "..", ".env") })
 
 const cron = require("node-cron")
-const calendarEventCronJobs = require("./cron/calendar_events")
-const userCron = require("./cron/user")
+const calendarEventCronJobs = require("../cron/calendar_events")
+const userCron = require("../cron/user")
 const express = require("express")
 const cors = require("cors")
 const session = require("express-session")
 const KnexSessionStore = require("connect-session-knex")(session)
-const knex = require("./db/connection")
+const knex = require("../db/connection")
 const passport = require("passport")
 
-const errorHandler = require("./errors/errorHandler")
-const notFound = require("./errors/notFound")
-const usersRouter = require("./routers/users")
-const authRouter = require("./routers/auth")
-const calendarEventsRouter = require("./routers/calendar_events")
+const errorHandler = require("../errors/errorHandler")
+const notFound = require("../errors/notFound")
+const usersRouter = require("../routers/users")
+const authRouter = require("../routers/auth")
+const calendarEventsRouter = require("../routers/calendar_events")
 
 const store = new KnexSessionStore({
   knex,
