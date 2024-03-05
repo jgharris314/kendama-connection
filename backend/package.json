@@ -19,7 +19,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.js",
+    "dev": "nodemon src/api/index.js",
     "test": "npx cross-env LOG_LEVEL=warn NODE_ENV=qa jest --runInBand --detectOpenHandles --forceExit",
     "test:1": "npm run test -- er-00",
     "test:start": "npx cross-env LOG_LEVEL=warn NODE_ENV=qa npm run test:start:run",
