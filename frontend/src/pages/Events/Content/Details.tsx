@@ -29,7 +29,7 @@ export default function CalendarEventDetails() {
     setIsEditMode(true)
   }
 
-  async function confirmDelete() {
+  async function confirmAndDelete() {
     if (window.confirm("Are you sure? This is irreversible!")) {
       await deleteReq(
         `/calendarEvents/remove/${eventDetails.calendar_event_id}`
@@ -86,7 +86,7 @@ export default function CalendarEventDetails() {
             <button
               type="button"
               className="button button-red"
-              onClick={() => confirmDelete()}
+              onClick={() => confirmAndDelete()}
             >
               Delete
             </button>

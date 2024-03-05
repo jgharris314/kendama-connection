@@ -4,7 +4,7 @@ import {
   CreateEventInterval,
   CreateEventFormData,
 } from "pages/Events/Content/CreateForm/types"
-import DatePick from "../components/DatePick"
+import DatePick from "../DatePick"
 import { parentClasses, labelClasses } from "../styles"
 import { handleDateChange } from "./functions"
 import { useFormContext } from "react-hook-form"
