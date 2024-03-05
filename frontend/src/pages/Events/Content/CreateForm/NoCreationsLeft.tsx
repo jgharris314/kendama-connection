@@ -1,12 +1,5 @@
-import Form from "pages/Events/Content/Modal/CreateForm/MemberView/Form"
-import { useUser } from "pages/auth/hooks/useUser"
-
-export default function MemberView() {
-  const user = useUser()
-
-  return user.user && user?.user?.remaining_calendar_event_creations > 0 ? (
-    <Form />
-  ) : (
+export default function NoCreationsLeft() {
+  return (
     <div className="flex flex-col w-full h-full items-center justify-center text-kenConnect-white gap-8 mt-16">
       <span className="font-semibold text-[1.5rem] text-center">
         Shucks! You&apos;ve hit your monthly event creation limit

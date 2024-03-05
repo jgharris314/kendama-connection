@@ -8,3 +8,9 @@ export function getLoggedInStatus(data: IUseUser) {
   }
   return false
 }
+
+export function getUserHasRemainingEventCreations(user: IUseUser) {
+  if (user && user.user) {
+    return user.user?.remaining_calendar_event_creations > 0
+  }
+}

@@ -3,15 +3,21 @@ import Dropdown from "components/elements/Dropdown"
 import {
   CreateEventInterval,
   CreateEventFormData,
-} from "pages/Events/Content/Modal/CreateForm/types"
-import DatePick from "../../components/DatePick"
-import { parentClasses, labelClasses } from "../../styles"
+} from "pages/Events/Content/CreateForm/types"
+import DatePick from "../DatePick"
+import { parentClasses, labelClasses } from "../styles"
 import { handleDateChange } from "./functions"
 import { useFormContext } from "react-hook-form"
+import { useCalendarEvents } from "pages/Events/Context"
 
 export default function DateOccurenceInputs() {
-  const [startDate, setStartDate] = useState<Date>(new Date())
-  const [endDate, setEndDate] = useState<Date>(new Date())
+  const { eventDetails } = useCalendarEvents()
+  const [startDate, setStartDate] = useState<Date>(
+    new Date(eventDetails.start_date || Date.now())
+  )
+  const [endDate, setEndDate] = useState<Date>(
+    new Date(eventDetails.end_date || Date.now())
+  )
   const [selectedInterval, setSelectedInterval] =
     useState<CreateEventInterval>("one-off")
   const { setValue, control } = useFormContext<CreateEventFormData>()
@@ -50,7 +56,7 @@ export default function DateOccurenceInputs() {
         <Dropdown
           selectedValue={selectedInterval}
           setSelectedValue={setSelectedInterval}
-          values={["one day", "weekly", "monthly"]}
+          values={["one-off", "weekly", "monthly"]}
           parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
         />
       </div>

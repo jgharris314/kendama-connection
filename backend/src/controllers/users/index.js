@@ -1,6 +1,6 @@
-const asyncErrorBoundary = require("../errors/asyncErrorBoundary")
-const service = require("../services/users")
-const validation = require("../validation/users")
+const asyncErrorBoundary = require("../../errors/asyncErrorBoundary")
+const service = require("../../services/users")
+const validation = require("../../validation/users")
 const bcrypt = require("bcrypt")
 
 async function listUsers(req, res, next) {
@@ -24,8 +24,15 @@ async function post(req, res, next) {
   })
 }
 
+async function getUserById(req, res, next) {
+  const { user_id } = req.params
+
+  return res.status(200).json({ data: await service.getUserById(user_id) })
+}
+
 module.exports = {
   getUserByUsername: asyncErrorBoundary(getUserByUsername),
   listUsers: asyncErrorBoundary(listUsers),
+  getUserById: asyncErrorBoundary(getUserById),
   post: [validation.validateUserData, asyncErrorBoundary(post)],
 }

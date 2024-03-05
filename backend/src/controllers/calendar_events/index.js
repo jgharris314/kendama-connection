@@ -3,6 +3,7 @@ const service = require("../../services/calendar_events")
 const userService = require("../../services/users")
 const { validateCalendarEventData } = require("../../validation/calendarEvent")
 const { getIntervalEvents } = require("./functions")
+const { restoreOneUserCalendarEventCreation } = require("../users/functions")
 
 async function listEvents(req, res, next) {
   const { location_city_state } = req.params
@@ -57,8 +58,29 @@ async function getEventLocations(req, res, next) {
   return res.status(200).json([...new Set(modified)])
 }
 
+async function put(req, res, next) {
+  res.status(201).json({
+    data: await service.put(req.body),
+  })
+}
+
+async function deleteEvent(req, res, next) {
+  const { calendar_event_id } = req.params
+  const user_id = await service.getEventCreatorUserId(calendar_event_id)
+
+  const deleted = await service.destroy(calendar_event_id)
+
+  await restoreOneUserCalendarEventCreation(user_id[0].user_id)
+
+  res.status(204).json({
+    data: deleted,
+  })
+}
+
 module.exports = {
   listEvents: asyncErrorBoundary(listEvents),
   post: [validateCalendarEventData, asyncErrorBoundary(post)],
+  put: [validateCalendarEventData, asyncErrorBoundary(put)],
   getEventLocations: asyncErrorBoundary(getEventLocations),
+  delete: asyncErrorBoundary(deleteEvent),
 }
