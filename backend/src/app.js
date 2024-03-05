@@ -40,6 +40,11 @@ app.use(
     },
   })
 )
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+})
+
 app.use(passport.initialize())
 app.use(passport.session())
 
