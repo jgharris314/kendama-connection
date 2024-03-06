@@ -1,4 +1,3 @@
-const { PORT = 5000 } = process.env
 const path = require("path")
 require("dotenv").config({ path: path.join(__dirname, "..", ".env") })
 
@@ -11,7 +10,7 @@ const session = require("express-session")
 const KnexSessionStore = require("connect-session-knex")(session)
 const knex = require("../db/connection")
 const passport = require("passport")
-
+// const bodyParser = require("body-parser")
 const errorHandler = require("../errors/errorHandler")
 const notFound = require("../errors/notFound")
 const usersRouter = require("../routers/users")
@@ -42,10 +41,6 @@ app.use(
   })
 )
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-})
-
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -65,20 +60,5 @@ cron.schedule("0 0 1 * *", async () => {
   const job = await userCron.restoreUserCalendarEventCreations()
   console.log(job)
 })
-
-knex.migrate
-  .latest()
-  .then((migrations) => {
-    console.log("migrations", migrations)
-    app.listen(PORT, listener)
-  })
-  .catch((error) => {
-    console.error(error)
-    knex.destroy()
-  })
-
-function listener() {
-  console.log(`Listening on Port ${PORT}!`)
-}
 
 module.exports = app
