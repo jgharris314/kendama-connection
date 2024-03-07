@@ -51,13 +51,13 @@ export default function DateOccurenceInputs() {
         />
       </div>
 
-      <div className="">
-        <label className={`${labelClasses} `}>Event Frequency</label>
+      <div className="text-left md:w-[90%]">
+        <label className={labelClasses}>Event Frequency</label>
         <Dropdown
           selectedValue={selectedInterval}
           setSelectedValue={setSelectedInterval}
           values={["one-off", "weekly", "monthly"]}
-          parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
+          parentClasses="h-10"
         />
       </div>
     </>

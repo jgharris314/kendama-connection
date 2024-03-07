@@ -32,12 +32,12 @@ export default function Dropdown<T>({
 
   return (
     <div
-      className={`flex items-center px-4 py-1 border border-[#cccccc] rounded bg-white cursor-pointer relative ${parentClasses}`}
+      className={`flex items-center px-2 py-1 border border-[#cccccc] rounded bg-white cursor-pointer relative ${parentClasses}`}
       role="button"
       aria-hidden
       onClick={dropDownHandleClick}
     >
-      <span className="text-black text-[1.1rem] w-32 text-center">
+      <span className="text-black text-[1.1rem] capitalize">
         {isLocationDropdown
           ? formatLocationString(selectedValue)
           : selectedValue}

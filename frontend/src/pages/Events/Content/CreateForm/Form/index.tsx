@@ -87,42 +87,44 @@ export default function Form() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(submitHandler)} className={contentContainer}>
-        <div className="flex flex-col md:flex-row w-full">
-          <div className="flex flex-col w-full md:w-1/2 gap-2 ">
-            <Input
-              name="title"
-              id="title"
-              parentClasses={parentClasses}
-              inputClasses={inputClasses}
-              label="Event Name"
-              labelClasses={labelClasses}
-            />
-            <DateOccurenceInputs />
+        <div className="relative w-full overflow-scroll text-center">
+          <div className="flex flex-col md:flex-row w-full md:justify-between gap-2 mb-2">
+            <div className="flex flex-col w-full md:w-1/2 gap-2">
+              <Input
+                name="title"
+                id="title"
+                parentClasses={parentClasses}
+                inputClasses={inputClasses}
+                label="Event Name"
+                labelClasses={labelClasses}
+              />
+              <DateOccurenceInputs />
+            </div>
+            <div className="flex flex-col w-full md:w-1/2 gap-2 md:items-end">
+              <LocationForm />
+              <Input
+                name="hosted_by"
+                id="hosted_by"
+                parentClasses={parentClasses}
+                inputClasses={inputClasses}
+                label="Hosted By"
+                labelClasses={labelClasses}
+              />
+            </div>
           </div>
-          <div className="flex flex-col w-full md:w-1/2 gap-2">
-            <LocationForm />
-            <Input
-              name="hosted_by"
-              id="hosted_by"
-              parentClasses={parentClasses}
-              inputClasses={inputClasses}
-              label="Hosted By"
-              labelClasses={labelClasses}
-            />
-          </div>
+          <Input
+            name="description"
+            id="description"
+            parentClasses={`${parentClasses} !w-full`}
+            inputClasses={`${inputClasses} !max-w-none w-full h-16`}
+            label="Description"
+            labelClasses={labelClasses}
+            rows={5}
+          />
+          <button className="mt-12 mb-4 button button-yellow" type="submit">
+            Submit
+          </button>
         </div>
-        <Input
-          name="description"
-          id="description"
-          parentClasses={`${parentClasses} w-full !max-w-none`}
-          inputClasses={`${inputClasses} !max-w-none w-full h-16`}
-          label="Description"
-          labelClasses={labelClasses}
-          rows={5}
-        />
-        <button className="mt-12 mb-4 button button-yellow" type="submit">
-          Submit
-        </button>
       </form>
     </FormProvider>
   )

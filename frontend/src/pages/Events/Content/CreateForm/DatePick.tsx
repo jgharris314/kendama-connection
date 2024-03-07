@@ -15,20 +15,22 @@ export default function DatePick({
   handleChange: (dateChange: Date) => void
 }) {
   return (
-    <Controller
-      control={control}
-      name={name}
-      defaultValue={date.toString()}
-      render={() => (
-        <DatePicker
-          showTimeSelect
-          selected={date}
-          onChange={handleChange}
-          timeFormat="HHHH:mm"
-          dateFormat="MM, dd, yyyy HH:mm"
-          className={inputClasses}
-        />
-      )}
-    />
+    <div className="customDatePickerWidth">
+      <Controller
+        control={control}
+        name={name}
+        defaultValue={date.toString()}
+        render={() => (
+          <DatePicker
+            showTimeSelect
+            selected={date}
+            onChange={handleChange}
+            timeFormat="HHHH:mm"
+            dateFormat="MM, dd, yyyy HH:mm"
+            className={inputClasses}
+          />
+        )}
+      />
+    </div>
   )
 }

@@ -15,7 +15,10 @@ export default function CreateEventForm() {
       {isCreateMode && !userHaseRemainingEventCreations ? (
         <NoCreationsLeft />
       ) : (
-        <Form />
+        <>
+          <h1 className="standard-header mt-4">List an Event!</h1>
+          <Form />
+        </>
       )}
     </SectionContainer>
   )

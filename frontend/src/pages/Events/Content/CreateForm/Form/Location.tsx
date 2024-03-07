@@ -37,13 +37,13 @@ export default function LocationForm() {
         label="City"
         labelClasses={labelClasses}
       />
-      <div className="">
-        <label className={`${labelClasses} `}>State</label>
+      <div className="text-left md:w-[90%]">
+        <label className={`${labelClasses}`}>State</label>
         <Dropdown
           selectedValue={selectedState}
           setSelectedValue={setSelectedState}
           values={US_STATES}
-          parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
+          parentClasses="h-10"
         />
       </div>
     </>
