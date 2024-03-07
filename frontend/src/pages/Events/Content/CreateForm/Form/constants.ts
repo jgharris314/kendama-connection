@@ -53,12 +53,15 @@ export const US_STATES = [
   "WY",
 ]
 
+export const defaultInterval: CreateEventInterval = "one-off"
+
 export const defaultFormData = {
   start_date: "",
   end_date: "",
   title: "",
-  interval: "one-off" as CreateEventInterval,
+  interval: defaultInterval,
   location_name: "",
   location_city: "",
   location_state: "",
+  hosted_by: "",
 }

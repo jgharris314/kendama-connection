@@ -21,12 +21,19 @@ import {
   getDefaultFormdata,
   reformatFormData,
 } from "./functions"
+import { useEffect } from "react"
+import { defaultFormData } from "./constants"
 
 export default function Form() {
   const queryClient = useQueryClient()
   const user = useUser()
-  const { setIsOpen, isCreateMode, eventDetails, setIsEditMode } =
-    useCalendarEvents()
+  const {
+    setIsOpen,
+    isCreateMode,
+    eventDetails,
+    setIsEditMode,
+    setCalendarEventDetails,
+  } = useCalendarEvents()
   const { enqueueSnackbar } = useSnackbar()
 
   const mutation = useMutation({
@@ -47,6 +54,13 @@ export default function Form() {
     mode: "onSubmit",
     defaultValues: getDefaultFormdata(isCreateMode, eventDetails),
   })
+
+  useEffect(() => {
+    if (isCreateMode) {
+      setCalendarEventDetails(defaultFormData)
+    }
+    methods.reset({ ...getDefaultFormdata(isCreateMode, eventDetails) })
+  }, [eventDetails, isCreateMode, methods, setCalendarEventDetails])
   const { handleSubmit } = methods
 
   function submitHandler(formData: CreateEventFormData) {
@@ -71,15 +85,17 @@ export default function Form() {
       return
     }
 
-    const modifiedUserData = {
-      ...user,
-      user: {
-        ...user.user,
-        remaining_calendar_event_creations:
-          user.user.remaining_calendar_event_creations - 1,
-      },
+    if (isCreateMode) {
+      const modifiedUserData = {
+        ...user,
+        user: {
+          ...user.user,
+          remaining_calendar_event_creations:
+            user.user.remaining_calendar_event_creations - 1,
+        },
+      }
+      queryClient.setQueryData([QUERY_KEY.user], modifiedUserData)
     }
-    queryClient.setQueryData([QUERY_KEY.user], modifiedUserData)
     setIsEditMode(false)
     return setIsOpen()
   }
@@ -87,7 +103,7 @@ export default function Form() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(submitHandler)} className={contentContainer}>
-        <div className="relative w-full overflow-scroll text-center">
+        <div className="relative w-full overflow-scroll md:overflow-hidden text-center">
           <div className="flex flex-col md:flex-row w-full md:justify-between gap-2 mb-2">
             <div className="flex flex-col w-full md:w-1/2 gap-2">
               <Input

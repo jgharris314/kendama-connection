@@ -27,7 +27,8 @@ export default function DatePick({
             onChange={handleChange}
             timeFormat="HHHH:mm"
             dateFormat="MM, dd, yyyy HH:mm"
-            className={inputClasses}
+            className={`${inputClasses}`}
+            popperPlacement="bottom-start"
           />
         )}
       />

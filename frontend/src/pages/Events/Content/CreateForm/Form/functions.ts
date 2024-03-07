@@ -1,10 +1,8 @@
 import React from "react"
 import { UseFormSetValue } from "react-hook-form"
 import moment from "moment"
-
 import type { CreateEventFormData } from "../types"
-import { defaultFormData } from "./constants"
-import { IUseUser } from "pages/auth/hooks/useUser"
+import { defaultFormData, defaultInterval } from "./constants"
 
 export function handleDateChange(
   dateChange: Date,
@@ -83,4 +81,31 @@ export function reformatFormData(formData: any, user_id: number) {
   delete modifiedData.location_city
   delete modifiedData.location_state
   return modifiedData
+}
+
+export function getEventDate(
+  isCreateMode: boolean,
+  eventDetails: any,
+  isStart: boolean
+) {
+  if (isCreateMode) {
+    return new Date(Date.now())
+  }
+  return isStart ? eventDetails.start_date : eventDetails.end_date
+}
+
+export function getDefaultInterval(isCreateMode: boolean, eventDetails: any) {
+  return isCreateMode ? defaultInterval : eventDetails.interval
+}
+
+export function getDefaultSelectedState(
+  isCreateMode: boolean,
+  eventDetails: any
+) {
+  if (isCreateMode) {
+    return "Select State"
+  } else {
+    const locationCityState = eventDetails.location_city_state.split("_")
+    return locationCityState[1].toUpperCase()
+  }
 }

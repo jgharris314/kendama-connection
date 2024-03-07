@@ -6,29 +6,38 @@ import {
 } from "pages/Events/Content/CreateForm/types"
 import DatePick from "../DatePick"
 import { parentClasses, labelClasses } from "../styles"
-import { handleDateChange } from "./functions"
+import { handleDateChange, getEventDate, getDefaultInterval } from "./functions"
 import { useFormContext } from "react-hook-form"
 import { useCalendarEvents } from "pages/Events/Context"
+import { defaultInterval } from "./constants"
 
 export default function DateOccurenceInputs() {
-  const { eventDetails } = useCalendarEvents()
+  const { eventDetails, isCreateMode } = useCalendarEvents()
+
   const [startDate, setStartDate] = useState<Date>(
-    new Date(eventDetails.start_date || Date.now())
+    getEventDate(isCreateMode, eventDetails, true)
   )
   const [endDate, setEndDate] = useState<Date>(
-    new Date(eventDetails.end_date || Date.now())
+    getEventDate(isCreateMode, eventDetails, false)
   )
-  const [selectedInterval, setSelectedInterval] =
-    useState<CreateEventInterval>("one-off")
+  const [selectedInterval, setSelectedInterval] = useState<CreateEventInterval>(
+    getDefaultInterval(isCreateMode, eventDetails)
+  )
   const { setValue, control } = useFormContext<CreateEventFormData>()
 
   useEffect(() => {
     setValue("interval", selectedInterval)
   }, [selectedInterval, setValue])
 
+  useEffect(() => {
+    setStartDate(getEventDate(isCreateMode, eventDetails, true))
+    setEndDate(getEventDate(isCreateMode, eventDetails, false))
+    setSelectedInterval(getDefaultInterval(isCreateMode, eventDetails))
+  }, [eventDetails, isCreateMode])
+
   return (
-    <>
-      <div className={parentClasses}>
+    <div className="">
+      <div className={`${parentClasses}`}>
         <label className={labelClasses}>Start Date</label>
         <DatePick
           name="start_date"
@@ -60,6 +69,6 @@ export default function DateOccurenceInputs() {
           parentClasses="h-10"
         />
       </div>
-    </>
+    </div>
   )
 }

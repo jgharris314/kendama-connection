@@ -8,16 +8,23 @@ import {
 } from "pages/Events/Content/CreateForm/styles"
 import { US_STATES } from "./constants"
 import { useFormContext } from "react-hook-form"
+import { useCalendarEvents } from "pages/Events/Context"
+import { getDefaultSelectedState } from "./functions"
 
 export default function LocationForm() {
-  const { setValue, getValues } = useFormContext()
+  const { setValue } = useFormContext()
+  const { isCreateMode, eventDetails } = useCalendarEvents()
   const [selectedState, setSelectedState] = useState<string>(
-    getValues("location_state") || "Select State"
+    getDefaultSelectedState(isCreateMode, eventDetails)
   )
 
   useEffect(() => {
     setValue("location_state", selectedState)
   }, [selectedState, setValue])
+
+  useEffect(() => {
+    setSelectedState(getDefaultSelectedState(isCreateMode, eventDetails))
+  }, [isCreateMode, eventDetails, setValue])
 
   return (
     <>

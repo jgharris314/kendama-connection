@@ -8,6 +8,7 @@ import CreateEventForm from "./CreateForm"
 import NotAMember from "./NotAMember"
 import { useUser } from "pages/auth/hooks/useUser"
 import { getLoggedInStatus } from "utils/UserAuth/functions"
+import { defaultFormData } from "./CreateForm/Form/constants"
 
 function getComponent(
   isCreateMode: boolean,
@@ -33,6 +34,7 @@ export default function Content() {
     isCreateMode,
     setIsEditMode,
     isEditMode,
+    setCalendarEventDetails,
   } = useCalendarEvents()
   const { data: locations } = useQuery<any>({
     queryKey: ["calendarEventLocations"],
@@ -44,6 +46,13 @@ export default function Content() {
   function onClickHandler() {
     setIsCreateMode(true)
     setIsEditMode(false)
+    setIsOpen()
+  }
+
+  function closeHandler() {
+    setIsEditMode(false)
+    setIsCreateMode(true)
+    setCalendarEventDetails(defaultFormData)
     setIsOpen()
   }
 
@@ -62,7 +71,7 @@ export default function Content() {
       </div>
       <EventCalendar locations={locations} />
 
-      <Modal onClickHandler={setIsOpen}>
+      <Modal onClickHandler={closeHandler}>
         <Component />
       </Modal>
     </>
