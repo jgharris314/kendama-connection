@@ -9,10 +9,10 @@ import { useQueryClient } from "@tanstack/react-query"
 function DataRow({ label, content }: { label: string; content: ReactNode }) {
   return (
     <div className="flex py-0.5 md:py-2 capitalize">
-      <label className="capitalize w-28 font-bold text-[1.125rem] text-right mr-4">
+      <label className="capitalize w-[5.25rem] md:w-28 font-bold text-[1.125rem] text-right mr-4">
         {label}:
       </label>
-      <p>{content}</p>
+      <p className="flex items-center">{content}</p>
     </div>
   )
 }

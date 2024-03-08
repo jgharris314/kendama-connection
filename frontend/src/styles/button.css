@@ -1,5 +1,5 @@
 .button {
-  @apply w-32 h-16 rounded shadow-md font-bold;
+  @apply w-32 h-12 rounded shadow-md font-bold;
 }
 
 .button-blue {

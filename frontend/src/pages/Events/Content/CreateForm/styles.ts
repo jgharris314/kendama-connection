@@ -8,4 +8,4 @@ export const labelClasses =
   "text-kenConnect-white whitespace-nowrap p-1 font-semibold text-[1.125rem]"
 
 export const contentContainer =
-  "border border-kenConnect-white w-full flex flex-col justify-center items-center md:w-[600px] p-4 rounded max-h-[80vh]"
+  "border border-kenConnect-white w-full flex flex-col justify-center items-center md:w-[600px] p-4 rounded max-h-[80vh] bg-kenConnect-white/10"

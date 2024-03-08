@@ -34,7 +34,7 @@ const CustomToolbar = (props: ToolbarProps) => {
   }
 
   const buttonClasses =
-    "border border-kenConnect-black/20 bg-kenConnect-blue shadow shadow-kenConnect-blue text-kenConnect-white p-1 rounded w-16 capitalize"
+    "border border-kenConnect-black/20 bg-kenConnect-blue shadow shadow-kenConnect-blue text-kenConnect-white p-1 rounded w-16 capitalize font-bold"
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center md:justify-between w-full mb-2">
@@ -49,7 +49,7 @@ const CustomToolbar = (props: ToolbarProps) => {
           next
         </button>
       </div>
-      <label className="w-full text-center font-semibold my-2 md:my-0">
+      <label className="w-full text-center font-semibold my-0.5 md:my-0">
         {moment(props.date).format("MMMM YYYY")}
       </label>
       <div className="flex w-full items-center justify-center gap-1 md:justify-end">

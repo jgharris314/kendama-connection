@@ -51,9 +51,7 @@ export default function MobileNav() {
             <RxHamburgerMenu size={35} color={"#d1d5dc"} id="open-btn" />
           </button>
         </div>
-        <div className="relative flex w-1/3 justify-center bg-contain text-white">
-          [logos]
-        </div>
+        <div className="relative flex w-1/3 justify-center bg-contain text-white"></div>
         <div className="w-1/3" />
       </SectionContainer>
 
