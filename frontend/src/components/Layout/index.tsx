@@ -9,7 +9,7 @@ export default function Layout() {
   return (
     <SectionContainer
       bgClasses="!w-screen"
-      additionalContentClasses="items-center justify-center w-full"
+      additionalContentClasses="items-center justify-center w-full "
     >
       <Suspense fallback={loading()}>
         <Nav />

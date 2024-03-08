@@ -8,16 +8,23 @@ import {
 } from "pages/Events/Content/CreateForm/styles"
 import { US_STATES } from "./constants"
 import { useFormContext } from "react-hook-form"
+import { useCalendarEvents } from "pages/Events/Context"
+import { getDefaultSelectedState } from "./functions"
 
 export default function LocationForm() {
-  const { setValue, getValues } = useFormContext()
+  const { setValue } = useFormContext()
+  const { isCreateMode, eventDetails } = useCalendarEvents()
   const [selectedState, setSelectedState] = useState<string>(
-    getValues("location_state") || "Select State"
+    getDefaultSelectedState(isCreateMode, eventDetails)
   )
 
   useEffect(() => {
     setValue("location_state", selectedState)
   }, [selectedState, setValue])
+
+  useEffect(() => {
+    setSelectedState(getDefaultSelectedState(isCreateMode, eventDetails))
+  }, [isCreateMode, eventDetails, setValue])
 
   return (
     <>
@@ -37,13 +44,13 @@ export default function LocationForm() {
         label="City"
         labelClasses={labelClasses}
       />
-      <div className="">
-        <label className={`${labelClasses} `}>State</label>
+      <div className="text-left md:w-[90%]">
+        <label className={`${labelClasses}`}>State</label>
         <Dropdown
           selectedValue={selectedState}
           setSelectedValue={setSelectedState}
           values={US_STATES}
-          parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
+          parentClasses="h-10"
         />
       </div>
     </>

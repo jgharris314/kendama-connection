@@ -44,7 +44,7 @@ export default function CalendarEventDetails() {
     user && user.user && user.user.user_id === eventDetails.user_id
 
   return (
-    <SectionContainer additionalContentClasses="flex flex-col w-full justify-center items-center text-white">
+    <SectionContainer additionalContentClasses="flex flex-col w-full justify-center items-center text-white mt-4">
       <div className={contentContainer}>
         <div className="flex flex-col w-full items-start">
           <DataRow label="event name" content={eventDetails.title} />
