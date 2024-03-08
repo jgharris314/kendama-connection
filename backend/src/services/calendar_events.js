@@ -8,6 +8,10 @@ function getEventByLocation(location_city_state) {
   return knex("calendar_event").select("*").where({ location_city_state })
 }
 
+function listEventsByUserId(user_id) {
+  return knex("calendar_event").select("*").where({ user_id })
+}
+
 function getEventCreatorUserId(calendar_event_id) {
   return knex("calendar_event").select("user_id").where({ calendar_event_id })
 }
@@ -47,4 +51,5 @@ module.exports = {
   destroy,
   put,
   getEventCreatorUserId,
+  listEventsByUserId,
 }

@@ -15,6 +15,10 @@ router
   .put(controller.put)
   .all(methodNotAllowed)
 router
+  .route("/user/:user_id")
+  .get(controller.listEventsByUserId)
+  .all(methodNotAllowed)
+router
   .route("/:location_city_state")
   .get(controller.listEvents)
   .all(methodNotAllowed)

@@ -78,16 +78,28 @@ export default function MobileNav() {
             )
           })}
           {isLoggedIn ? (
-            <button
-              key={uuidv4()}
-              type="button"
-              onClick={() => onSignOut()}
-              className={
-                "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
-              }
-            >
-              Logout
-            </button>
+            <>
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onClickHandler("account")}
+                className={
+                  "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+                }
+              >
+                Account
+              </button>
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onSignOut()}
+                className={
+                  "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+                }
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <button

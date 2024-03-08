@@ -40,7 +40,16 @@ export default function DesktopNav() {
           })}
           {isLoggedIn ? (
             <>
-              {" "}
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onClickHandler("account")}
+                className={
+                  "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+                }
+              >
+                Account
+              </button>
               <button
                 key={uuidv4()}
                 type="button"

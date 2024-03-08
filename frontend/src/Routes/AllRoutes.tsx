@@ -6,6 +6,7 @@ const Home = React.lazy(() => import("pages/Home"))
 const Events = React.lazy(() => import("pages/Events"))
 const Signup = React.lazy(() => import("pages/auth/Signup"))
 const Login = React.lazy(() => import("pages/auth/Login"))
+const Account = React.lazy(() => import("pages/Account"))
 
 const loading = () => <div>Loading...</div>
 
@@ -29,6 +30,7 @@ export default function AllRoutes() {
       children: [
         { path: "/", element: <LoadComponent component={Home} /> },
         { path: "events", element: <LoadComponent component={Events} /> },
+        { path: "account", element: <LoadComponent component={Account} /> },
         { path: "auth/signup", element: <LoadComponent component={Signup} /> },
         { path: "auth/login", element: <LoadComponent component={Login} /> },
       ],

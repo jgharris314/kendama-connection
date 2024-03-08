@@ -20,6 +20,14 @@ async function listEvents(req, res, next) {
   res.json(modifedEvents.flat(1))
 }
 
+async function listEventsByUserId(req, res, next) {
+  const { user_id } = req.params
+
+  const events = await service.listEventsByUserId(user_id)
+
+  res.status(200).json(events)
+}
+
 async function post(req, res, next) {
   const data = req.body
 
@@ -79,6 +87,7 @@ async function deleteEvent(req, res, next) {
 
 module.exports = {
   listEvents: asyncErrorBoundary(listEvents),
+  listEventsByUserId: asyncErrorBoundary(listEventsByUserId),
   post: [validateCalendarEventData, asyncErrorBoundary(post)],
   put: [validateCalendarEventData, asyncErrorBoundary(put)],
   getEventLocations: asyncErrorBoundary(getEventLocations),
