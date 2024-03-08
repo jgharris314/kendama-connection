@@ -1,13 +1,14 @@
 import { v4 as uuidv4 } from "uuid"
+import { useNavigate } from "react-router-dom"
+import { useSignOut } from "hooks/useSignOut"
+import { useUser } from "hooks/useUser"
 import SectionContainer from "../../../SectionContainer"
 import {
   desktopNavItemChildStyles,
   desktopNavItemParentStyles,
   navOptions,
 } from "../constants"
-import { useNavigate } from "react-router-dom"
-import { useSignOut } from "pages/auth/hooks/useSignOut"
-import { useUser } from "pages/auth/hooks/useUser"
+
 import { getLoggedInStatus } from "utils/UserAuth/functions"
 
 export default function DesktopNav() {
@@ -44,11 +45,9 @@ export default function DesktopNav() {
                 key={uuidv4()}
                 type="button"
                 onClick={() => onClickHandler("account")}
-                className={
-                  "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
-                }
+                className={desktopNavItemParentStyles}
               >
-                Account
+                <span className={desktopNavItemChildStyles}>Account</span>
               </button>
               <button
                 key={uuidv4()}

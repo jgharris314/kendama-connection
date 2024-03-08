@@ -4,11 +4,11 @@ import { useSnackbar } from "notistack"
 import post from "api/post"
 import put from "api/put"
 import Input from "components/elements/Input"
+import { QUERY_KEY } from "constants/queryKeys"
+import { useUser } from "hooks/useUser"
 import { useCalendarEvents } from "pages/Events/Context"
 import DateOccurenceInputs from "./DateOccurenceInputs"
 import LocationForm from "./Location"
-import { QUERY_KEY } from "constants/queryKeys"
-import { useUser } from "pages/auth/hooks/useUser"
 import {
   parentClasses,
   labelClasses,

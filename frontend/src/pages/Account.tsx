@@ -1,4 +1,4 @@
-import { useUser } from "./auth/hooks/useUser"
+import { useUser } from "hooks/useUser"
 export default function AccountPage() {
   const user = useUser()
 

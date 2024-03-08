@@ -45,7 +45,7 @@ export default function EventCalendar({
   }
 
   return (
-    <div className="flex flex-col items-start justify-center md:w-full  bg-kenConnect-white border-2 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white p-2">
+    <div className="text-kenConnect-black flex flex-col items-start justify-center md:w-full  bg-kenConnect-white border-2 border-kenConnect-black/40 rounded shadow shadow-kenConnect-white p-2">
       <div>{isFetching ? "Updating..." : ""}</div>
       <div className="flex items-center gap-4 mb-2">
         <span className="font-bold">Location</span>
