@@ -59,7 +59,7 @@ export default function MobileNav() {
 
       <div
         id="menu-container"
-        className="invisible h-screen fixed top-[4.5rem] left-0 w-screen inset-0 bg-kenConnect-black bg-gradient-to-b from-black/90 to-black/0 z-50"
+        className="invisible h-screen fixed top-16 left-0 w-screen inset-0 bg-kenConnect-black bg-gradient-to-b from-black/90 to-black/0 z-50"
       >
         <div
           id="menu-bg"

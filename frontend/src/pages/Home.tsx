@@ -16,7 +16,9 @@ export default function HomePage() {
       additionalContentClasses="w-full
      flex flex-col justify-center items-center transform scale-90 md:scale-100 text-white"
     >
-      <h1 className="standard-header whitespace-nowrap">Kendama Connection</h1>
+      <h1 className="standard-header whitespace-nowrap -mt-8">
+        Kendama Connection
+      </h1>
       <ReactPlayer
         url={videoUrl}
         width="90vw"
