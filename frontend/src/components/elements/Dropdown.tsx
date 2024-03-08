@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
+import { formatLocationString } from "utils/string"
 
 export default function Dropdown<T>({
   values,
@@ -23,11 +24,6 @@ export default function Dropdown<T>({
   const selectValue = (value: T) => {
     setSelectedValue(value)
     setDropDownOpen(!dropDownOpen)
-  }
-
-  function formatLocationString(location: string) {
-    const temp = location.split("_").join(", ")
-    return temp.split("^").join(" ")
   }
 
   return (
