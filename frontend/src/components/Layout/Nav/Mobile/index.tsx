@@ -51,15 +51,13 @@ export default function MobileNav() {
             <RxHamburgerMenu size={35} color={"#d1d5dc"} id="open-btn" />
           </button>
         </div>
-        <div className="relative flex w-1/3 justify-center bg-contain text-white">
-          [logos]
-        </div>
+        <div className="relative flex w-1/3 justify-center bg-contain text-white"></div>
         <div className="w-1/3" />
       </SectionContainer>
 
       <div
         id="menu-container"
-        className="invisible h-screen fixed top-[4.5rem] left-0 w-screen inset-0 bg-kenConnect-black bg-gradient-to-b from-black/90 to-black/0 z-50"
+        className="invisible h-screen fixed top-16 left-0 w-screen inset-0 bg-kenConnect-black bg-gradient-to-b from-black/90 to-black/0 z-50"
       >
         <div
           id="menu-bg"

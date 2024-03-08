@@ -8,7 +8,7 @@ const loading = () => <div className="" />
 export default function Layout() {
   return (
     <SectionContainer
-      bgClasses="!w-screen"
+      bgClasses=""
       additionalContentClasses="items-center justify-center w-full "
     >
       <Suspense fallback={loading()}>

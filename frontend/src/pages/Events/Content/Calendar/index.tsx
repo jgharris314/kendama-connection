@@ -8,6 +8,7 @@ import { eventStyleGetterfunction } from "./functions"
 import { CalendarEvent } from "./types"
 import { useState } from "react"
 import { useCalendarEvents } from "pages/Events/Context"
+import CustomToolbar from "./Toolbar"
 
 export default function EventCalendar({
   locations = [],
@@ -66,6 +67,7 @@ export default function EventCalendar({
         selectable
         eventPropGetter={eventStyleGetterfunction}
         onSelectEvent={(calendar_event) => onSelectEvent(calendar_event)}
+        components={{ toolbar: CustomToolbar }}
       />
     </div>
   )
