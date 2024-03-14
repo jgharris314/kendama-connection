@@ -5,11 +5,7 @@ import { useMediaQuery } from "react-responsive"
 export default function HomePage() {
   const isBigScreen = useMediaQuery({ query: "(min-width: 1280px)" })
 
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" })
-
-  const videoUrl = isMobile
-    ? "https://m.youtube.com/watch?v=0Kt8mY64zcg"
-    : "https://www.youtube.com/watch?v=0Kt8mY64zcg"
+  const videoUrl = "https://www.youtube.com/watch?v=1zi-J-Y5Kng"
 
   return (
     <SectionContainer

@@ -40,7 +40,7 @@ export default function Dropdown<T>({
       </span>
       {/* <div className="h-4 w-4 bg-no-repeat -mb-2" /> */}
       <div
-        className={`rounded absolute z-10 bg-white top-[40px] left-0 max-h-64 w-40 overflow-hidden overflow-y-scroll border-r border-[#dddddd] shadow-lg shadow-kenConnect-black ${
+        className={`rounded absolute bg-white top-[40px] left-0 max-h-64 w-40 overflow-hidden overflow-y-scroll border-r border-[#dddddd] shadow-lg shadow-kenConnect-black ${
           dropDownOpen ? "visible" : "invisible"
         }`}
       >

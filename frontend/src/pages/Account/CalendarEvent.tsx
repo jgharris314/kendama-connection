@@ -16,7 +16,13 @@ function formatCalendarEventData(key: string, calendarEvent: any) {
   }
 }
 
-export function CalendarEvent({ calendarEvent }: { calendarEvent: any }) {
+export function CalendarEvent({
+  calendarEvent,
+  deleteHandler,
+}: {
+  calendarEvent: any
+  deleteHandler: any
+}) {
   const keys = [
     "title",
     "start_date",
@@ -38,6 +44,21 @@ export function CalendarEvent({ calendarEvent }: { calendarEvent: any }) {
           </div>
         )
       })}
+      <div className="flex flex-col md:flex-row w-full my-4 gap-4">
+        <a
+          className="button button-yellow flex items-center justify-center"
+          href={`/events/${calendarEvent.calendar_event_id}`}
+        >
+          View Details
+        </a>
+        <button
+          type="button"
+          className="button button-red"
+          onClick={() => deleteHandler(calendarEvent.calendar_event_id)}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   )
 }

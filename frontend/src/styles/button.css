@@ -7,7 +7,7 @@
 }
 
 .button-yellow {
-  @apply !bg-kenConnect-yellow text-kenConnect-black shadow-kenConnect-yellow border border-kenConnect-yellow;
+  @apply !bg-kenConnect-yellow text-kenConnect-black shadow-kenConnect-yellow border border-kenConnect-black;
 }
 
 .button-red {

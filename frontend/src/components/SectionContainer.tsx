@@ -12,7 +12,7 @@ export default function SectionContainer({
   id?: string
 }) {
   return (
-    <div className={`w-full ${bgClasses}]`} id={id}>
+    <div className={`w-full ${bgClasses}`} id={id}>
       <div
         className={`layout-content-container layout-padding xl:px-0 ${additionalContentClasses}`}
       >

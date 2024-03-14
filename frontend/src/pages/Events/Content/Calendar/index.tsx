@@ -53,7 +53,7 @@ export default function EventCalendar({
           selectedValue={selectedLocation}
           setSelectedValue={setSelectedLocation}
           values={["all", ...locations]}
-          parentClasses={`${parentClasses} border-2 !border-kenConnect-black`}
+          parentClasses={`${parentClasses} border-2 !border-kenConnect-black z-0`}
           isLocationDropdown
         />
       </div>
