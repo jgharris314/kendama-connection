@@ -1,7 +1,19 @@
-import React, { createContext, useContext, useMemo, useState } from "react"
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
+import { useQuery } from "@tanstack/react-query"
+import { QUERY_KEY } from "constants/queryKeys"
+import get from "api/get"
+import { defaultFormData } from "./Content/CreateForm/Form/constants"
 
 type CalendarEventsProviderProps = {
+  initialEventDetails: Record<string, any>
   children: React.ReactNode
+  calendarEventId: string | undefined
 }
 
 const CalendarEvents = createContext<{
@@ -11,10 +23,8 @@ const CalendarEvents = createContext<{
   isEditMode: boolean
   setIsEditMode: React.Dispatch<React.SetStateAction<boolean>>
 
-  eventDetails: Record<string, any>
-  setCalendarEventDetails: React.Dispatch<
-    React.SetStateAction<Record<string, any>>
-  >
+  eventDetails: any
+  setCalendarEventDetails: React.Dispatch<React.SetStateAction<any>>
 }>({
   isCreateMode: true,
   setIsCreateMode: () => null,
@@ -26,6 +36,7 @@ const CalendarEvents = createContext<{
 })
 
 export default function CalendarEventsProvider({
+  calendarEventId,
   children,
 }: CalendarEventsProviderProps) {
   function setIsOpen() {
@@ -35,9 +46,24 @@ export default function CalendarEventsProvider({
     document.getElementById("modal")?.classList.toggle("lg:translate-x-full")
     document.getElementById("modal")?.classList.toggle("translate-y-full")
   }
-  const [eventDetails, setCalendarEventDetails] = useState({})
+  const [eventDetails, setCalendarEventDetails] = useState(defaultFormData)
   const [isCreateMode, setIsCreateMode] = useState(true)
   const [isEditMode, setIsEditMode] = useState(false)
+
+  const { data, refetch } = useQuery({
+    queryKey: [QUERY_KEY.calendarEventDetails],
+    queryFn: () => get(`/calendarEvents/id/${calendarEventId}`),
+  })
+
+  useEffect(() => {
+    refetch()
+    if (data && data[0] && data[0].calendar_event_id) {
+      setCalendarEventDetails(data[0])
+      setIsCreateMode(false)
+      setIsEditMode(false)
+      setIsOpen()
+    }
+  }, [calendarEventId, data, refetch])
 
   const value = useMemo(
     () => ({

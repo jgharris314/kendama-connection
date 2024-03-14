@@ -3,6 +3,7 @@ export function removeUnderscore(str: string) {
 }
 
 export function formatLocationString(location: string) {
+  if (location.toLowerCase() === "all") return location
   const city_state = location.split("_")
   const temp = [city_state[0], city_state[1].toUpperCase()].join(", ")
   return temp.split("^").join(" ")

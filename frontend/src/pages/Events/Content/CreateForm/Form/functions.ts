@@ -50,13 +50,14 @@ export function validateFormData(formData: CreateEventFormData) {
 export function getDefaultFormdata(createMode: boolean, eventDetails: any) {
   if (!createMode) {
     const modifiedEventDetails = { ...eventDetails }
+    console.log(modifiedEventDetails)
 
     const locationCityState =
-      modifiedEventDetails.location_city_state.split("_")
+      modifiedEventDetails.location_city_state?.split("_")
 
     modifiedEventDetails.location_city = locationCityState[0]
-      .split("^")
-      .join(" ")
+      ?.split("^")
+      ?.join(" ")
     modifiedEventDetails.location_state = locationCityState[1].toUpperCase()
     delete modifiedEventDetails.created_at
     delete modifiedEventDetails.updated_at

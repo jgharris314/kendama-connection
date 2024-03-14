@@ -28,6 +28,14 @@ async function listEventsByUserId(req, res, next) {
   res.status(200).json(events)
 }
 
+async function getEventById(req, res, next) {
+  const { calendar_event_id } = req.params
+
+  const event = await service.getEventById(calendar_event_id)
+
+  res.status(200).json(event)
+}
+
 async function post(req, res, next) {
   const data = req.body
 
@@ -92,4 +100,5 @@ module.exports = {
   put: [validateCalendarEventData, asyncErrorBoundary(put)],
   getEventLocations: asyncErrorBoundary(getEventLocations),
   delete: asyncErrorBoundary(deleteEvent),
+  getEventById: asyncErrorBoundary(getEventById),
 }

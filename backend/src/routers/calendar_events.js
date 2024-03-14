@@ -11,6 +11,10 @@ router
   .delete(controller.delete)
   .all(methodNotAllowed)
 router
+  .route("/id/:calendar_event_id")
+  .get(controller.getEventById)
+  .all(methodNotAllowed)
+router
   .route("/update/:calendar_event_id")
   .put(controller.put)
   .all(methodNotAllowed)

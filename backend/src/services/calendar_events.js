@@ -42,6 +42,10 @@ function destroy(calendar_event_id) {
   return knex("calendar_event").delete("*").where({ calendar_event_id })
 }
 
+function getEventById(calendar_event_id) {
+  return knex("calendar_event").select("*").where({ calendar_event_id })
+}
+
 module.exports = {
   listAllEvents,
   getEventByLocation,
@@ -52,4 +56,5 @@ module.exports = {
   put,
   getEventCreatorUserId,
   listEventsByUserId,
+  getEventById,
 }
