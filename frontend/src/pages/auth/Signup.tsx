@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from "react-hook-form"
 import Input from "components/elements/Input"
-import { useSignUp } from "./hooks/useSignUp"
-import { useUser } from "./hooks/useUser"
+import { useSignUp } from "hooks/useSignUp"
+import { useUser } from "hooks/useUser"
 import { useEffect } from "react"
 import { getLoggedInStatus } from "utils/UserAuth/functions"
 import { useNavigate } from "react-router-dom"
@@ -45,7 +45,7 @@ export default function LoginPage() {
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSignUp)}
-          className="flex flex-col w-full lg:w-3/4 items-center rounded border border-kenConnect-white py-4"
+          className="flex flex-col w-full lg:w-3/4 items-center rounded border border-kenConnect-white bg-kenConnect-white/5 py-4"
         >
           <div className="max-w-[700px]">
             <Input

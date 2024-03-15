@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
+import { formatLocationString } from "utils/string"
 
 export default function Dropdown<T>({
   values,
@@ -25,11 +26,6 @@ export default function Dropdown<T>({
     setDropDownOpen(!dropDownOpen)
   }
 
-  function formatLocationString(location: string) {
-    const temp = location.split("_").join(", ")
-    return temp.split("^").join(" ")
-  }
-
   return (
     <div
       className={`flex items-center px-2 py-1 border border-[#cccccc] rounded bg-white cursor-pointer relative ${parentClasses}`}
@@ -44,7 +40,7 @@ export default function Dropdown<T>({
       </span>
       {/* <div className="h-4 w-4 bg-no-repeat -mb-2" /> */}
       <div
-        className={`rounded absolute z-10 bg-white top-[40px] left-0 max-h-64 w-40 overflow-hidden overflow-y-scroll border-r border-[#dddddd] shadow-lg shadow-kenConnect-black ${
+        className={`rounded absolute bg-white top-[40px] left-0 max-h-64 w-40 overflow-hidden overflow-y-scroll border-r border-[#dddddd] shadow-lg shadow-kenConnect-black ${
           dropDownOpen ? "visible" : "invisible"
         }`}
       >

@@ -7,13 +7,10 @@ const loading = () => <div className="" />
 
 export default function Layout() {
   return (
-    <SectionContainer
-      bgClasses=""
-      additionalContentClasses="items-center justify-center w-full "
-    >
+    <SectionContainer additionalContentClasses="items-center justify-center w-full">
       <Suspense fallback={loading()}>
         <Nav />
-        <div className="pt-20">
+        <div className="pt-20 pb-10">
           <Outlet />
         </div>
       </Suspense>

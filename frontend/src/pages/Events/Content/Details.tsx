@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 import SectionContainer from "components/SectionContainer"
 import { contentContainer } from "pages/Events/Content/CreateForm/styles"
 import { useCalendarEvents } from "pages/Events/Context"
-import { useUser } from "pages/auth/hooks/useUser"
+import { useUser } from "hooks/useUser"
 import deleteReq from "api/delete"
 import { useQueryClient } from "@tanstack/react-query"
 

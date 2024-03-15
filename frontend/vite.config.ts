@@ -11,6 +11,7 @@ export const alias: Record<string, any> = {
   assets: path.join(dirname, "src", "assets"),
   constants: path.join(dirname, "src", "constants"),
   context: path.join(dirname, "src", "context"),
+  hooks: path.join(dirname, "src", "hooks"),
   utils: path.join(dirname, "src", "utils"),
 }
 

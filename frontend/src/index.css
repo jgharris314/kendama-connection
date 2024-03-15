@@ -6,13 +6,10 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  overflow: hidden;
-}
-
 :root {
   background-color: #050a23;
-  overflow: hidden;
+  overflow-y: scroll;
+  color: #f3f6f4;
 }
 
 .layout-padding {

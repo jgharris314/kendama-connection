@@ -1,13 +1,13 @@
 import { v4 as uuidv4 } from "uuid"
 import { RxHamburgerMenu } from "react-icons/rx"
 import { MdClose } from "react-icons/md"
+import { useSignOut } from "hooks/useSignOut"
+import { useUser } from "hooks/useUser"
+import { getLoggedInStatus } from "utils/UserAuth/functions"
 import SectionContainer from "../../../SectionContainer"
 import { useNavigate } from "react-router-dom"
 import { navOptions } from "../constants"
 import MobileNavItem from "./NavItem"
-import { useSignOut } from "pages/auth/hooks/useSignOut"
-import { useUser } from "pages/auth/hooks/useUser"
-import { getLoggedInStatus } from "utils/UserAuth/functions"
 
 export default function MobileNav() {
   const user = useUser()
@@ -78,16 +78,28 @@ export default function MobileNav() {
             )
           })}
           {isLoggedIn ? (
-            <button
-              key={uuidv4()}
-              type="button"
-              onClick={() => onSignOut()}
-              className={
-                "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
-              }
-            >
-              Logout
-            </button>
+            <>
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onClickHandler("account")}
+                className={
+                  "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+                }
+              >
+                Account
+              </button>
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onSignOut()}
+                className={
+                  "capitalize w-full pb-4  text-[20px] font-semibold border-white border-b-2 flex items-center justify-center"
+                }
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <button

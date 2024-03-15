@@ -1,14 +1,14 @@
 const moment = require("moment")
 
-function addXWeeks(date, x) {
+function addXWeeks(date, amountOfWeeks) {
   const mutatoPotato = new Date(date)
-  mutatoPotato.setDate(date.getDate() + 7 * x)
+  mutatoPotato.setDate(date.getDate() + 7 * amountOfWeeks)
   return moment(mutatoPotato).toDate()
 }
 
-function addXMonths(date, x) {
+function addXMonths(date, amountOfMonths) {
   const mutatoPotato = new Date(date)
-  mutatoPotato.setMonth(date.getMonth() + 1 * x)
+  mutatoPotato.setMonth(date.getMonth() + 1 * amountOfMonths)
   return moment(mutatoPotato).toDate()
 }
 

@@ -1,9 +1,9 @@
+import { useEffect } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import Input from "components/elements/Input"
-import { useSignIn } from "./hooks/useSignIn"
-import { useEffect } from "react"
+import { useSignIn } from "hooks/useSignIn"
+import { useUser } from "hooks/useUser"
 import { getLoggedInStatus } from "utils/UserAuth/functions"
-import { useUser } from "./hooks/useUser"
 import { useNavigate } from "react-router-dom"
 export interface LoginFormData {
   username: string
@@ -45,7 +45,7 @@ export default function LoginPage() {
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSignIn)}
-          className="flex flex-col w-full lg:w-3/4 items-center rounded border border-kenConnect-white py-4"
+          className="flex flex-col w-full lg:w-3/4 items-center rounded border border-kenConnect-white bg-kenConnect-white/5 py-4"
         >
           <div className="flex flex-col  max-w-[700px]">
             {" "}

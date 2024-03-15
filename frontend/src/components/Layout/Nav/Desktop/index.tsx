@@ -1,13 +1,14 @@
 import { v4 as uuidv4 } from "uuid"
+import { useNavigate } from "react-router-dom"
+import { useSignOut } from "hooks/useSignOut"
+import { useUser } from "hooks/useUser"
 import SectionContainer from "../../../SectionContainer"
 import {
   desktopNavItemChildStyles,
   desktopNavItemParentStyles,
   navOptions,
 } from "../constants"
-import { useNavigate } from "react-router-dom"
-import { useSignOut } from "pages/auth/hooks/useSignOut"
-import { useUser } from "pages/auth/hooks/useUser"
+
 import { getLoggedInStatus } from "utils/UserAuth/functions"
 
 export default function DesktopNav() {
@@ -24,7 +25,7 @@ export default function DesktopNav() {
   return (
     <SectionContainer bgClasses="hidden lg:block bg-kenConnect-black bg-gradient-to-t from-black/50 to-black/10 fixed h-[3.5rem] w-screen left-0 top-0 z-50 !pt-0 shadow-lg shadow-kenConnect-black ">
       <div className="relative flex w-full justify-between h-[3.5rem] items-center">
-        <div className="w-full">[LOGO]</div>
+        <div className="w-full"></div>
         <ul className="flex w-full justify-end gap-4">
           {navOptions.map((option) => {
             return (
@@ -40,7 +41,14 @@ export default function DesktopNav() {
           })}
           {isLoggedIn ? (
             <>
-              {" "}
+              <button
+                key={uuidv4()}
+                type="button"
+                onClick={() => onClickHandler("account")}
+                className={desktopNavItemParentStyles}
+              >
+                <span className={desktopNavItemChildStyles}>Account</span>
+              </button>
               <button
                 key={uuidv4()}
                 type="button"

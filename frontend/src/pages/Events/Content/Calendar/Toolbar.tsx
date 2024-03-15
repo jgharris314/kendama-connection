@@ -1,9 +1,8 @@
 import "react-big-calendar/lib/css/react-big-calendar.css"
 
 import moment from "moment"
-import { useEffect, useState } from "react"
-import { momentLocalizer, Navigate, ToolbarProps } from "react-big-calendar"
-const localizer = momentLocalizer(moment)
+import { useState } from "react"
+import { Navigate, ToolbarProps } from "react-big-calendar"
 
 const CustomToolbar = (props: ToolbarProps) => {
   const [viewState, setViewState] = useState("month")

@@ -50,7 +50,7 @@ export default function LocationForm() {
           selectedValue={selectedState}
           setSelectedValue={setSelectedState}
           values={US_STATES}
-          parentClasses="h-10"
+          parentClasses="h-10 text-kenConnect-black z-0"
         />
       </div>
     </>
